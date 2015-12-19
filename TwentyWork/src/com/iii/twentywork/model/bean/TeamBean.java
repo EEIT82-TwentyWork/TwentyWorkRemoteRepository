@@ -1,27 +1,35 @@
 package com.iii.twentywork.model.bean;
 
+import java.util.Arrays;
+
 public class TeamBean {
-	private int teamid;
-	private String teamname;
-	private byte[] teamimage;
+	private int teamID;
+	private String teamName;
+	private byte[] teamImage;
 	
-	public int getTeamid() {
-		return teamid;
+	@Override
+	public String toString() {
+		return "TeamBean [teamID=" + teamID + ", teamName=" + teamName
+				+ ", teamImage=" + Arrays.toString(teamImage) + "]";
 	}
-	public void setTeamid(int teamid) {
-		this.teamid = teamid;
+	
+	public int getTeamID() {
+		return teamID;
 	}
-	public String getTeamname() {
-		return teamname;
+	public void setTeamID(int teamID) {
+		this.teamID = teamID;
 	}
-	public void setTeamname(String teamname) {
-		this.teamname = teamname;
+	public String getTeamName() {
+		return teamName;
 	}
-	public byte[] getTeamimage() {
-		return teamimage;
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
 	}
-	public void setTeamimage(byte[] teamimage) {
-		this.teamimage = teamimage;
+	public byte[] getTeamImage() {
+		return teamImage;
+	}
+	public void setTeamImage(byte[] teamImage) {
+		this.teamImage = teamImage;
 	}
 	
 }
