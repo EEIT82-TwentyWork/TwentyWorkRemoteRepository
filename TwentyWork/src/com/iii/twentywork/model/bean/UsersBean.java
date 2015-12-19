@@ -9,6 +9,7 @@ public class UsersBean {
 	private byte[] userimage;
 	private String cellphone;
 	private String phone;
+	
 	public int getUserid() {
 		return userid;
 	}
