@@ -12,7 +12,7 @@
 <body>
 <!-- multistep form -->
 
-<!-- jQuery --><form id="msform">
+<form id="msform" action="" method="get">
 	<!-- progressbar -->
 	<ul id="progressbar">
 		<li class="active">Account Setup</li>
