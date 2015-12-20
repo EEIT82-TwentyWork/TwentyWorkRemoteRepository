@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>TwentyWork|register</title>
 <link rel="stylesheet" href="../css/login/register.css">
 
 
@@ -23,14 +23,14 @@
 	<fieldset>
 		<h2 class="fs-title">Create your account</h2>
 		<h3 class="fs-subtitle">This is step 1</h3>
-		<input type="text" name="email" placeholder="Email" />
+		<input type="text" name="email" placeholder="Email" blur="email1" />
 		<input type="password" name="pass" placeholder="Password" />
 		<input type="password" name="cpass" placeholder="Confirm Password" />
 		<input type="button" name="next" class="next action-button" value="Next" />
 	</fieldset>
 	<fieldset>
 		<h2 class="fs-title">Personal Details</h2>
-		<h3 class="fs-subtitle">Your presence on the social network</h3>
+		<h3 class="fs-subtitle">We will never sell it</h3>
 		<input type="text" name="fname" placeholder="Full Name" />
 		<input type="text" name="cellPhone" placeholder="CellPhone" />
 		<input type="text" name="birth" placeholder="birth" />
@@ -39,11 +39,9 @@
 	</fieldset>
 	<fieldset>
 		<h2 class="fs-title">Team Details</h2>
-		<h3 class="fs-subtitle">We will never sell it</h3>
-		<input type="text" name="fname" placeholder="First Name" />
-		<input type="text" name="lname" placeholder="Last Name" />
-		<input type="text" name="phone" placeholder="Phone" />
-		<textarea name="address" placeholder="Address"></textarea>
+		<h3 class="fs-subtitle">welcome !!</h3>
+		<input type="text" name="teamname" placeholder="Team Name" />
+		<textarea name="about" placeholder="about"></textarea>
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
 		<input type="submit" name="submit" class="submit action-button" value="Submit" />
 	</fieldset>
