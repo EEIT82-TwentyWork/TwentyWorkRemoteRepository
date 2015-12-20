@@ -1,4 +1,10 @@
 //jQuery time
+//function email1(){
+//	var rename =/^[\u4E00-\u9FA5]{1,}$/;
+//	var email =document.get
+//}
+
+
 
 var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset properties which we will animate
