@@ -1,4 +1,4 @@
-package com.iii.twentywork.controller;
+package com.iii.twentywork.controller.login;
 
 import java.io.IOException;
 import java.util.HashMap;
