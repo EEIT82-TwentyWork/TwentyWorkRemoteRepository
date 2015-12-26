@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("users", bean);
 
 					String path = req.getContextPath();
-					resp.sendRedirect(path+"/index.jsp");
+					resp.sendRedirect(path+"/main/workHome/main.jsp");
 				}
 	}
 

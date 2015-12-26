@@ -11,7 +11,7 @@
 
 </head>
 <body>
-<h3>Welcome ${users.userName}</h3>
+
 	<section>
 	<div>
 		<div id="icon-wrapper">
