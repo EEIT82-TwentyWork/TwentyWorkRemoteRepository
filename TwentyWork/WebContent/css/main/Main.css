@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+#left {
+	background-color: red;
+	width: 50%;
+	height: 100%
+}
+
+#right {
+	background-color: green;
+	width: 30%;
+	height: 100%;
+}
+
+#center {
+	background-color: blue;
+	width: 20%;
+	htigth: 100%;
+}
+
+.main {
+	background-color: #666666;
+	width: 100%;
+	htigth: 100%;
+}
