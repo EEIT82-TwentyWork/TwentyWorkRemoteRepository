@@ -6,22 +6,90 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../css/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="../../css/main/Main.css">
+
 <title>main</title>
 </head>
 	<body>	
-		<div class="container">
-			<div class="main">
-				<span id="left">left</span>
-				<span id="center">center</span>
-				<span id="right">right</span>
-				
-	<!-- 			<div id="left">1111111</div> -->
-	<!-- 			<div id="right">2222222</div> -->
-			</div>
+		<div class="container-fluid">
+			<section>
+<!-- layout----E1 begin---------------------------------------------------->				
+				<div id="page-top">top
+				</div>
+				<div id="page-left">
+					<div id="accordian">
+						<ul>
+							<li>
+								<h3><span class="icon-dashboard"></span>Dashboard</h3>
+								<ul>
+									<li><a href="#">Reports</a></li>
+									<li><a href="#">Search</a></li>
+									<li><a href="#">Graphs</a></li>
+									<li><a href="#">Settings</a></li>
+								</ul>
+							</li>
+							<!-- we will keep this LI open by default -->
+							<li class="active">
+								<h3><span class="icon-tasks"></span>Tasks</h3>
+								<ul>
+									<li><a href="#">Today's tasks</a></li>
+									<li><a href="#">Urgent</a></li>
+									<li><a href="#">Overdues</a></li>
+									<li><a href="#">Recurring</a></li>
+									<li><a href="#">Settings</a></li>
+								</ul>
+							</li>
+							<li>
+								<h3><span class="icon-calendar"></span>Calendar</h3>
+								<ul>
+									<li><a href="#">Current Month</a></li>
+									<li><a href="#">Current Week</a></li>
+									<li><a href="#">Previous Month</a></li>
+									<li><a href="#">Previous Week</a></li>
+									<li><a href="#">Next Month</a></li>
+									<li><a href="#">Next Week</a></li>
+									<li><a href="#">Team Calendar</a></li>
+									<li><a href="#">Private Calendar</a></li>
+									<li><a href="#">Settings</a></li>
+								</ul>
+							</li>
+							<li>
+								<h3><span class="icon-heart"></span>Favourites</h3>
+								<ul>
+									<li><a href="#">Global favs</a></li>
+									<li><a href="#">My favs</a></li>
+									<li><a href="#">Team favs</a></li>
+									<li><a href="#">Settings</a></li>
+								</ul>
+							</li>
+							<li>
+								<h3><span class="icon-chat"></span>Chat List</h3>
+								<ul>
+									<li><a href="#">吳承恩</a></li>
+									<li><a href="#">黃莉婷</a></li>
+									<li><a href="#">陳凱尉</a></li>
+									<li><a href="#">Amy</a></li>
+									<li><a href="#">cat</a></li>
+									<li><a href="#">Azumi</a></li>
+									<li><a href="#">BOSS</a></li>
+									<li><a href="#">123456789012345678901234567890</a></li>
+									<li><a href="#">一二三四五六七八九十一二三四五六七八</a></li>
+								</ul>
+							</li>
+							<li>
+								<h3><span class="icon-close"></span>close</h3>
+							</li>
+						</ul>
+					</div>
+				</div>
+<!-- layout----E1 end---------------------------------------------------->								
+				<div id="page-center">center</div>
+				<div id="page-right">right</div>
+				<div id="page-bottom">bottom</div>
+			</section>
 		</div>	
-
-	<script src="htt​​ps://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" />
-	<script src="/js/bootstarp/bootstrap.min.js" />
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="../../js/login/Main.js"></script>
 	</body>
 
 </html>
