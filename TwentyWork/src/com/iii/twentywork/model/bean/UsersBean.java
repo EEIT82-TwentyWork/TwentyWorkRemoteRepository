@@ -2,13 +2,18 @@ package com.iii.twentywork.model.bean;
 
 import java.util.Arrays;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name="USERS")
 public class UsersBean {
+	@Id
 	private int userID;
 	private String userName;
 	private String email;
 	private byte[] password;
 	private java.util.Date birth;
-	private byte[] userImage;
 	private String cellPhone;
 	private String phone;
 	
@@ -17,8 +22,7 @@ public class UsersBean {
 		return "UsersBean [userID=" + userID + ", userName=" + userName
 				+ ", email=" + email + ", password="
 				+ Arrays.toString(password) + ", birth=" + birth
-				+ ", userImage=" + Arrays.toString(userImage) + ", cellPhone="
-				+ cellPhone + ", phone=" + phone + "]";
+				+ ", cellPhone=" + cellPhone + ", phone=" + phone + "]";
 	}
 	
 	public int getUserID() {
@@ -50,12 +54,6 @@ public class UsersBean {
 	}
 	public void setBirth(java.util.Date birth) {
 		this.birth = birth;
-	}
-	public byte[] getUserImage() {
-		return userImage;
-	}
-	public void setUserImage(byte[] userImage) {
-		this.userImage = userImage;
 	}
 	public String getCellPhone() {
 		return cellPhone;
