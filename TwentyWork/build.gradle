@@ -20,7 +20,7 @@ dependencies {						//宣告dependency library
 	compile 'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1'
 	
 	compile 'org.hibernate:hibernate-core:4.3.11.Final'
-	runtime files('../../../apache-tomcat-8.0.22/lib/sqljdbc42.jar')
+	runtime files('C:/sqljdbc42.jar')
 
 	
 }
