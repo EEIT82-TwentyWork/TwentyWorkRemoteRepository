@@ -14,7 +14,6 @@ import com.iii.twentywork.model.daointerface.UserDAO;
 
 @Component(value = "userDAO")
 public class UserDAOHibernate implements UserDAO {
-	private Session session=null;
 	@Autowired
 	private SessionFactory sessionFactory;
 
