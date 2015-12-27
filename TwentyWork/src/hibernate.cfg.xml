@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+<!-- session-factory 少了 name="hibernate/self" -->
+    <session-factory >
+<!--         <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> -->
+<!--         <property name="hibernate.connection.password">passw0rd</property> -->
+<!--         <property name="hibernate.connection.url">jdbc:microsoft:sqlserver://1E1;DatabaseName=test;SelectMethod=cursor</property> -->
+<!--         <property name="hibernate.connection.username">sa</property> -->
+        <property name="connection.datasource">java:comp/env/jdbc/xxx</property>
+        <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+        <property name="current_session_context_class">thread</property>
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+        
+        <mapping class="com.iii.twentywork.model.bean.UsersBean" />
+<!-- 		<mapping class="model.ProductBean" /> -->
+        <!-- 多了mapping -->
+<!--         <mapping  resource="model/CustomerBean.hbm.xml"/> -->
+<!--         <mapping  resource="model/ProductBean.hbm.xml"/> -->
+        
+    </session-factory>
+</hibernate-configuration>
