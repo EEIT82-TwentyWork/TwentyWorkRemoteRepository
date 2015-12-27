@@ -14,6 +14,7 @@ public class UsersBean {
 	private String email;
 	private byte[] password;
 	private java.util.Date birth;
+	private byte[] userImage;
 	private String cellPhone;
 	private String phone;
 	
@@ -54,6 +55,13 @@ public class UsersBean {
 	}
 	public void setBirth(java.util.Date birth) {
 		this.birth = birth;
+	}
+	public byte[] getUserImage() {
+		return userImage;
+	}
+
+	public void setUserImage(byte[] userImage) {
+		this.userImage = userImage;
 	}
 	public String getCellPhone() {
 		return cellPhone;
