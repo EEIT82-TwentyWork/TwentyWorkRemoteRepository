@@ -1,12 +1,8 @@
 package com.iii.twentywork.model.dao;
 
-import java.util.Date;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.iii.twentywork.model.bean.users.UsersBean;
@@ -14,7 +10,6 @@ import com.iii.twentywork.model.daointerface.UserDAO;
 
 @Component(value = "userDAO")
 public class UserDAOHibernate implements UserDAO {
-	private Session session=null;
 	@Autowired
 	private SessionFactory sessionFactory;
 
