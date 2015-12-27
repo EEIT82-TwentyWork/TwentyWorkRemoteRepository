@@ -82,7 +82,13 @@
 					</div>
 				</div>
 <!-- layout----E1 end---------------------------------------------------->								
-				<div id="page-center">center</div>
+				<div id="page-center">
+					<div id="chat-top"></div>
+					<div id="chat-context"></div>
+					<div id="chat-box">
+						<input type="text" class="chat-text" placeholder="strat chat"/>
+					</div>
+				</div>
 				<div id="page-right">right</div>
 				<div id="page-bottom">bottom</div>
 			</section>
