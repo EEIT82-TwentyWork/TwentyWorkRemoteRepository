@@ -35,6 +35,7 @@ section {
 	margin: 0;
 	padding: 0;
 }
+
 #accordian {
 	background: #004050;
 	width: 100%;
@@ -94,32 +95,135 @@ section {
 
 /* -------layout-center(main-e2)------------------------------------------------------------------------------- */
 #page-center {
-	background:rgba(255, 0, 0, 0.5);
+	background: rgba(255, 0, 0, 0.5);
 	float: left;
 	width: 75%;
 	height: 90%;
 }
-#chat-top{
-	width:100%;
-	height:10%;
-	background:red
+
+#chat-top {
+	width: 100%;
+	height: 10%;
+	background: red
 }
-#chat-context{
-	width:100%;
-	height:70%;
-	background:#D8BFD8;
+
+#chat-context {
+	width: 100%;
+	height: 70%;
+	background: #D8BFD8;
 }
-#chat-box{
-	width:100%;
-	height:20%;
-	background:blue;
+/* ---chat test------------------------------------------------------------------------------- */
+#page-wrapper {
+  width: 650px;
+  background: #FFF;
+  padding: 1em;
+  margin: 1em auto;
+  border-top: 5px solid #69c773;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.8);
 }
-.chat-text{
-	border-radius: 4px;
-	width:100%;
-	height:100%;
-	
+#status {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
 }
+
+.open {
+  color: green;
+}
+
+.closed {
+  color: red;
+}
+
+#chat-messages{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.95rem;
+}
+
+#chat-messages li {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #EEE;
+}
+
+chat-messages li:first-child {
+  border-top: 1px solid #EEE;
+}
+
+#chat-messages-re{
+  display: inline-block;
+  width: 90px;
+  font-weight: bold;
+  color: #999;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.sent {
+  background-color: #F7F7F7;
+}
+
+.received {}
+
+#message-form {
+  margin-top: 1.5rem;
+}
+
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #D9D9D9;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+  min-height: 100px;
+  margin-bottom: 1rem;
+}
+
+button {
+  display: inline-block;
+  border-radius: 3px;
+  border: none;
+  font-size: 0.9rem;
+  padding: 0.6rem 1em;
+  color: white;
+  margin: 0 0.25rem;
+  text-align: center;
+  background: #BABABA;
+  border-bottom: 1px solid #999;
+}
+
+button[type="submit"] {
+  background: #86b32d;
+  border-bottom: 1px solid #5d7d1f;
+}
+
+button:hover {
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+/* ---chat test------------------------------------------------------------------------------- */
+#chat-box {
+	width: 100%;
+	height: 20%;
+	background: blue;
+}
+
+#chat-text {
+	width: 80%;
+	height: 95%;
+	padding: 0.5rem;
+	font-size: 1rem;
+	border: 1px solid #D9D9D9;
+	border-radius: 3px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+	min-height: 100px;
+	margin-bottom: 1rem;
+	padding: 0.5rem;
+}
+
 /* -------layout-right(main-e2)------------------------------------------------------------------------------- */
 #page-right {
 	background: green;

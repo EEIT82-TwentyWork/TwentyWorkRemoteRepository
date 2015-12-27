@@ -40,7 +40,7 @@
 	<fieldset>
 		<h2 class="fs-title">Team Details</h2>
 		<h3 class="fs-subtitle">welcome !!</h3>
-		<input type="text" name="teamname" placeholder="Team Name" />
+		<input type="text" name="teamName" placeholder="Team Name" />
 		<textarea name="about" placeholder="about"></textarea>
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
 		<input type="submit" name="submit" class="submit action-button" value="Submit" />

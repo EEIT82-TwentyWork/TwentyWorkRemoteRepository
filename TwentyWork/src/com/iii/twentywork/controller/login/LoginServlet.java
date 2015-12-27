@@ -11,15 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.iii.twentywork.model.bean.UsersBean;
+import com.iii.twentywork.model.bean.users.UsersBean;
 import com.iii.twentywork.model.service.user.LoginService;
 
 public class LoginServlet extends HttpServlet {
 	private LoginService loginService;
-	
 	@Override
 	public void init() throws ServletException {
 		ServletContext application = this.getServletContext();

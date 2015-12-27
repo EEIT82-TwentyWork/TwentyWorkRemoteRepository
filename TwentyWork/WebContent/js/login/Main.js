@@ -1,6 +1,7 @@
 /*jQuery time*/
 
 $(document).ready(function(){
+	alert
 	$("#accordian h3").click(function(){
 		//slide up all the link lists
 		$("#accordian ul ul").slideUp();

@@ -1,12 +1,15 @@
-package com.iii.twentywork.model.bean;
+package com.iii.twentywork.model.bean.users;
 
 import java.util.Arrays;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
 @Entity
 @Table(name="USERS")
+@Component(value="UsersBean")
 public class UsersBean {
 	@Id
 	private int userID;

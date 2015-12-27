@@ -86,9 +86,16 @@
 <!-- layout----E1 end---------------------------------------------------->								
 				<div id="page-center">
 					<div id="chat-top"></div>
-					<div id="chat-context"></div>
+					<div id="chat-context">
+						<div id="status"></div>
+						<ul id ="chat-messages"></ul>
+					</div>
 					<div id="chat-box">
-						<input type="text" class="chat-text" placeholder="strat chat"/>
+						<form id="message-form" action ="#" method="post">
+							<input type="textarea" id="chat-text" placeholder="strat chat" required/>
+							<button type="submit" >Send Message</button>
+							<input type ="button" id ="close" value="close">
+						</form>
 					</div>
 				</div>
 				<div id="page-right">right</div>
@@ -98,6 +105,7 @@
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="../../js/login/Main.js"></script>
+<script src="../../js/main/Websocket.js"></script>
 	</body>
 
 </html>
