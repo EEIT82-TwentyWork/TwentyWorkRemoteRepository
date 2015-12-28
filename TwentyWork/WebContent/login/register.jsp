@@ -27,6 +27,7 @@
 		<input type="password" name="pass" placeholder="Password" />
 		<input type="password" name="cpass" placeholder="Confirm Password" />
 		<input type="button" name="next" class="next action-button" value="Next" />
+		<h3><span class="error">${errors.action}</span></h3>
 	</fieldset>
 	<fieldset>
 		<h2 class="fs-title">Personal Details</h2>
