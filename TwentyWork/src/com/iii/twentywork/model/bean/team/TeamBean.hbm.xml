@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2015/12/28 ?U?? 06:44:55 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.iii.twentywork.model.bean.team.TeamBean" table="TEAMBEAN">
+    <class name="com.iii.twentywork.model.bean.team.TeamBean" table="TEAM">
         <id name="teamID" type="int">
             <column name="TEAMID" />
             <generator class="assigned" />
@@ -11,7 +11,7 @@
         <property name="teamName" type="java.lang.String">
             <column name="TEAMNAME" />
         </property>
-        <primitive-array name="teamImage" table="TEAMBEAN">
+        <primitive-array name="teamImage" table="TEAM">
             <key>
                 <column name="TEAMID" />
             </key>

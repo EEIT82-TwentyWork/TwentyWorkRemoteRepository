@@ -1,10 +1,7 @@
 package com.iii.twentywork.model.daointerface;
 
-import org.springframework.stereotype.Component;
-
 import com.iii.twentywork.model.bean.team.TeamBean;
 import com.iii.twentywork.model.bean.users.UsersBean;
-@Component(value="UserDAO")
 public interface UserDAO {
 
 	public abstract UsersBean select(int userID);

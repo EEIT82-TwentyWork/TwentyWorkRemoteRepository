@@ -18,6 +18,15 @@
     <url-pattern>/login/login.controller</url-pattern>
   </servlet-mapping>
   
+ 	<servlet>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>com.iii.twentywork.controller.login.RegisterServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/login/login.c</url-pattern>
+ 	</servlet-mapping>
+  
   <resource-ref>
 		<res-ref-name>jdbc/xxx</res-ref-name>
 		<res-type>javax.sql.DataSource</res-type>
