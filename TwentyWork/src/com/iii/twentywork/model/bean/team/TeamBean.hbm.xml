@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015/12/28 ?U?? 06:44:55 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.iii.twentywork.model.bean.team.TeamBean" table="TEAMBEAN">
+        <id name="teamID" type="int">
+            <column name="TEAMID" />
+            <generator class="assigned" />
+        </id>
+        <property name="teamName" type="java.lang.String">
+            <column name="TEAMNAME" />
+        </property>
+        <primitive-array name="teamImage" table="TEAMBEAN">
+            <key>
+                <column name="TEAMID" />
+            </key>
+            <index></index>
+            <element type="byte">
+                <column name="TEAMIMAGE" />
+            </element>
+        </primitive-array>
+        <property name="teamAbout" type="java.lang.String">
+            <column name="TEAMABOUT" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -13,16 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.iii.twentywork.model.bean.TeamBean;
+import com.iii.twentywork.model.bean.team.TeamBean;
 import com.iii.twentywork.model.bean.users.UsersBean;
+import com.iii.twentywork.model.service.user.LoginService;
+import com.iii.twentywork.model.service.user.RegisterService;
 
 public class RegisterServlet extends HttpServlet {
-
+	private RegisterService registerService;
 	@Override
 	public void init() throws ServletException {
 		ServletContext application = this.getServletContext();
 		ApplicationContext context = WebApplicationContextUtils
 				.getWebApplicationContext(application);
+		this.registerService = (RegisterService) context.getBean("registerService");
 	}
 
 	@Override
@@ -96,8 +99,8 @@ public class RegisterServlet extends HttpServlet {
 		
 		//根據Model執行結果，呼叫View
 		if("Submit".equals(submit)) {
-			UsersBean uresult = RegisterService.usersRegister(uBean);
-			TeamBean tresult = RegisterService.teamRegister(tBean);
+			UsersBean uresult = registerService.usersRegister(uBean);
+			TeamBean tresult = registerService.teamRegister(tBean);
 			if(uresult==null || tresult==null) {
 				errors.put("action", "Insert fail");
 			}
@@ -108,8 +111,7 @@ public class RegisterServlet extends HttpServlet {
 			request.getRequestDispatcher(
 					"/login/register.jsp").forward(request, response);
 		}
-		
-		
+				
 	}
 	
 	
