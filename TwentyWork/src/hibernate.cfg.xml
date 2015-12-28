@@ -16,6 +16,8 @@
         <property name="format_sql">true</property>
         
         <mapping class="com.iii.twentywork.model.bean.users.UsersBean" />
+        <mapping class="com.iii.twentywork.model.bean.team.TeamBean"/>
+        
 <!-- 		<mapping class="model.ProductBean" /> -->
         <!-- 多了mapping -->
 <!--         <mapping  resource="model/CustomerBean.hbm.xml"/> -->

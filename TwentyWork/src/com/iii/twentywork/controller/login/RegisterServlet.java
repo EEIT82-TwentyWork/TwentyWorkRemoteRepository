@@ -34,34 +34,36 @@ public class RegisterServlet extends HttpServlet {
 		String birth = request.getParameter("birth");
 		String teamName = request.getParameter("teamName");
 		String about = request.getParameter("about");
+		
 		// 驗證資料
-		Map<String, String> errors = new HashMap<String, String>();
-		request.setAttribute("erros", errors);
-		if(email.equals(null)||email.trim().length()==0){
-			errors.put("email","Please provide an email account register");
-		}
-		if(pass.equals(null)||pass.trim().length()==0){
-			errors.put("password", "Please choose a password");
-		}
-		//PASS match cpass
-		if(!cpass.equals(null)||!(cpass.trim().length()==0)){
-			if(cpass.equals(pass)){
-				errors.put("cpass","password not match");
-			}
-			errors.put(cpass, "Please choose a password again");
-		}
-		if(fname.equals(null)||fname.trim().length()==0){
-			errors.put("fname", "Please provide your full name");
-		}
-		if(cellPhone.equals(null)||cellPhone.trim().length()==0){
-			errors.put("cellPhone","This's required field ");
-		}
-		if(birth.equals(null)||birth.trim().length()==0){
-			errors.put("birth", "When is your birthday ?");
-		}
-		if(teamName.equals(null)||teamName.trim().length()==0){
-			errors.put("teamName", "Create team name!");
-		}
+//		Map<String, String> errors = new HashMap<String, String>();
+//		request.setAttribute("erros", errors);
+//		if(email.equals(null)||email.trim().length()==0){
+//			errors.put("email","Please provide an email account register");
+//		}
+//		if(pass.equals(null)||pass.trim().length()==0){
+//			errors.put("password", "Please choose a password");
+//		}
+//		//PASS match cpass
+//		if(!cpass.equals(null)||!(cpass.trim().length()==0)){
+//			if(cpass.equals(pass)){
+//				errors.put("cpass","password not match");
+//			}
+//			errors.put(cpass, "Please choose a password again");
+//		}
+//		if(fname.equals(null)||fname.trim().length()==0){
+//			errors.put("fname", "Please provide your full name");
+//		}
+//		if(cellPhone.equals(null)||cellPhone.trim().length()==0){
+//			errors.put("cellPhone","This's required field ");
+//		}
+//		if(birth.equals(null)||birth.trim().length()==0){
+//			errors.put("birth", "When is your birthday ?");
+//		}
+//		if(teamName.equals(null)||teamName.trim().length()==0){
+//			errors.put("teamName", "Create team name!");
+//		}
+		
 	}
 	//呼叫Model
 
