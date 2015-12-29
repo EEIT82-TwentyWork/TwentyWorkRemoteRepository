@@ -1,0 +1,240 @@
+@CHARSET "UTF-8";
+
+body {
+	background: #4EB889;
+}
+
+section {
+	float: left;
+	width: 100%;
+	padding: 0;
+	height: 800px;
+}
+/* -------layout-top------------------------------------------------------------------------------------ */
+#page-top {
+	background: #444444;
+	width: 100%;
+	height: 5%;
+}
+/* -------layout-left(E1)------------------------------------------------------------------------------------ */
+#page-left {
+	float: left;
+	background: url('http://thecodeplayer.com/uploads/media/gs.png');
+	width: 15%;
+	height: 90%;
+}
+/*custom font for text*/
+@import url(http://fonts.googleapis.com/css?family=Nunito);
+/*CSS file for fontawesome - an iconfont we will be using. This CSS file imported contains the font-face declaration. More info: http://fortawesome.github.io/Font-Awesome/ */
+@import
+	url(http://thecodeplayer.com/uploads/fonts/fontawesome/css/font-awesome.min.css)
+	;
+
+/*Basic reset*/
+* {
+	margin: 0;
+	padding: 0;
+}
+
+#accordian {
+	background: #004050;
+	width: 100%;
+	margin: 0 auto 0 auto;
+	color: white;
+	/*Some cool shadow and glow effect*/
+	box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.6), 0 0 200px 1px
+		rgba(255, 255, 255, 0.5);
+}
+/*heading styles*/
+#accordian h3 {
+	font-size: 12px;
+	line-height: 34px;
+	padding: 0 10px;
+	cursor: pointer;
+	/*fallback for browsers not supporting gradients*/
+	background: #003040;
+	background: linear-gradient(#003040, #002535);
+}
+/*heading hover effect*/
+#accordian h3:hover {
+	text-shadow: 0 0 1px rgba(255, 255, 255, 0.7);
+}
+/*iconfont styles*/
+#accordian h3 span {
+	font-size: 16px;
+	margin-right: 10px;
+}
+/*list items*/
+#accordian li {
+	list-style-type: none;
+}
+/*links*/
+#accordian ul ul li a {
+	color: white;
+	text-decoration: none;
+	font-size: 11px;
+	line-height: 27px;
+	display: block;
+	padding: 0 15px;
+	/*transition for smooth hover animation*/
+	transition: all 0.15s;
+}
+/*hover effect on links*/
+#accordian ul ul li a:hover {
+	background: #003545;
+	border-left: 5px solid lightgreen;
+}
+/*Lets hide the non active LIs by default*/
+#accordian ul ul {
+	display: none;
+}
+
+#accordian li.active ul {
+	display: block;
+}
+
+/* -------layout-center(main-e2)------------------------------------------------------------------------------- */
+#page-center {
+	background: rgba(255, 0, 0, 0.5);
+	float: left;
+	width: 75%;
+	height: 90%;
+}
+
+#chat-top {
+	width: 100%;
+	height: 10%;
+	background: red
+}
+
+#chat-context {
+	width: 100%;
+	height: 70%;
+	background: #D8BFD8;
+}
+/* ---chat test------------------------------------------------------------------------------- */
+#page-wrapper {
+  width: 650px;
+  background: #FFF;
+  padding: 1em;
+  margin: 1em auto;
+  border-top: 5px solid #69c773;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+#status {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.open {
+  color: green;
+}
+
+.closed {
+  color: red;
+}
+
+#chat-messages{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.95rem;
+}
+
+#chat-messages li {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #EEE;
+}
+
+chat-messages li:first-child {
+  border-top: 1px solid #EEE;
+}
+
+#chat-messages-re{
+  display: inline-block;
+  width: 90px;
+  font-weight: bold;
+  color: #999;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.sent {
+  background-color: #F7F7F7;
+}
+
+.received {}
+
+#message-form {
+  margin-top: 1.5rem;
+}
+
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #D9D9D9;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+  min-height: 100px;
+  margin-bottom: 1rem;
+}
+
+button {
+  display: inline-block;
+  border-radius: 3px;
+  border: none;
+  font-size: 0.9rem;
+  padding: 0.6rem 1em;
+  color: white;
+  margin: 0 0.25rem;
+  text-align: center;
+  background: #BABABA;
+  border-bottom: 1px solid #999;
+}
+
+button[type="submit"] {
+  background: #86b32d;
+  border-bottom: 1px solid #5d7d1f;
+}
+
+button:hover {
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+/* ---chat test------------------------------------------------------------------------------- */
+#chat-box {
+	width: 100%;
+	height: 20%;
+	background: blue;
+}
+
+#chat-text {
+	width: 80%;
+	height: 95%;
+	padding: 0.5rem;
+	font-size: 1rem;
+	border: 1px solid #D9D9D9;
+	border-radius: 3px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+	min-height: 100px;
+	margin-bottom: 1rem;
+	padding: 0.5rem;
+}
+
+/* -------layout-right(main-e2)------------------------------------------------------------------------------- */
+#page-right {
+	background: green;
+	float: left;
+	width: 10%;
+	height: 90%;
+}
+
+#page-bottom {
+	float: left;
+	background: #00DD77;
+	width: 100%;
+	height: 5%;
+}
