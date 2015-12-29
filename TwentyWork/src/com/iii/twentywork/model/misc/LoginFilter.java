@@ -54,7 +54,7 @@ public class LoginFilter implements Filter {
     			String uri = request.getRequestURI();
     			session.setAttribute("requestURI", uri);
     			String path = request.getContextPath();
-    			response.sendRedirect(path+"/login/login.controller");
+    			response.sendRedirect(path+"/login/login.jsp");
     		}else
     		{
     			chain.doFilter(request, response);

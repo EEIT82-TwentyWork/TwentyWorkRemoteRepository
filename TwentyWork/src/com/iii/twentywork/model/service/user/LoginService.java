@@ -71,7 +71,7 @@ public class LoginService {
 //        LoginService service = (LoginService) context.getBean("loginService");
 //        UsersBean bean= service.login(100,"A");
 //        System.out.println(bean);
-        
+//        
 //        //testing#2
 //        LoginService service = (LoginService) context.getBean("loginService");
 //        TeamUserBean bean= service.loginTeam(100,200);
