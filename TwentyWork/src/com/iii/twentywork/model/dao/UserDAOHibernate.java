@@ -10,6 +10,14 @@ import org.springframework.stereotype.Component;
 import com.iii.twentywork.model.bean.users.UsersBean;
 import com.iii.twentywork.model.daointerface.UserDAO;
 
+import org.springframework.stereotype.Component;
+
+import com.iii.twentywork.model.bean.team.TeamBean;
+import com.iii.twentywork.model.bean.users.UsersBean;
+import com.iii.twentywork.model.daointerface.UserDAO;
+
+
+
 
 @Component(value = "userDAO")
 public class UserDAOHibernate implements UserDAO {
@@ -59,6 +67,44 @@ public class UserDAOHibernate implements UserDAO {
 	// }
 	// return false;
 	// }
+	
+//	@Override
+//	public UsersBean insert(UsersBean userBean, TeamBean teamBean) {
+//		UsersBean usersBeanResult = (UsersBean) getSession().get(
+//				UsersBean.class, userBean.getEmail());
+//		TeamBean teamBeanResult = (TeamBean) getSession().get(TeamBean.class,
+//				teamBean.getTeamName());
+//		if (usersBeanResult == null&&teamBeanResult==null) {
+//			getSession().save(userBean);
+//			getSession().save(teamBean);
+//			return userBean;
+//		}
+//		return null;
+//	}
+	
+	@Override
+	public UsersBean usersRegister(UsersBean usersBean) {
+		UsersBean result=(UsersBean)getSession().get(UsersBean.class,usersBean.getEmail());
+		if(result == null){
+			getSession().save(usersBean);
+			System.out.println("usersRegister結束");
+			return usersBean;
+		}
+		System.out.println("usersRegisternull結束");
+		return null;
+	}
+
+	@Override
+	public TeamBean teamRegister(TeamBean teamBean) {
+		TeamBean result=(TeamBean)getSession().get(TeamBean.class,teamBean.getTeamName());
+		if(result==null){
+			getSession().save(teamBean);
+			System.out.println("teamRegister結束");
+			return teamBean;
+		}
+		System.out.println("teamRegisternull結束");
+		return null;
+	}
 	public static void main(String[] args) {
 	    ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");
 	    SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");

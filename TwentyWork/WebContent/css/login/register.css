@@ -131,4 +131,7 @@ body {
 #progressbar li.active:before,  #progressbar li.active:after{
 	background: #27AE60;
 	color: white;
+
 }
+.error {color: #FF0000}
+

@@ -41,6 +41,8 @@
 <!-- 	<bean  id="teamUserDAO" class="com.iii.twentywork.model.dao.TeamUserDAOHibernate"> -->
 <!-- 		<property name="sessionFactory" ref="sessionFactory"></property> -->
 <!-- 	</bean> -->
-
+		<bean  id="registerService" class="com.iii.twentywork.model.service.user.RegisterService">
+			<property name="userDAO" ref="userDAO" />
+		</bean>
 
 </beans>
