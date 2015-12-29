@@ -1,5 +1,4 @@
 package com.iii.twentywork.model.daointerface;
-
 import com.iii.twentywork.model.bean.TeamBean;
 import com.iii.twentywork.model.bean.UsersBean;
 public interface UserDAO {

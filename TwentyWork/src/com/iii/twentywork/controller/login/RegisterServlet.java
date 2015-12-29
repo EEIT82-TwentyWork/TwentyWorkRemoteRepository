@@ -99,7 +99,6 @@ public class RegisterServlet extends HttpServlet {
 		uBean.setCellPhone(cellPhone);
 		uBean.setUserImage(null);
 		uBean.setPhone(null);
-		
 		tBean.setTeamImage(null);
 		System.out.println("呼叫Model結束");
 		//根據Model執行結果，呼叫View

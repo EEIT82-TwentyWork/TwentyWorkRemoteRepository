@@ -60,7 +60,6 @@ public class TeamUserBean implements java.io.Serializable
         this.activeDate = activeDate;
         this.rights = rights;
     }
-
     public TeamUserIdBean getId()
     {
         return this.id;
