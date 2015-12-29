@@ -30,7 +30,7 @@ public class RegisterServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("進入servlet");
+		System.out.println("進入RegisterServlet");
 		// 接收資料
 		String email = request.getParameter("email");
 		String passtemp = request.getParameter("pass");
@@ -99,7 +99,10 @@ public class RegisterServlet extends HttpServlet {
 		uBean.setCellPhone(cellPhone);
 		uBean.setUserImage(null);
 		uBean.setPhone(null);
+		
+		tBean.setTeamName(teamName);
 		tBean.setTeamImage(null);
+		tBean.setteamAbout(about);
 		System.out.println("呼叫Model結束");
 		//根據Model執行結果，呼叫View
 		if("Submit".equals(submit)) {

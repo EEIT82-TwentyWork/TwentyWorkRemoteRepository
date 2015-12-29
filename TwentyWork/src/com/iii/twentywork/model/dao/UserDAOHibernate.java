@@ -34,26 +34,26 @@ public class UserDAOHibernate implements UserDAO {
 
 	@Override
 	public UsersBean usersRegister(UsersBean usersBean) {
-		UsersBean result=(UsersBean)getSession().get(UsersBean.class,usersBean.getUserID());
-		if(result == null){
+//		UsersBean result=(UsersBean)getSession().get(UsersBean.class,usersBean.getUserID());
+//		if(result == null){
 			getSession().save(usersBean);
 			System.out.println("usersRegister結束");
 			return usersBean;
-		}
-		System.out.println("usersRegisternull結束");
-		return null;
+//		}
+//		System.out.println("usersRegisternull結束");
+//		return null;
 	}
 
 	@Override
 	public TeamBean teamRegister(TeamBean teamBean) {
-		TeamBean result=(TeamBean)getSession().get(TeamBean.class,teamBean.getTeamName());
-		if(result==null){
+//		TeamBean result=(TeamBean)getSession().get(TeamBean.class,teamBean.getTeamName());
+//		if(result==null){
 			getSession().save(teamBean);
 			System.out.println("teamRegister結束");
 			return teamBean;
-		}
-		System.out.println("teamRegisternull結束");
-		return null;
+//		}
+//		System.out.println("teamRegisternull結束");
+//		return null;
 	}
 
 	@Override
