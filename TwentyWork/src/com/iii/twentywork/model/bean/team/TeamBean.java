@@ -1,6 +1,16 @@
 package com.iii.twentywork.model.bean.team;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
+
+@Entity
+@Table(name="TEAM")
+@Component(value="TeamBean")
 public class TeamBean {
+	@Id
 	private int teamID;
 	private String teamName;
 	private byte[] teamImage;

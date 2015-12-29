@@ -17,10 +17,9 @@
         
         <mapping class="com.iii.twentywork.model.bean.users.UsersBean" />
         <mapping class="com.iii.twentywork.model.bean.team.TeamBean"/>        
-<!-- 		<mapping class="model.ProductBean" /> -->
         <!-- 多了mapping -->
-<!--         <mapping  resource="model/CustomerBean.hbm.xml"/> -->
-<!--         <mapping  resource="model/ProductBean.hbm.xml"/> -->
+<!--         <mapping  resource="model/bean/users/UsersBean.hbm.xml"/> -->
+<!--         <mapping  resource="model/bean/team/TeamBean.hbm.xml"/> -->
         
     </session-factory>
 </hibernate-configuration>
