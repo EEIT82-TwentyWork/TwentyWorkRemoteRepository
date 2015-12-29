@@ -112,13 +112,12 @@ public class RegisterServlet extends HttpServlet {
 				errors.put("action", "Insert fail");
 			}
 			request.getRequestDispatcher(
-					"/main/workHome/main.jsp").forward(request, response);
+					"/login/invite.jsp").forward(request, response);
 		} else  {
 			errors.put("action", "Unknown Action:"+ submit);
 			request.getRequestDispatcher(
 					"/login/register.jsp").forward(request, response);
 		}
-				
 	}
 	
 	

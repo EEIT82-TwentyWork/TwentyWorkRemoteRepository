@@ -12,7 +12,7 @@
 </head>
 <body>
 	<!-- multistep form -->
-	<form id="msform" action="<c:url value="/login/login.c" />" method="get">
+	<form id="msform" action="<c:url value="/login/login.c" />" method="post">
 	<!-- progressbar -->
 	<ul id="progressbar">
 		<li class="active">Account Setup</li>
