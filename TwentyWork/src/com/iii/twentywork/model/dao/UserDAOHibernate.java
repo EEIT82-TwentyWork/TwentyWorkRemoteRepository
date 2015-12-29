@@ -41,7 +41,7 @@ public class UserDAOHibernate implements UserDAO {
 
 	@Override
 	public UsersBean usersRegister(UsersBean usersBean) {
-		UsersBean result=(UsersBean)getSession().get(UsersBean.class,usersBean.getEmail());
+		UsersBean result=(UsersBean)getSession().get(UsersBean.class,usersBean.getUserID());
 		if(result == null){
 			getSession().save(usersBean);
 			System.out.println("usersRegister結束");

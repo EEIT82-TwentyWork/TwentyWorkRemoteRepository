@@ -99,6 +99,8 @@ public class RegisterServlet extends HttpServlet {
 		uBean.setPassword(pass);
 		uBean.setBirth(birth);
 		uBean.setCellPhone(cellPhone);
+		tBean.setTeamName(teamName);
+		tBean.setTeamImage(null);
 		tBean.setTeamAbout(about);
 		System.out.println("呼叫Model結束");
 		//根據Model執行結果，呼叫View
