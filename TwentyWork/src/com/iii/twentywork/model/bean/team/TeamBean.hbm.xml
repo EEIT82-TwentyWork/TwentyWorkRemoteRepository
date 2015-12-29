@@ -6,20 +6,14 @@
     <class name="com.iii.twentywork.model.bean.team.TeamBean" table="TEAM">
         <id name="teamID" type="int">
             <column name="TEAMID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="teamName" type="java.lang.String">
             <column name="TEAMNAME" />
         </property>
-        <primitive-array name="teamImage" table="TEAM">
-            <key>
-                <column name="TEAMID" />
-            </key>
-            <index></index>
-            <element type="byte">
-                <column name="TEAMIMAGE" />
-            </element>
-        </primitive-array>
+        <property name="teamImage" type="byte">
+            <column name="TEAMIMAGE" />
+        </property>
         <property name="teamAbout" type="java.lang.String">
             <column name="TEAMABOUT" />
         </property>

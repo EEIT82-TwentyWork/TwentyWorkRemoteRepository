@@ -15,7 +15,7 @@
 			<section>
 <!-- layout----E1 begin---------------------------------------------------->				
 				<div id="page-top">
-					<h3>Welcome ${users.userName}</h3>
+					<h3>Welcome ${teamUserBean.users.userName}</h3>
 				</div>
 				<div id="page-left">
 					<div id="accordian">

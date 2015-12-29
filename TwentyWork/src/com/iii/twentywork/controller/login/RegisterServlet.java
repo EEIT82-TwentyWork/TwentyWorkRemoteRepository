@@ -47,31 +47,31 @@ public class RegisterServlet extends HttpServlet {
 		// 驗證資料
 		Map<String, String> errors = new HashMap<String, String>();
 		request.setAttribute("erros", errors);
-//		if(email.equals(null)||email.trim().length()==0){
-//			errors.put("email","Please provide an email account register");
-//		}
-//		if(passtemp.equals(null)||passtemp.trim().length()==0){
-//			errors.put("password", "Please choose a password");
-//		}
-//		//PASS match cpass
-//		if(!cpass.equals(null)||!(cpass.trim().length()==0)){
-//			if(cpass.equals(passtemp)){
-//				errors.put("cpass","password not match");
-//			}
-//			errors.put(cpass, "Please choose a password again");
-//		}
-//		if(fname.equals(null)||fname.trim().length()==0){
-//			errors.put("fname", "Please provide your full name");
-//		}
-//		if(cellPhone.equals(null)||cellPhone.trim().length()==0){
-//			errors.put("cellPhone","This's required field ");
-//		}
-//		if(birthtemp.equals(null)||birthtemp.trim().length()==0){
-//			errors.put("birth", "When is your birthday ?");
-//		}
-//		if(teamName.equals(null)||teamName.trim().length()==0){
-//			errors.put("teamName", "Create team name!");
-//		}
+		if(email.equals(null)||email.trim().length()==0){
+			errors.put("email","Please provide an email account register");
+		}
+		if(passtemp.equals(null)||passtemp.trim().length()==0){
+			errors.put("password", "Please choose a password");
+		}
+		//PASS match cpass
+		if(!cpass.equals(null)||!(cpass.trim().length()==0)){
+			if(cpass.equals(passtemp)){
+				errors.put("cpass","password not match");
+			}
+			errors.put(cpass, "Please choose a password again");
+		}
+		if(fname.equals(null)||fname.trim().length()==0){
+			errors.put("fname", "Please provide your full name");
+		}
+		if(cellPhone.equals(null)||cellPhone.trim().length()==0){
+			errors.put("cellPhone","This's required field ");
+		}
+		if(birthtemp.equals(null)||birthtemp.trim().length()==0){
+			errors.put("birth", "When is your birthday ?");
+		}
+		if(teamName.equals(null)||teamName.trim().length()==0){
+			errors.put("teamName", "Create team name!");
+		}
 		System.out.println("3.驗證資料結束");
 		//轉換資料
 		byte[] pass = null;
@@ -99,9 +99,11 @@ public class RegisterServlet extends HttpServlet {
 		uBean.setPassword(pass);
 		uBean.setBirth(birth);
 		uBean.setCellPhone(cellPhone);
-		tBean.setTeamName(teamName);
-		tBean.setTeamImage(null);
+		uBean.setUserImage(null);
+		uBean.setPhone(null);
+		tBean.setTeamAbout(teamName);
 		tBean.setTeamAbout(about);
+		tBean.setTeamImage(null);
 		System.out.println("呼叫Model結束");
 		//根據Model執行結果，呼叫View
 		if("Submit".equals(submit)) {

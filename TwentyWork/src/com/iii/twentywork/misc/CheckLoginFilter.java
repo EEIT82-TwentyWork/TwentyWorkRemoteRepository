@@ -14,34 +14,35 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.iii.twentywork.model.bean.users.UsersBean;
-@WebFilter("/main/*")
-public class CheckLoginFilter implements Filter{
-
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		
-	}
-
-	@Override
-	public void doFilter(ServletRequest req, ServletResponse resp,
-			FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest request =(HttpServletRequest)req;
-		HttpServletResponse response =(HttpServletResponse)resp;
-		HttpSession session =request.getSession();
-		
-		UsersBean bean=(UsersBean)session.getAttribute("users");
-		System.out.println(bean);
-		if(bean!=null){
-			chain.doFilter(request, response);
-		}else{
-			String path=request.getContextPath();
-			response.sendRedirect(path+"/login/login.jsp");
-		}
-	}
-
-	@Override
-	public void destroy() {
-		
-	}
-
-}
+//@WebFilter("/main/*")
+public class CheckLoginFilter{} 
+//implements Filter{
+//
+//	@Override
+//	public void init(FilterConfig filterConfig) throws ServletException {
+//		
+//	}
+//
+//	@Override
+//	public void doFilter(ServletRequest req, ServletResponse resp,
+//			FilterChain chain) throws IOException, ServletException {
+//		HttpServletRequest request =(HttpServletRequest)req;
+//		HttpServletResponse response =(HttpServletResponse)resp;
+//		HttpSession session =request.getSession();
+//		
+//		UsersBean bean=(UsersBean)session.getAttribute("users");
+//		System.out.println(bean);
+//		if(bean!=null){
+//			chain.doFilter(request, response);
+//		}else{
+//			String path=request.getContextPath();
+//			response.sendRedirect(path+"/login/login.jsp");
+//		}
+//	}
+//
+//	@Override
+//	public void destroy() {
+//		
+//	}
+//
+//}
