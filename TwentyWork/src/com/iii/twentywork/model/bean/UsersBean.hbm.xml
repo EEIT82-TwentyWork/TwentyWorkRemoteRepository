@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2015/12/26 ?U?? 02:33:36 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.iii.twentywork.model.bean.users.UsersBean" table="USERS">
+    <class name="com.iii.twentywork.model.bean.UsersBean" table="USERS">
         <id name="userID" type="int">
             <column name="USERID" />
             <generator class="identity" />

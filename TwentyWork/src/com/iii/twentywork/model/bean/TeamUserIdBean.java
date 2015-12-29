@@ -1,4 +1,4 @@
-package com.iii.twentywork.model.bean.teamuser;
+package com.iii.twentywork.model.bean;
 // Generated 2015/12/28 �U�� 11:25:11 by Hibernate Tools 4.3.1.Final
 
 /**

@@ -3,8 +3,8 @@ package com.iii.twentywork.model.service.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.iii.twentywork.model.bean.team.TeamBean;
-import com.iii.twentywork.model.bean.users.UsersBean;
+import com.iii.twentywork.model.bean.TeamBean;
+import com.iii.twentywork.model.bean.UsersBean;
 import com.iii.twentywork.model.daointerface.UserDAO;
 @Component(value = "registerService")
 public class RegisterService {

@@ -9,9 +9,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
-import com.iii.twentywork.model.bean.teamuser.TeamUserBean;
-import com.iii.twentywork.model.bean.teamuser.TeamUserIdBean;
-import com.iii.twentywork.model.bean.users.UsersBean;
+import com.iii.twentywork.model.bean.TeamUserBean;
+import com.iii.twentywork.model.bean.TeamUserIdBean;
+import com.iii.twentywork.model.bean.UsersBean;
 import com.iii.twentywork.model.daointerface.TeamUserDAO;
 import com.iii.twentywork.model.daointerface.UserDAO;
 

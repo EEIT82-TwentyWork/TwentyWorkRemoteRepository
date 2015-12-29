@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2015/12/28 ?U?? 11:25:13 by Hibernate Tools 4.3.1.Final -->
 <hibernate-mapping>
-    <class name="com.iii.twentywork.model.bean.teamuser.TeamBean" table="Team" schema="dbo" catalog="TwentyWork" optimistic-lock="version">
+    <class name="com.iii.twentywork.model.bean.TeamBean" table="Team" schema="dbo" catalog="TwentyWork" optimistic-lock="version">
         <id name="teamId" type="int">
             <column name="teamID" />
             <generator class="assigned" />
@@ -18,7 +18,7 @@
             <key>
                 <column name="teamID" not-null="true" />
             </key>
-            <one-to-many class="com.iii.twentywork.model.bean.teamuser.TeamUserBean" />
+            <one-to-many class="com.iii.twentywork.model.bean.TeamUserBean" />
         </set>
     </class>
 </hibernate-mapping>

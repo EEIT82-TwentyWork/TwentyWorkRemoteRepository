@@ -1,7 +1,7 @@
 package com.iii.twentywork.model.daointerface;
 
-import com.iii.twentywork.model.bean.teamuser.TeamUserBean;
-import com.iii.twentywork.model.bean.teamuser.TeamUserIdBean;
+import com.iii.twentywork.model.bean.TeamUserBean;
+import com.iii.twentywork.model.bean.TeamUserIdBean;
 
 public interface TeamUserDAO
 {

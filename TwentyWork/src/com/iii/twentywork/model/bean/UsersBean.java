@@ -1,4 +1,4 @@
-package com.iii.twentywork.model.bean.users;
+package com.iii.twentywork.model.bean;
 
 
 import java.text.ParseException;
