@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015/12/28 ?U?? 11:25:13 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.iii.twentywork.model.bean.users.UsersBean" table="Users" schema="dbo" catalog="TwentyWork" optimistic-lock="version">
+        <id name="userId" type="int">
+            <column name="userID" />
+            <generator class="assigned" />
+        </id>
+        <property name="userName" type="string">
+            <column name="userName" length="10" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" not-null="true" />
+        </property>
+        <property name="password" type="binary">
+            <column name="password" not-null="true" />
+        </property>
+        <property name="birth" type="date">
+            <column name="birth" length="10" />
+        </property>
+        <property name="userImage" type="binary">
+            <column name="userImage" />
+        </property>
+        <property name="cellPhone" type="string">
+            <column name="cellPhone" length="15" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="15" />
+        </property>
+        <set name="teamUsers" table="TeamUser" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="userID" not-null="true" />
+            </key>
+            <one-to-many class="com.iii.twentywork.model.bean.teamuser.TeamUserBean" />
+        </set>
+    </class>
+</hibernate-mapping>

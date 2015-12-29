@@ -1,5 +1,6 @@
 package com.iii.twentywork.model.bean.users;
 
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -127,4 +128,5 @@ public class UsersBean {
 				+ Arrays.toString(password) + ", birth=" + birth
 				+ ", cellPhone=" + cellPhone + ", phone=" + phone + "]";
 	}
+
 }
