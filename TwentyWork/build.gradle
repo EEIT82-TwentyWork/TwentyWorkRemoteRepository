@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'eclipse-wtp'
-sourceCompatibility = 1.7			//設定編譯階段的JDK版本
+sourceCompatibility = 1.8			//設定編譯階段的JDK版本
 sourceSets.main.java.srcDir  'src'	//使用src目錄放置Java程式原始碼
 webAppDirName = 'WebContent'		//使用WebContent目錄放置網頁資源
 									//預設位置是src/main/java目錄
@@ -29,10 +29,10 @@ eclipse {
 	wtp {
 		facet {						//設定Dynamic Web Project的Project Facets
 			facet name: 'jst.web', type: Facet.FacetType.fixed
-			facet name: 'jst.web', version: '3.0'
+			facet name: 'jst.web', version: '3.1'
 
 			facet name: 'jst.java', type: Facet.FacetType.fixed
-			facet name: 'jst.java', version: '1.7'
+			facet name: 'jst.java', version: '1.8'
 			
 			facet name: 'wst.jsdt.web', type: Facet.FacetType.fixed
 			facet name: 'wst.jsdt.web', version: '1.0'

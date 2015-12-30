@@ -87,8 +87,4 @@ public class LoginFilter implements Filter {
 	    }
 	    return login;
 	}
-	
-	
-
-
 }

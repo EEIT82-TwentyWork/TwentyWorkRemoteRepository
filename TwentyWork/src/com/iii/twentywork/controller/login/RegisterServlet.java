@@ -19,119 +19,116 @@ import com.iii.twentywork.model.bean.UsersBean;
 import com.iii.twentywork.model.service.user.RegisterService;
 //@WebServlet("/main/workHome/main")
 public class RegisterServlet extends HttpServlet {
-	private RegisterService registerService;
-	@Override
-	public void init() throws ServletException {
-		ServletContext application = this.getServletContext();
-		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
-		this.registerService = (RegisterService) context.getBean("registerService");
-		System.out.println("1.init-registerService");
-	}
+    private RegisterService registerService;
+    @Override
+    public void init() throws ServletException {
+        ServletContext application = this.getServletContext();
+        WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
+        this.registerService = (RegisterService) context.getBean("registerService");
+        System.out.println("1.init-registerService");
+    }
 
-	@Override
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-	    HttpSession session = request.getSession();
-	    System.out.println("進入RegisterServlet");
-		// 接收資料
-		String email = request.getParameter("email");
-		String passtemp = request.getParameter("pass");
-		String cpass = request.getParameter("cpass");
-		String fname = request.getParameter("fname");
-		String cellPhone = request.getParameter("cellPhone");
-		String birthtemp = request.getParameter("birth");
-		String teamName = request.getParameter("teamName");
-		String about = request.getParameter("about");
-		String submit = request.getParameter("registersubmit");
-		System.out.println("2.接收資料結束");
-		// 驗證資料
-		Map<String, String> errors = new HashMap<String, String>();
-		request.setAttribute("erros", errors);
-		if(email.equals(null)||email.trim().length()==0){
-			errors.put("email","Please provide an email account register");
-		}
-		if(passtemp.equals(null)||passtemp.trim().length()==0){
-			errors.put("password", "Please choose a password");
-		}
-		//PASS match cpass
-		if(!cpass.equals(null)||!(cpass.trim().length()==0)){
-			if(cpass.equals(passtemp)){
-				errors.put("cpass","password not match");
-			}
-			errors.put(cpass, "Please choose a password again");
-		}
-		if(fname.equals(null)||fname.trim().length()==0){
-			errors.put("fname", "Please provide your full name");
-		}
-		if(cellPhone.equals(null)||cellPhone.trim().length()==0){
-			errors.put("cellPhone","This's required field ");
-		}
-		if(birthtemp.equals(null)||birthtemp.trim().length()==0){
-			errors.put("birth", "When is your birthday ?");
-		}
-		if(teamName.equals(null)||teamName.trim().length()==0){
-			errors.put("teamName", "Create team name!");
-		}
-		System.out.println("3.驗證資料結束");
-		//轉換資料
-		byte[] pass = null;
-		if(passtemp!=null && passtemp.length()!=0) {
-			pass = UsersBean.convertByteArray(passtemp);
-			if(pass==null) {
-				errors.put("password", "password not match");
-			}
-		}
-		java.util.Date birth = null;
-		if(birthtemp!=null && birthtemp.length()!=0) {
-			birth = UsersBean.convertDate(birthtemp);
-			if(birth.equals(new java.util.Date(0))) {
-				errors.put("birth", "birth必須是日期必且擁有yyyy-MM-dd的格式");
-			}			
-		}
-		System.out.println("轉換資料結束");
-		
-		
-		//呼叫Model
-		UsersBean uBean = new UsersBean();
-		TeamBean tBean = new TeamBean();
-		uBean.setUserName(fname);
-		uBean.setEmail(email);
-		uBean.setPassword(pass);
-		uBean.setBirth(birth);
-		uBean.setCellPhone(cellPhone);
-		uBean.setUserImage(null);
-		uBean.setPhone(null);
-		
-		tBean.setTeamName(teamName);
-		tBean.setTeamImage(null);
-		tBean.setteamAbout(about);
-		System.out.println("呼叫Model結束");
-		//根據Model執行結果，呼叫View
-		if("Submit".equals(submit)) {
-			UsersBean uresult = registerService.usersRegister(uBean);
-			TeamBean tresult = registerService.teamRegister(tBean);
-			if(uresult==null || tresult==null) {
-				errors.put("action", "Insert fail");
-			}
-			System.out.println("RegisterServlet -- Line114--sendRedirect(main.workHome.main.jsp)");
-			session.setAttribute("LoginOK", uresult);
-			String path = request.getContextPath();
-			response.sendRedirect(path + "/main/workHome/main.jsp");
-		} else  {
-			errors.put("action", "Unknown Action:"+ submit);
-			System.out.println("RegisterServlet -- Line120--getRequestDispatcher(/login/register.jsp)");
-            
-			request.getRequestDispatcher(
-					"/login/register.jsp").forward(request, response);
-		}
-				
-	}
-	
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		this.doGet(req, resp);
-	}
+    @Override
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        System.out.println("進入RegisterServlet");
+        // 接收資料
+        String email = request.getParameter("email");
+        String passtemp = request.getParameter("pass");
+        String cpass = request.getParameter("cpass");
+        String fname = request.getParameter("fname");
+        String cellPhone = request.getParameter("cellPhone");
+        String birthtemp = request.getParameter("birth");
+        String teamName = request.getParameter("teamName");
+        String about = request.getParameter("about");
+        String submit = request.getParameter("registersubmit");
+        System.out.println("2.接收資料結束");
+        // 驗證資料
+        Map<String, String> errors = new HashMap<String, String>();
+        request.setAttribute("erros", errors);
+        if(email.equals(null)||email.trim().length()==0){
+            errors.put("email","Please provide an email account register");
+        }
+        if(passtemp.equals(null)||passtemp.trim().length()==0){
+            errors.put("password", "Please choose a password");
+        }
+        //PASS match cpass
+        if(!cpass.equals(null)||!(cpass.trim().length()==0)){
+            if(cpass.equals(passtemp)){
+                errors.put("cpass","password not match");
+            }
+            errors.put(cpass, "Please choose a password again");
+        }
+        if(fname.equals(null)||fname.trim().length()==0){
+            errors.put("fname", "Please provide your full name");
+        }
+        if(cellPhone.equals(null)||cellPhone.trim().length()==0){
+            errors.put("cellPhone","This's required field ");
+        }
+        if(birthtemp.equals(null)||birthtemp.trim().length()==0){
+            errors.put("birth", "When is your birthday ?");
+        }
+        if(teamName.equals(null)||teamName.trim().length()==0){
+            errors.put("teamName", "Create team name!");
+        }
+        System.out.println("3.驗證資料結束");
+        //轉換資料
+        byte[] pass = null;
+        if(passtemp!=null && passtemp.length()!=0) {
+            pass = UsersBean.convertByteArray(passtemp);
+            if(pass==null) {
+                errors.put("password", "password not match");
+            }
+        }
+        java.util.Date birth = null;
+        if(birthtemp!=null && birthtemp.length()!=0) {
+            birth = UsersBean.convertDate(birthtemp);
+            if(birth.equals(new java.util.Date(0))) {
+                errors.put("birth", "birth必須是日期必且擁有yyyy-MM-dd的格式");
+            }           
+        }
+        System.out.println("轉換資料結束");
+        
+        
+        //呼叫Model
+        UsersBean uBean = new UsersBean();
+        TeamBean tBean = new TeamBean();
+        uBean.setUserName(fname);
+        uBean.setEmail(email);
+        uBean.setPassword(pass);
+        uBean.setBirth(birth);
+        uBean.setCellPhone(cellPhone);
+        uBean.setUserImage(null);
+        uBean.setPhone(null);
+        
+        tBean.setTeamName(teamName);
+        tBean.setTeamImage(null);
+        tBean.setteamAbout(about);
+        System.out.println("呼叫Model結束");
+        //根據Model執行結果，呼叫View
+        if("Submit".equals(submit)) {
+            UsersBean uresult = registerService.usersRegister(uBean);
+            TeamBean tresult = registerService.teamRegister(tBean);
+            if(uresult==null || tresult==null) {
+                errors.put("action", "Insert fail");
+            }
+            System.out.println("RegisterServlet -- Line114--sendRedirect(main.workHome.main.jsp)");
+            session.setAttribute("LoginOK", uresult);
+            String path = request.getContextPath();
+            response.sendRedirect(path + "/main/workHome/main.jsp");
+        } else  {
+            errors.put("action", "Unknown Action:"+ submit);
+            System.out.println("RegisterServlet -- Line120--getRequestDispatcher(/login/register.jsp)");
+            request.getRequestDispatcher("/login/register.jsp").forward(request, response);
+        }
+                
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        this.doGet(req, resp);
+    }
 
 }
