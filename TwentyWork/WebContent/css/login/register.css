@@ -11,7 +11,7 @@ html {
 	background: url('http://thecodeplayer.com/uploads/media/gs.png');
 	/*background = gradient + image pattern combo*/
 	background: 
-		linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)), 
+		linear-gradient(rgba(196, 102, 0, 0.2), rgba(0, 0, 0, 0.2)), 
 		url('http://thecodeplayer.com/uploads/media/gs.png');
 }
 

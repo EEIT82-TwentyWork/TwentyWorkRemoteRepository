@@ -8,9 +8,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Twenty Work</title>
 <link rel="stylesheet" href="css/index/style.css">
-
+<link rel="stylesheet" href="css/logo/logo.css">
 </head>
 <body>
+<!-- 		------------------------------------------------------------ -->
+			<div id ="background">
+				<div class="logocontainer">
+					<div class="logo">
+						<span class="left"><</span>TwentyWork<span class="right">/></span>
+						<div class="text">
+						<span class="word">Web</span><span class="web">Developer</span>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- 		------------------------------------------------------------ -->	
+
 
 	<section>
 	<div>
