@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name="USERS")
 @Component(value="UsersBean")
-public class UsersBean {
+public class UsersBean implements java.io.Serializable{
 	public UsersBean() {
 		
 	}
