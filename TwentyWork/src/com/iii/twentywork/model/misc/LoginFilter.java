@@ -44,22 +44,27 @@ public class LoginFilter implements Filter {
 	public void destroy() {	}
 
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest request = (HttpServletRequest) req;
+		System.out.println("LoginFilter --Line47--doFilter");
+		
+	    HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		HttpSession session = request.getSession();
 		String servletPath = request.getServletPath();
 		if(mustLogin(servletPath)) {
     		UsersBean bean = (UsersBean) session.getAttribute("LoginOK");
     		if(bean==null) {//還沒Login
+    		    System.out.println("LoginFilter --Line56--mustLogin--還沒Login");
     			String uri = request.getRequestURI();
     			session.setAttribute("requestURI", uri);
     			String path = request.getContextPath();
     			response.sendRedirect(path+"/login/login.jsp");
     		}else
     		{
+    		    System.out.println("LoginFilter --Line63--mustLogin--已經Login");
     			chain.doFilter(request, response);
     		}
 		}else {
+		    System.out.println("LoginFilter --Line67--不用Login");
 		    chain.doFilter(request, response);
 		}
 	}
@@ -82,8 +87,4 @@ public class LoginFilter implements Filter {
 	    }
 	    return login;
 	}
-	
-	
-
-
 }
