@@ -115,7 +115,7 @@ public class RegisterServlet extends HttpServlet {
             System.out.println("RegisterServlet -- Line114--sendRedirect(main.workHome.main.jsp)");
             session.setAttribute("LoginOK", uresult);
             String path = request.getContextPath();
-            response.sendRedirect(path + "/main/workHome/main.jsp");
+            response.sendRedirect(path + "/login/invite.jsp");
         } else  {
             errors.put("action", "Unknown Action:"+ submit);
             System.out.println("RegisterServlet -- Line120--getRequestDispatcher(/login/register.jsp)");
