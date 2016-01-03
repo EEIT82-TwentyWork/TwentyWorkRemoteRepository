@@ -12,7 +12,7 @@ groupID:200,userID:100~105<br>
 groupID:201,userID:106~108<br>
 groupID:202,userID:100~108<br>
 <br><br>
-	<form action="<c:url value="/login/login.controller" />" method="get">
+	<form action="<c:url value="/login/login.controller" />" method="post">
 <table>
 	<tr>
 		<td>groupID : </td>

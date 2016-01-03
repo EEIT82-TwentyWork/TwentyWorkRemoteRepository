@@ -14,6 +14,9 @@
         <property name="teamImage" type="binary">
             <column name="teamImage" />
         </property>
+        <property name="teamAbout" type="string">
+            <column name="teamAbout" not-null="true" />
+        </property>
         <set name="teamUsers" table="TeamUser" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="teamID" not-null="true" />

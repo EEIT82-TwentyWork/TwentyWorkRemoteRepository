@@ -7,12 +7,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TwentyWork|register</title>
 <link rel="stylesheet" href="../css/login/register.css">
+<link rel="stylesheet" href="../css/logo/logo.css"
 
 
 </head>
 <body>
+<!-- 		------------------------------------------------------------ -->
+				<div class="logocontainer">
+					<div class="logo">
+						<span class="left"><</span>TwentyWork<span class="right">/></span>
+						<div class="text">
+						<span class="word">Web</span><span class="web">Developer</span>
+						</div>
+					</div>
+				</div>
+<!-- 		------------------------------------------------------------ -->	
 	<!-- multistep form -->
-	<form id="msform" action="<c:url value="/login/login.c" />" method="get">
+	<form id="msform" action="<c:url value="/login/login.c" />" method="post">
 	<!-- progressbar -->
 	<ul id="progressbar">
 		<li class="active">Account Setup</li>
