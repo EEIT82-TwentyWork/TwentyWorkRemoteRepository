@@ -5,8 +5,8 @@ import com.iii.twentywork.model.bean.TeamUserIdBean;
 public interface TeamUserDAO
 {
 
-    TeamUserBean insert(TeamUserBean userBean);
+    TeamUserBean insert(TeamUserBean teamUserBean);
 
     TeamUserBean select(TeamUserIdBean teamUserId);
-
+    
 }

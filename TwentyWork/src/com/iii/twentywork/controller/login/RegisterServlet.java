@@ -15,17 +15,24 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.iii.twentywork.model.bean.TeamBean;
+import com.iii.twentywork.model.bean.TeamUserBean;
+import com.iii.twentywork.model.bean.TeamUserIdBean;
 import com.iii.twentywork.model.bean.UsersBean;
+import com.iii.twentywork.model.daointerface.TeamUserDAO;
+import com.iii.twentywork.model.daointerface.UserDAO;
 import com.iii.twentywork.model.service.user.RegisterService;
 //@WebServlet("/main/workHome/main")
 public class RegisterServlet extends HttpServlet {
+	TeamUserBean teamUserBean =new TeamUserBean();
+	private UserDAO userDAO; 
     private RegisterService registerService;
+    private TeamUserDAO teamUserDAO;
     @Override
     public void init() throws ServletException {
         ServletContext application = this.getServletContext();
         WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
         this.registerService = (RegisterService) context.getBean("registerService");
-        System.out.println("1.init-registerService");
+        this.teamUserDAO =(TeamUserDAO)context.getBean("teamUserDAO");
     }
     @Override
     protected void doGet(HttpServletRequest request,
@@ -91,29 +98,53 @@ public class RegisterServlet extends HttpServlet {
         
         
         //呼叫Model
-        UsersBean uBean = new UsersBean();
-        TeamBean tBean = new TeamBean();
-        uBean.setUserName(fname);
-        uBean.setEmail(email);
-        uBean.setPassword(pass);
-        uBean.setBirth(birth);
-        uBean.setCellPhone(cellPhone);
-        uBean.setUserImage(null);
-        uBean.setPhone(null);
+        UsersBean userBean = new UsersBean();
+        TeamBean teamBean = new TeamBean();
+        TeamUserBean teamUserBean=new TeamUserBean();
+        userBean.setUserName(fname);
+        userBean.setEmail(email);
+        userBean.setPassword(pass);
+        userBean.setBirth(birth);
+        userBean.setCellPhone(cellPhone);
+        userBean.setUserImage(null);
+        userBean.setPhone(null);
         
-        tBean.setTeamName(teamName);
-        tBean.setTeamImage(null);
-        tBean.setteamAbout(about);
+        teamBean.setTeamName(teamName);
+        teamBean.setTeamImage(null);
+        teamBean.setteamAbout(about);
+
+        
+        
+        
         System.out.println("呼叫Model結束");
         //根據Model執行結果，呼叫View
         if("Submit".equals(submit)) {
-            UsersBean uresult = registerService.usersRegister(uBean);
-            TeamBean tresult = registerService.teamRegister(tBean);
-            if(uresult==null || tresult==null) {
+            UsersBean userResult = registerService.usersRegister(userBean);
+            TeamBean teamResult = registerService.teamRegister(teamBean);
+            if(userResult==null || teamResult==null) {
                 errors.put("action", "Insert fail");
             }
             System.out.println("RegisterServlet -- Line114--sendRedirect(main.workHome.main.jsp)");
-            session.setAttribute("LoginOK", uresult);
+//          	-----------------------------------------------------------------
+            UsersBean userEmail=userDAO.SelectEmail(email);
+            TeamBean selectTeamName =userDAO.SelectTeamName(teamName);
+            TeamUserIdBean teamUserIdBean =new TeamUserIdBean();
+            
+            teamUserIdBean.setTeamId(selectTeamName.getTeamId());
+            teamUserIdBean.setUserId(userEmail.getUserID());
+            teamUserBean.setTeam(selectTeamName);
+            teamUserBean.setUsers(userEmail);
+            teamUserBean.setRights(1);
+            teamUserBean.setActiveDate(new java.util.Date());
+            teamUserBean.setId(teamUserIdBean);
+            
+            teamUserDAO.insert(teamUserBean);
+            
+            
+            
+            session.setAttribute("LoginOK", userResult);
+            
+            
             String path = request.getContextPath();
             response.sendRedirect(path + "/login/invite.jsp");
         } else  {
