@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>TwentyWork|register</title>
 <link rel="stylesheet" href="../css/login/register.css">
-<link rel="stylesheet" href="../css/logo/logo.css"
+<link rel="stylesheet" href="../css/logo/logo.css">
 
 
 </head>
