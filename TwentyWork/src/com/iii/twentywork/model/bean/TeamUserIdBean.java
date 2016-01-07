@@ -6,15 +6,12 @@ package com.iii.twentywork.model.bean;
  */
 public class TeamUserIdBean implements java.io.Serializable
 {
-
     @Override
     public String toString()
     {
         return "TeamUserId [userId=" + userId + ", teamId=" + teamId + "]";
     }
-
     private int userId;
-
     private int teamId;
 
     public TeamUserIdBean()
