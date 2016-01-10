@@ -3,25 +3,34 @@ package com.iii.twentywork.model.bean;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.stereotype.Component;
+
+
 
 @Entity
 @Table(name = "USERS")
+@Component("userBean")
 public class UsersBean implements java.io.Serializable {
 	public UsersBean() {
 	}
 	@Id
 	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(name = "uuid", strategy = "uuid2")
+	@GenericGenerator(name = "uuid", strategy = "uuid")
 	@Column(name = "Userid", unique = true)
 	private String userID;
 	private String userName;
@@ -31,6 +40,22 @@ public class UsersBean implements java.io.Serializable {
 	private byte[] userImage;
 	private String cellPhone;
 	private String phone;
+	/**
+	 * 1.userID="TeamUser.userID"(target)         2.userID="UserBean"  (Own)
+	 * 3.teamId="TeamUser.teamId"(match-target)   4.teamId="TeamBean.teamId"(match)
+	 */
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="TeamUser",joinColumns={ @JoinColumn(name="userID",referencedColumnName="userID")},
+	inverseJoinColumns={@JoinColumn(name="teamId",referencedColumnName="teamId")})	
+	private List<TeamBean> TeamBeanList;
+
+	public List<TeamBean> getTeamBeanList() {
+		return TeamBeanList;
+	}
+
+	public void setTeamBeanList(List<TeamBean> teamBeanList) {
+		TeamBeanList = teamBeanList;
+	}
 
 	public String getUserID() {
 		return userID;

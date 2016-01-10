@@ -18,12 +18,13 @@ dependencies {						//宣告dependency library
 	compile 'org.springframework:spring-orm:4.2.4.RELEASE'
 	compile 'org.springframework:spring-tx:4.2.4.RELEASE'
 	compile 'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1'
+
+	compile 'org.apache.commons:commons-lang3:3.4'
 	
 	compile 'javax.mail:mail:1.4.7'
 	
 	compile 'org.hibernate:hibernate-core:4.3.11.Final'
 	runtime files('C:/sqljdbc42.jar')
-	compile 'org.apache.commons:commons-lang3:3.0'
 
 	
 }

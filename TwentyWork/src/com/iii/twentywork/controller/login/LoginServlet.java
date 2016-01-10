@@ -3,6 +3,7 @@ package com.iii.twentywork.controller.login;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -14,8 +15,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.iii.twentywork.model.bean.TeamUserBean;
-import com.iii.twentywork.model.bean.UsersBean;
 import com.iii.twentywork.model.service.user.LoginService;
 
 public class LoginServlet extends HttpServlet {
