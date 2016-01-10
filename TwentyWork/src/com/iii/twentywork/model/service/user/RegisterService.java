@@ -9,8 +9,6 @@ import com.iii.twentywork.model.dao.DAOinterface.RegisterDAO;
 
 @Component(value = "registerService")
 public class RegisterService {
-	private UsersBean userBean;
-	private TeamBean teamBean;
 
 	@Autowired
 	private RegisterDAO registerDAO;
@@ -30,50 +28,4 @@ public class RegisterService {
 		result = registerDAO.insertTeamRegister(teamBean);
 		return result;
 	}
-
-	// @Autowired
-	// private SessionFactory sessionFactory;
-	//
-	// public void setSessionFactory(SessionFactory sessionFactory) {
-	// this.sessionFactory = sessionFactory;
-	// }
-	//
-	// public Session getSession() {
-	// Session session = sessionFactory.getCurrentSession();
-	// return session;
-	// }
-
-	// public UsersBean accessUserBean(String fullname, String email, byte[]
-	// password, Date birth, String cellPhone) {
-	// accessUserBean.setUserName(fullname);
-	// accessUserBean.setEmail(email);
-	// accessUserBean.setPassword(password);
-	// accessUserBean.setBirth(birth);
-	// accessUserBean.setCellPhone(cellPhone);
-	// accessUserBean.setPhone(null);
-	// accessUserBean.setUserImage(null);
-	// return null;
-	// }
-	// public TeamBean accessuserBean(String teamName,String teamAbout){
-	// accessTeamBean.setTeamName(teamName);
-	// accessTeamBean.setteamAbout(teamAbout);
-	// return null;
-	// }
-	//
-	// public UsersBean userRegister(UsersBean userBean) {
-	// UsersBean result = null;
-	// if (userBean != null) {
-	//
-	// result = insertUserRegister(userBean);
-	// }
-	// return result;
-	// }
-	//
-	// public TeamBean teamRegister(TeamBean teamBean) {
-	// TeamBean result = null;
-	// if (teamBean != null) {
-	// result = insertTeamRegister(teamBean);
-	// }
-	// return result;
-	// }
 }

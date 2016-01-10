@@ -3,8 +3,6 @@ package com.iii.twentywork.model.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.iii.twentywork.model.bean.TeamBean;
@@ -21,18 +19,25 @@ public class RegisterDAOHibernate implements RegisterDAO {
 
 	public Session getSession() {
 		Session session = sessionFactory.getCurrentSession();
-		return null;
+		return session;
 	}
 
 	@Override
 	public UsersBean insertUserRegister(UsersBean userBean) {
+		System.out.println("開始SAVE USERS");
 		getSession().save(userBean);
+//		Query query=getSession().createQuery("from users where email='"+ userBean.getEmail()+"'");
+//		UsersBean obj= (UsersBean)query.uniqueResult();
 		return userBean;
 	}
 
 	@Override
 	public TeamBean insertTeamRegister(TeamBean teamBean) {
+		System.out.println("開始SAVE team");
 		getSession().save(teamBean);
+//		Query query=getSession().createQuery("from users where teamName='"+ teamBean.getTeamName()+"'");
+//		TeamBean obj=(TeamBean)query.uniqueResult();
+		System.out.println("結束");
 		return teamBean;
 	}
 

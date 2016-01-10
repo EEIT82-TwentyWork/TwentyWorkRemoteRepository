@@ -18,7 +18,7 @@
 
 		<mapping class="com.iii.twentywork.model.bean.UsersBean" />
 		<mapping class="com.iii.twentywork.model.bean.TeamBean" />
-		<mapping resource="com/iii/twentywork/model/bean/TeamUserBean.hbm.xml"/>
+<!-- 		<mapping resource="com/iii/twentywork/model/bean/TeamUserBean.hbm.xml"/> -->
 <!-- 		<mapping class="com.iii.twentywork.model.bean.TeamUsersBean" /> -->
 		<!-- 多了mapping -->
 

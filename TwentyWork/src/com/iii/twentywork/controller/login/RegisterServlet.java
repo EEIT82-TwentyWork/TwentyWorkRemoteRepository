@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,11 +16,10 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.iii.twentywork.model.bean.TeamBean;
-import com.iii.twentywork.model.bean.TeamUserBean;
 import com.iii.twentywork.model.bean.UsersBean;
 import com.iii.twentywork.model.service.user.RegisterService;
 
-//@WebServlet("/main/workHome/main")
+@WebServlet("/main/workHome/main")
 public class RegisterServlet extends HttpServlet {
 	private RegisterService registerService;
 	private UsersBean userBean;
@@ -27,17 +27,19 @@ public class RegisterServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
+		System.out.println("進入init");
 		ServletContext application = this.getServletContext();
 		WebApplicationContext context = WebApplicationContextUtils
 				.getWebApplicationContext(application);
-		this.registerService = (RegisterService) context
-				.getBean("registerService");
-
+		this.registerService = (RegisterService) context.getBean("registerService");
+		this.userBean = (UsersBean) context.getBean("userBean");
+		this.teamBean = (TeamBean) context.getBean("teamBean");
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("進入init");
 		HttpSession session = request.getSession();
 		// 接收資料
 		String email = request.getParameter("email");
@@ -93,58 +95,38 @@ public class RegisterServlet extends HttpServlet {
 			}
 		}
 		// 呼叫Model
-		 
-		 userBean.setUserName(fullname);
-		 userBean.setEmail(email);
-		 userBean.setPassword(pass);
-		 userBean.setBirth(birth);
-		 userBean.setCellPhone(cellPhone);
-		 userBean.setPhone(null);
-		 userBean.setUserImage(null);
-		
-		 teamBean.setTeamName(teamName);
-		 teamBean.setTeamImage(null);
-		 teamBean.setTeamName(teamName);
-		 
-		
-		
-		
-//		userBean = registerService.insertUserRegister(userBean);
-//		teamBean = registerService.accessuserBean(teamName, teamAbout);
+		System.out.println("User開始塞值");
+		userBean.setUserName(fullname);
+		userBean.setEmail(email);
+		userBean.setPassword(pass);
+		userBean.setBirth(birth);
+		userBean.setUserImage(null);
+		userBean.setCellPhone(cellPhone);
+		userBean.setPhone(null);
+		System.out.println("team開始塞值");
+		teamBean.setTeamName(teamName);
+		teamBean.setTeamImage(null);
+		teamBean.setTeamName(teamName);
+		System.out.println("結束塞值init");
 		// 根據Model執行結果，呼叫View
-//		if ("Submit".equals(submit)) {
-//			UsersBean userResult = registerService.userRegister(userBean);
-//			TeamBean teamResult = registerService.teamRegister(teamBean);
-//			if (userResult == null || teamResult == null) {
-//				errors.put("action", "Insert fail");
-//			}
-//			System.out
-//					.println("RegisterServlet -- Line114--sendRedirect(main.workHome.main.jsp)");
-			// -----------------------------------------------------------------
-			// UsersBean userEmail = userDAO.SelectEmail(email);
-			// TeamBean selectTeamName = userDAO.SelectTeamName(teamName);
-			// TeamUserIdBean teamUserIdBean = new TeamUserIdBean();
-			//
-			// teamUserIdBean.setTeamId(selectTeamName.getTeamId());
-			// teamUserIdBean.setUserId(userEmail.getUserID());
-			// teamUserBean.setTeam(selectTeamName);
-			// teamUserBean.setUsers(userEmail);
-			// teamUserBean.setRights(1);
-			// teamUserBean.setActiveDate(new java.util.Date());
-			// teamUserBean.setId(teamUserIdBean);
-			//
-			// teamUserDAO.insert(teamUserBean);
-			// -----------------------------------------------------------------
-//			session.setAttribute("LoginOK", userResult);
-//			String path = request.getContextPath();
-//			response.sendRedirect(path + "/login/invite.jsp");
-//		} else {
-//			errors.put("action", "Unknown Action:" + submit);
-//			System.out
-//					.println("RegisterServlet -- Line120--getRequestDispatcher(/login/register.jsp)");
-//			request.getRequestDispatcher("/login/register.jsp").forward(
-//					request, response);
-//		}
+		if ("Submit".equals(submit)) {
+			System.out.println("呼叫service");
+			UsersBean userResult = registerService.insertUserRegister(userBean);
+//			String currentID=userResult.getUserID();
+//			teamUserBean.setUserID(currentID);
+			
+			TeamBean teamResult = registerService.insertTeamRegister(teamBean);
+//			String currentTeamName=teamResult.getTeamName();
+//			teamUserBean.setTeamID(currentTeamName);
+			
+			if (userResult == null || teamResult == null) {
+				errors.put("action", "Insert fail");
+			}
+			session.setAttribute("UserInfo", userBean);
+			String path = request.getContextPath();
+			response.sendRedirect(path + "/login/welcome.jsp");
+
+		}
 	}
 
 	@Override

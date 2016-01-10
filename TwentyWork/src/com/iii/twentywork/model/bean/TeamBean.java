@@ -1,12 +1,17 @@
 package com.iii.twentywork.model.bean;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -14,21 +19,29 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "TEAM")
+@Component("teamBean")
 public class TeamBean implements java.io.Serializable {
+	public TeamBean() {
+	}
 
 	@Id
 	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(name = "uuid", strategy = "uuid2")
+	@GenericGenerator(name = "uuid", strategy = "uuid")
 	@Column(name = "teamid", unique = true)
 	private String teamId;
 	private String teamName;
-
 	private byte[] teamImage;
-
 	private String teamAbout;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "TeamUser", joinColumns = { @JoinColumn(name = "teamId", referencedColumnName = "teamId") }, inverseJoinColumns = { @JoinColumn(name = "userID", referencedColumnName = "userID") })
+	private List<UsersBean> UserBeanList;
 
+	public List<UsersBean> getUserBeanList() {
+		return UserBeanList;
+	}
 
-	public TeamBean() {
+	public void setUserBeanList(List<UsersBean> userBeanList) {
+		UserBeanList = userBeanList;
 	}
 
 	public TeamBean(String teamId, String teamName, String teamAbout) {
@@ -36,9 +49,6 @@ public class TeamBean implements java.io.Serializable {
 		this.teamName = teamName;
 		this.teamAbout = teamAbout;
 	}
-
-	
-
 
 	public String getTeamId() {
 		return teamId;
