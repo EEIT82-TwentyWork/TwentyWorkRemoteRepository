@@ -15,6 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.iii.twentywork.model.bean.TeamBean;
+import com.iii.twentywork.model.bean.TeamUserBean;
 import com.iii.twentywork.model.bean.UsersBean;
 import com.iii.twentywork.model.service.user.RegisterService;
 
