@@ -66,19 +66,19 @@ public class LoginServlet extends HttpServlet {
 				int int_groupID = Integer.parseInt(req.getParameter("groupID"));
 				
 		//呼叫Model
-				UsersBean bean = loginService.login(userID, password);
-				System.out.println("LoginServlet--Line72-login結束");
-				TeamUserBean teamUserBean = loginService.loginTeam(userID,int_groupID);
-				System.out.println("LoginServlet--Line72-loginTeam結束");
-		//根據Model執行結果，呼叫View
-				if(bean==null || teamUserBean==null) {
-					errors.put("password", "登入失敗，請再試一次");
-					req.getRequestDispatcher("/login/login.jsp").forward(req, resp);
-					return;
-				} else {
-				    session.setAttribute("LoginOK", bean);
-				    session.setAttribute("teamUserBean", teamUserBean);
-				}
+//				UsersBean bean = loginService.login(userID, password);
+//				System.out.println("LoginServlet--Line72-login結束");
+//				TeamUserBean teamUserBean = loginService.login(userID, password)
+//				System.out.println("LoginServlet--Line72-loginTeam結束");
+//		//根據Model執行結果，呼叫View
+//				if(bean==null || teamUserBean==null) {
+//					errors.put("password", "登入失敗，請再試一次");
+//					req.getRequestDispatcher("/login/login.jsp").forward(req, resp);
+//					return;
+//				} else {
+//				    session.setAttribute("LoginOK", bean);
+//				    session.setAttribute("teamUserBean", teamUserBean);
+//				}
 		// 依照 Business Logic 運算結果來挑選適當的畫面
 		        
 				if (requestURI != null && requestURI.length()!=0) {

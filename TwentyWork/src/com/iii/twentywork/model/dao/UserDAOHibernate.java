@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import com.iii.twentywork.model.bean.TeamBean;
 import com.iii.twentywork.model.bean.TeamUserBean;
-import com.iii.twentywork.model.bean.TeamUserIdBean;
 import com.iii.twentywork.model.bean.UsersBean;
 import com.iii.twentywork.model.daointerface.TeamUserDAO;
 import com.iii.twentywork.model.daointerface.UserDAO;
@@ -66,7 +65,7 @@ public class UserDAOHibernate implements UserDAO {
 	}
 
 	@Override
-	public UsersBean select(int userID) {
+	public UsersBean select(String userID) {
 
 		UsersBean temp = (UsersBean) getSession().get(UsersBean.class, userID);
 		System.out.println("UserDAOHibernate select結束");
@@ -118,23 +117,6 @@ public class UserDAOHibernate implements UserDAO {
 //		System.out.println(beanemail);
 //		TeamBean beanTeanName=dao.SelectTeamName("EEIT");
 //		System.out.println(beanTeanName);
-//		
-        TeamUserBean teamUserBean=new TeamUserBean();
-
-        UsersBean userEmail=dao.SelectEmail("stu70226@gmail.com");
-        TeamBean selectTeamName =dao.SelectTeamName("EEIT");
-        TeamUserIdBean teamUserIdBean =new TeamUserIdBean();
-        
-        teamUserIdBean.setTeamId(selectTeamName.getTeamId());
-        teamUserIdBean.setUserId(userEmail.getUserID());
-        teamUserBean.setTeam(selectTeamName);
-        teamUserBean.setUsers(userEmail);
-        teamUserBean.setRights(1);
-        teamUserBean.setActiveDate(new java.util.Date());
-        teamUserBean.setId(teamUserIdBean);
-        System.out.println(teamUserBean);
-        TeamUserDAO teamUserDAO=new TeamUserDAOHibernate();
-        teamUserDAO.insert(teamUserBean);
         
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}

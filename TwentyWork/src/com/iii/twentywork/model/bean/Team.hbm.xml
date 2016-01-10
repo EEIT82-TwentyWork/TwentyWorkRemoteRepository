@@ -4,9 +4,9 @@
 <!-- Generated 2015/12/28 ?U?? 11:25:13 by Hibernate Tools 4.3.1.Final -->
 <hibernate-mapping>
     <class name="com.iii.twentywork.model.bean.TeamBean" table="Team" schema="dbo" catalog="TwentyWork" optimistic-lock="version">
-        <id name="teamId" type="int">
+        <id name="teamId" type="java.lang.String" length="32">
             <column name="teamID" />
-            <generator class="identity" />
+            <generator class="UUID" />
         </id>
         <property name="teamName" type="string">
             <column name="teamName" length="20" not-null="true" />

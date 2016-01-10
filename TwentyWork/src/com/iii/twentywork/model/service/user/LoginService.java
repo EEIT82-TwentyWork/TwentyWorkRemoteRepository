@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
-import com.iii.twentywork.model.bean.TeamUserBean;
-import com.iii.twentywork.model.bean.TeamUserIdBean;
+
 import com.iii.twentywork.model.bean.UsersBean;
 import com.iii.twentywork.model.daointerface.TeamUserDAO;
 import com.iii.twentywork.model.daointerface.UserDAO;
@@ -32,7 +31,7 @@ public class LoginService {
         System.out.println("LoginService setTeamUserDAO");
     }
 	
-	public UsersBean login(int userID, String password) 
+	public UsersBean login(String userID, String password) 
 	{//testing#1
 		System.out.println("LoginService 進入login");
 		UsersBean bean = userDAO.select(userID);
@@ -50,16 +49,16 @@ public class LoginService {
 		return null;
 	}
 
-	public TeamUserBean loginTeam(int userID,int groupID) 
-	{//testing#2
-	    TeamUserBean bean =teamUserDAO.select(new TeamUserIdBean(userID,groupID)) ;
-	    System.out.println("LoginService loginTeam");
-	    if(bean != null) {
-	        return bean;
-	    }else {
-	    return null;
-	    }
-	}
+//	public TeamUserBean loginTeam(int userID, int groupID) {// testing#2
+//		TeamUserBean bean = teamUserDAO.select(new TeamUserIdBean(userID,
+//				groupID));
+//		System.out.println("LoginService loginTeam");
+//		if (bean != null) {
+//			return bean;
+//		} else {
+//			return null;
+//		}
+//	}
 	
 	public static void main(String[] args) {
 	    ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");

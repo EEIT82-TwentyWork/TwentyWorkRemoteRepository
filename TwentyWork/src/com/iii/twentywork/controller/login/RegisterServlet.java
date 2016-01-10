@@ -16,7 +16,6 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.iii.twentywork.model.bean.TeamBean;
 import com.iii.twentywork.model.bean.TeamUserBean;
-import com.iii.twentywork.model.bean.TeamUserIdBean;
 import com.iii.twentywork.model.bean.UsersBean;
 import com.iii.twentywork.model.daointerface.TeamUserDAO;
 import com.iii.twentywork.model.daointerface.UserDAO;
@@ -126,17 +125,6 @@ public class RegisterServlet extends HttpServlet {
             }
             System.out.println("RegisterServlet -- Line114--sendRedirect(main.workHome.main.jsp)");
 //          	-----------------------------------------------------------------
-            UsersBean userEmail=userDAO.SelectEmail(email);
-            TeamBean selectTeamName =userDAO.SelectTeamName(teamName);
-            TeamUserIdBean teamUserIdBean =new TeamUserIdBean();
-            
-            teamUserIdBean.setTeamId(selectTeamName.getTeamId());
-            teamUserIdBean.setUserId(userEmail.getUserID());
-            teamUserBean.setTeam(selectTeamName);
-            teamUserBean.setUsers(userEmail);
-            teamUserBean.setRights(1);
-            teamUserBean.setActiveDate(new java.util.Date());
-            teamUserBean.setId(teamUserIdBean);
             
             teamUserDAO.insert(teamUserBean);
             

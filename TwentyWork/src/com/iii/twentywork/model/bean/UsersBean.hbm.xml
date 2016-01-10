@@ -4,9 +4,9 @@
 <!-- Generated 2015/12/26 ?U?? 02:33:36 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
 	<class name="com.iii.twentywork.model.bean.UsersBean" table="USERS">
-		<id name="userID" type="Int">
+		<id name="userID" type="java.lang.String" length="32">
 			<column name="USERID" />
-			<generator class="identity" />
+			<generator class="UUID" />
 		</id>
 		<property name="userName" type="java.lang.String">
 			<column name="USERNAME" />
