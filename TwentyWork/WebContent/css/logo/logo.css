@@ -1,0 +1,50 @@
+@CHARSET "UTF-8";
+
+/* ---------------------------logo-------------------------------------------------------- */
+#background {
+	height: 250px;
+	/* 	background:#FF8C00; */
+	background: url('http://thecodeplayer.com/uploads/media/gs.png');
+	background: linear-gradient(rgba(196, 102, 0, 0.2),
+		rgba(20, 20, 20, 0.2)),
+		url('http://thecodeplayer.com/uploads/media/gs.png');
+}
+
+.logocontainer {
+	width: 690px;
+	height: 200px;
+	margin: 0 auto;
+}
+
+.logo {
+	font-weight: 400;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	color: #E6E9ED;
+	font-size: 80px;
+	position: relative;
+	margin: 0 auto;
+}
+
+.word {
+	color: #3BAFDA;
+}
+
+.right, .left {
+	font-family: arial;
+	font-size: 180px;
+	position: relative;
+	top: 55px;
+	color: #3BAFDA;
+	margin: 0 0 0 20px;
+}
+
+.text {
+	font-size: 30px;
+	position: absolute;
+	top: 168px;
+	left: 214px;
+}
+
+.left {
+	margin: 0 30px 0 0;
+}

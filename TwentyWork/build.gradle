@@ -1,0 +1,47 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+sourceCompatibility = 1.8			//設定編譯階段的JDK版本
+sourceSets.main.java.srcDir  'src'	//使用src目錄放置Java程式原始碼
+webAppDirName = 'WebContent'		//使用WebContent目錄放置網頁資源
+									//預設位置是src/main/java目錄
+repositories {
+	mavenCentral()					//使用maven  central repository
+}
+dependencies {						//宣告dependency library
+	providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+	providedRuntime 'javax.servlet:jstl:1.2'
+	
+	compile 'org.springframework:spring-context:4.2.4.RELEASE'
+	compile 'org.springframework:spring-web:4.2.4.RELEASE'
+	compile 'org.springframework:spring-jdbc:4.2.4.RELEASE'
+	compile 'org.springframework:spring-orm:4.2.4.RELEASE'
+	compile 'org.springframework:spring-tx:4.2.4.RELEASE'
+	compile 'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1'
+
+	compile 'org.apache.commons:commons-lang3:3.4'
+	
+	compile 'javax.mail:mail:1.4.7'
+	
+	compile 'org.hibernate:hibernate-core:4.3.11.Final'
+	runtime files('C:/sqljdbc42.jar')
+
+	
+}
+import org.gradle.plugins.ide.eclipse.model.Facet
+eclipse {
+	wtp {
+		facet {						//設定Dynamic Web Project的Project Facets
+			facet name: 'jst.web', type: Facet.FacetType.fixed
+			facet name: 'jst.web', version: '3.1'
+
+			facet name: 'jst.java', type: Facet.FacetType.fixed
+			facet name: 'jst.java', version: '1.8'
+			
+			facet name: 'wst.jsdt.web', type: Facet.FacetType.fixed
+			facet name: 'wst.jsdt.web', version: '1.0'
+		}
+	}
+}
+
+
