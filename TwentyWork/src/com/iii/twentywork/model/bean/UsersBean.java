@@ -1,33 +1,30 @@
 package com.iii.twentywork.model.bean;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
-
-
 @Entity
 @Table(name = "USERS")
 @Component("userBean")
-public class UsersBean implements java.io.Serializable {
+public class UsersBean implements Serializable {
 	public UsersBean() {
 	}
+
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid")
@@ -40,23 +37,29 @@ public class UsersBean implements java.io.Serializable {
 	private byte[] userImage;
 	private String cellPhone;
 	private String phone;
+	private Set<TeamBean> teams = new HashSet<TeamBean>(0);
+
 	/**
-	 * 1.userID="TeamUser.userID"(target)         2.userID="UserBean"  (Own)
-	 * 3.teamId="TeamUser.teamId"(match-target)   4.teamId="TeamBean.teamId"(match)
+	 * 1.userID="TeamUser.userID"(target) 2.userID="UserBean" (Own)
+	 * 3.teamId="TeamUser.teamId"(match-target)
+	 * 4.teamId="TeamBean.teamId"(match)
 	 */
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="TeamUser",joinColumns={ @JoinColumn(name="userID",referencedColumnName="userID")},
-	inverseJoinColumns={@JoinColumn(name="teamId",referencedColumnName="teamId")})	
-	private List<TeamBean> TeamBeanList;
-
-	public List<TeamBean> getTeamBeanList() {
-		return TeamBeanList;
-	}
-
-	public void setTeamBeanList(List<TeamBean> teamBeanList) {
-		TeamBeanList = teamBeanList;
-	}
-
+	/*
+	 * @OneToMany(cascade = CascadeType.ALL)
+	 * 
+	 * @JoinTable(name = "TeamUser", joinColumns = {
+	 * 
+	 * @JoinColumn(name = "userID", referencedColumnName = "userID") },
+	 * inverseJoinColumns = {
+	 * 
+	 * @JoinColumn(name = "teamId", referencedColumnName = "teamId") }) private
+	 * List<TeamBean> TeamBeanList;
+	 * 
+	 * public List<TeamBean> getTeamBeanList() { return TeamBeanList; }
+	 * 
+	 * public void setTeamBeanList(List<TeamBean> teamBeanList) { TeamBeanList =
+	 * teamBeanList; }
+	 */
 	public String getUserID() {
 		return userID;
 	}
@@ -120,13 +123,21 @@ public class UsersBean implements java.io.Serializable {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
+
+	public Set<TeamBean> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(Set<TeamBean> teams) {
+		this.teams = teams;
+	}
 
 	@Override
 	public String toString() {
-		return "UsersBean [userID=" + userID + ", userName=" + userName
-				+ ", email=" + email + ", password="
-				+ Arrays.toString(password) + ", birth=" + birth
-				+ ", cellPhone=" + cellPhone + ", phone=" + phone + "]";
+		return "UsersBean [userID=" + userID + ", userName=" + userName + ", email=" + email + ", password="
+				+ Arrays.toString(password) + ", birth=" + birth + ", cellPhone=" + cellPhone + ", phone=" + phone
+				+ "]";
 	}
 
 	public static UUID convertUUID(String data) {

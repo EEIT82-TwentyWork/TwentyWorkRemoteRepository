@@ -1,17 +1,12 @@
 package com.iii.twentywork.model.bean;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -32,18 +27,24 @@ public class TeamBean implements java.io.Serializable {
 	private String teamName;
 	private byte[] teamImage;
 	private String teamAbout;
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "TeamUser", joinColumns = { @JoinColumn(name = "teamId", referencedColumnName = "teamId") }, inverseJoinColumns = { @JoinColumn(name = "userID", referencedColumnName = "userID") })
-	private List<UsersBean> UserBeanList;
+	private Set<UsersBean> userses = new HashSet<UsersBean>(0);
 
-	public List<UsersBean> getUserBeanList() {
-		return UserBeanList;
-	}
-
-	public void setUserBeanList(List<UsersBean> userBeanList) {
-		UserBeanList = userBeanList;
-	}
-
+	/*
+	 * @OneToMany(cascade = CascadeType.ALL)
+	 * 
+	 * @JoinTable(name = "TeamUser", joinColumns = {
+	 * 
+	 * @JoinColumn(name = "teamId", referencedColumnName = "teamId") },
+	 * inverseJoinColumns = {
+	 * 
+	 * @JoinColumn(name = "userID", referencedColumnName = "userID") }) private
+	 * List<UsersBean> UserBeanList;
+	 * 
+	 * public List<UsersBean> getUserBeanList() { return UserBeanList; }
+	 * 
+	 * public void setUserBeanList(List<UsersBean> userBeanList) { UserBeanList
+	 * = userBeanList; }
+	 */
 	public TeamBean(String teamId, String teamName, String teamAbout) {
 		this.teamId = teamId;
 		this.teamName = teamName;
@@ -88,6 +89,14 @@ public class TeamBean implements java.io.Serializable {
 
 	public void setteamAbout(String teamAbout) {
 		this.teamAbout = teamAbout;
+	}
+
+	public Set<UsersBean> getUserses() {
+		return userses;
+	}
+
+	public void setUserses(Set<UsersBean> userses) {
+		this.userses = userses;
 	}
 
 	@Override

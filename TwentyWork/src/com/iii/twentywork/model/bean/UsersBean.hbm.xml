@@ -3,10 +3,10 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2015/12/26 ?U?? 02:33:36 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-	<class name="com.iii.twentywork.model.bean.UsersBean" table="USERS">
-		<id name="userID" type="java.lang.String" length="32">
-			<column name="USERID" />
-			<generator class="UUID" />
+	<class name="com.iii.twentywork.model.bean.UsersBean" table="USERS" schema="dbo" catalog="TwentyWork" optimistic-lock="version">
+		<id name="userID" type="string">
+			<column name="USERID" length="32" />
+			<generator class="uuid" />
 		</id>
 		<property name="userName" type="java.lang.String">
 			<column name="USERNAME" />
@@ -29,5 +29,15 @@
 		<property name="phone" type="java.lang.String">
 			<column name="PHONE" />
 		</property>
+
+		<set name="teams" table="TeamUser" inverse="false" lazy="true"
+			fetch="select" cascade="save-update ,delete, delete-orphan">
+			<key>
+				<column name="userID" length="32" not-null="true" />
+			</key>
+			<many-to-many entity-name="com.iii.twentywork.model.bean.TeamBean">
+				<column name="teamID" length="32" not-null="true"  insert="false" update="false"/>
+			</many-to-many>
+		</set>
 	</class>
 </hibernate-mapping>

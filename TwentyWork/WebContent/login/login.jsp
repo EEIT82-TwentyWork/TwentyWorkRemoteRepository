@@ -15,13 +15,13 @@ groupID:202,userID:100~108<br>
 	<form action="<c:url value="/login/login.controller" />" method="post">
 <table>
 	<tr>
-		<td>groupID : </td>
-		<td><input type="text" name="groupID" value="${groupID}"></td>
+		<td>TeanName : </td>
+		<td><input type="text" name="TeanName" value="${groupID}"></td>
 		<td>${errors.groupID}</td>
 	</tr>
 	<tr>
-		<td>userID : </td>
-		<td><input type="text" name="userID" value="${userID}"></td>
+		<td>email : </td>
+		<td><input type="text" name="email" value="${userID}"></td>
 		<td>${errors.userID}</td>
 	</tr>
 	<tr>

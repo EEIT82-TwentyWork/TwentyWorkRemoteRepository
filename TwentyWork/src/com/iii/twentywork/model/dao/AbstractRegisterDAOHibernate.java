@@ -22,15 +22,17 @@ public abstract class AbstractRegisterDAOHibernate {
 	}
 
 	public Session getSession() {
-		// Session session = sessionFactory.getCurrentSession();
-		return null;
+		 Session session = sessionFactory.getCurrentSession();
+		return session;
 	}
 
 	public UsersBean insertUserRegister(UsersBean userbean) {
+		getSession().save(userbean);
 		return userbean;
 	}
 
 	public TeamBean insertTeamRegister(TeamBean teamBean) {
+		getSession().save(teamBean);
 		return teamBean;
 	}
 

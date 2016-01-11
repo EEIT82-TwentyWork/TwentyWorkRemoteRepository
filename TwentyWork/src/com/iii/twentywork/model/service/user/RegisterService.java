@@ -28,4 +28,5 @@ public class RegisterService {
 		result = registerDAO.insertTeamRegister(teamBean);
 		return result;
 	}
+
 }

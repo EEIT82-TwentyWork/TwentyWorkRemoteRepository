@@ -15,39 +15,45 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.iii.twentywork.model.bean.TeamBean;
+import com.iii.twentywork.model.bean.UsersBean;
+import com.iii.twentywork.model.service.user.LoginAbstractService;
 import com.iii.twentywork.model.service.user.LoginService;
 
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private LoginService loginService;
+    private LoginAbstractService loginAbstractService;
 	@Override
 	public void init() throws ServletException {
 		ServletContext application = this.getServletContext();
 		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
-		this.loginService = (LoginService) context.getBean("loginService");
-		System.out.println("LoginServlet--1.init-loginService");
+		this.loginAbstractService=(LoginAbstractService)context.getBean("loginAbstractService");
+		
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 	    
-	    HttpSession session = req.getSession();
+	    HttpSession session = request.getSession();
 		//接收資料
-	            String groupID = req.getParameter("groupID");
-				String struid = req.getParameter("userID");
-				String password = req.getParameter("password");
-				String rm = req.getParameter("rememberMe");
+	    		String teamName =request.getParameter("TeanName");
+	    		String email =request.getParameter("email");
+	    		String password =request.getParameter("password");
+//	            String groupID = req.getParameter("groupID");
+//				String struid = req.getParameter("userID");
+//				String password = req.getParameter("password");
+				String rm = request.getParameter("rememberMe");
 		        String requestURI = (String) session.getAttribute("requestURI");
-				System.out.println("LoginServlet--2.接收資料結束");
 		//驗證資料
 				Map<String, String> errors = new HashMap<String, String>();
-				req.setAttribute("errors", errors);
+				request.setAttribute("errors", errors);
 				
-				if(groupID==null || groupID.length()==0) {
+				if(teamName==null || teamName.length()==0) {
                     errors.put("groupID", "請輸入groupID");
                 }
-				if(struid==null || struid.length()==0) {
+				if(teamName==null || teamName.length()==0) {
 					errors.put("userID", "請輸入userID");
 				}
 				if(password==null || password.length()==0) {
@@ -55,39 +61,43 @@ public class LoginServlet extends HttpServlet {
 				}
 				// 如果 errorMsgMap 不是空的，表示有錯誤，交給login.jsp
 				if(errors!=null && !errors.isEmpty()) {
-					req.getRequestDispatcher("/login/login.jsp").forward(req, resp);
+					request.getRequestDispatcher("/login/login.jsp").forward(request, response);
 				}
 			
-				setCookie(req, resp, rm, groupID, struid, password);
+				setCookie(request, response, rm, teamName, email, password);
 				System.out.println("LoginServlet--3.驗證資料結束");
 		//資料型態轉換:int轉字串
-				int userID = Integer.parseInt(req.getParameter("userID"));
-				int int_groupID = Integer.parseInt(req.getParameter("groupID"));
+//				int userID = Integer.parseInt(req.getParameter("userID"));
+//				int int_groupID = Integer.parseInt(req.getParameter("groupID"));
 				
 		//呼叫Model
-//				UsersBean bean = loginService.login(userID, password);
-//				System.out.println("LoginServlet--Line72-login結束");
-//				TeamUserBean teamUserBean = loginService.login(userID, password)
-//				System.out.println("LoginServlet--Line72-loginTeam結束");
-//		//根據Model執行結果，呼叫View
-//				if(bean==null || teamUserBean==null) {
+				System.out.println("應該是這裡開是錯誤");
+				UsersBean user	=loginAbstractService.loginUserInfoCheck(email, password);
+				String tempUserID=user.getUserID();
+				System.out.println("userID:"+tempUserID);
+				TeamBean team =loginAbstractService.selectTeamID(teamName);
+				String tempTeamid=team.getTeamId();
+				System.out.println("teamid"+tempTeamid);
+		
+				
+		//根據Model執行結果，呼叫View
+//				if(user==null || teamUserBean==null) {
 //					errors.put("password", "登入失敗，請再試一次");
-//					req.getRequestDispatcher("/login/login.jsp").forward(req, resp);
+//					request.getRequestDispatcher("/login/login.jsp").forward(request, response);
 //					return;
 //				} else {
-//				    session.setAttribute("LoginOK", bean);
+//				    session.setAttribute("LoginOK", user);
 //				    session.setAttribute("teamUserBean", teamUserBean);
 //				}
 		// 依照 Business Logic 運算結果來挑選適當的畫面
-		        
 				if (requestURI != null && requestURI.length()!=0) {
 					// 回到進來前的頁面
 					session.removeAttribute("requestURI");
-					resp.sendRedirect(requestURI);
+					response.sendRedirect(requestURI);
 					return;
 				} else {
-					String path = req.getContextPath();
-					resp.sendRedirect(path + "/main/workHome/main.jsp");
+					String path = request.getContextPath();
+					response.sendRedirect(path + "/main/workHome/main.jsp");
 					return;
 				}
 			}
@@ -122,17 +132,11 @@ public class LoginServlet extends HttpServlet {
 			        resp.addCookie(cookiePassword);
 			        resp.addCookie(cookieRememberMe);
 	}
-	
-	
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		this.doGet(req, resp);
 	}
 
-	public static void main(String[] args) {
-
-	}
 
 }
