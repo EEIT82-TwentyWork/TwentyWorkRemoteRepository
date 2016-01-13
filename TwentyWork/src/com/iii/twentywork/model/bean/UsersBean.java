@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -37,7 +36,7 @@ public class UsersBean implements Serializable {
 	private byte[] userImage;
 	private String cellPhone;
 	private String phone;
-	private Set<TeamBean> teams = new HashSet<TeamBean>(0);
+	private Set<TeamBean> teams;
 
 	/**
 	 * 1.userID="TeamUser.userID"(target) 2.userID="UserBean" (Own)
@@ -123,7 +122,6 @@ public class UsersBean implements Serializable {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
 
 	public Set<TeamBean> getTeams() {
 		return teams;
@@ -136,8 +134,8 @@ public class UsersBean implements Serializable {
 	@Override
 	public String toString() {
 		return "UsersBean [userID=" + userID + ", userName=" + userName + ", email=" + email + ", password="
-				+ Arrays.toString(password) + ", birth=" + birth + ", cellPhone=" + cellPhone + ", phone=" + phone
-				+ "]";
+				+ Arrays.toString(password) + ", birth=" + birth + ", userImage=" + Arrays.toString(userImage)
+				+ ", cellPhone=" + cellPhone + ", phone=" + phone + ", teams=" + teams + "]";
 	}
 
 	public static UUID convertUUID(String data) {

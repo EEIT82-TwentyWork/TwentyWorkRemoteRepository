@@ -17,13 +17,12 @@
 		<property name="teamAbout" type="string">
 			<column name="teamAbout"/>
 		</property>
-		<set name="userses" table="TeamUser" inverse="true" lazy="true"
-			fetch="select" cascade="save-update ,delete, delete-orphan">
+		<set name="userses" table="TeamUser" inverse="false" lazy="true" fetch="select" cascade="save-update">
 			<key>
 				<column name="teamID" length="32" not-null="true" />
 			</key>
-			<many-to-many entity-name="com.iii.twentywork.model.bean.UsersBean">
-				<column name="userID" length="32" not-null="true" insert="false" update="false"/>
+			<many-to-many class	="com.iii.twentywork.model.bean.UsersBean">
+				<column name="userID" length="32" not-null="true"/>
 			</many-to-many>
 		</set>
 	</class>

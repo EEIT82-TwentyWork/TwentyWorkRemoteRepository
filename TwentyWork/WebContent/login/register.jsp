@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="../css/login/register.css">
 <link rel="stylesheet" href="../css/logo/logo.css">
 
-
 </head>
 <body>
 <!-- 		------------------------------------------------------------ -->

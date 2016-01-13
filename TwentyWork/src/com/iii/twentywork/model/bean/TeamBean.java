@@ -1,5 +1,6 @@
 package com.iii.twentywork.model.bean;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,7 +28,7 @@ public class TeamBean implements java.io.Serializable {
 	private String teamName;
 	private byte[] teamImage;
 	private String teamAbout;
-	private Set<UsersBean> userses = new HashSet<UsersBean>(0);
+	private Set<UsersBean> userses;
 
 	/*
 	 * @OneToMany(cascade = CascadeType.ALL)
@@ -101,7 +102,9 @@ public class TeamBean implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "Team [teamId=" + teamId + ", teamName=" + teamName + "]";
+		return "TeamBean [teamId=" + teamId + ", teamName=" + teamName + ", teamImage=" + Arrays.toString(teamImage)
+				+ ", teamAbout=" + teamAbout + "]";
 	}
+
 
 }

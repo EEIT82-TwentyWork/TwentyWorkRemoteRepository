@@ -2,7 +2,9 @@ package com.iii.twentywork.controller.login;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -27,20 +29,19 @@ public class RegisterServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		System.out.println("進入init");
 		ServletContext application = this.getServletContext();
-		WebApplicationContext context = WebApplicationContextUtils
-				.getWebApplicationContext(application);
+		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
 		this.registerService = (RegisterService) context.getBean("registerService");
 		this.userBean = (UsersBean) context.getBean("userBean");
 		this.teamBean = (TeamBean) context.getBean("teamBean");
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("進入init");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
+		request.setCharacterEncoding("UTF-8");
 		// 接收資料
 		String email = request.getParameter("email");
 		String passtemp = request.getParameter("pass");
@@ -95,7 +96,6 @@ public class RegisterServlet extends HttpServlet {
 			}
 		}
 		// 呼叫Model
-		System.out.println("User開始塞值");
 		userBean.setUserName(fullname);
 		userBean.setEmail(email);
 		userBean.setPassword(pass);
@@ -103,35 +103,32 @@ public class RegisterServlet extends HttpServlet {
 		userBean.setUserImage(null);
 		userBean.setCellPhone(cellPhone);
 		userBean.setPhone(null);
-		System.out.println("team開始塞值");
+		userBean.setTeams(new HashSet<TeamBean>());
+
 		teamBean.setTeamName(teamName);
 		teamBean.setTeamImage(null);
-		teamBean.setTeamName(teamName);
+		teamBean.setTeamAbout(teamAbout);
+		teamBean.setUserses(new HashSet<UsersBean>());
+
+		userBean.getTeams().add(teamBean);
+		teamBean.getUserses().add(userBean);
+
 		System.out.println("結束塞值init");
 		// 根據Model執行結果，呼叫View
 		if ("Submit".equals(submit)) {
-			System.out.println("呼叫service");
 			UsersBean userResult = registerService.insertUserRegister(userBean);
-//			String currentID=userResult.getUserID();
-//			teamUserBean.setUserID(currentID);
-			
-			TeamBean teamResult = registerService.insertTeamRegister(teamBean);
-//			String currentTeamName=teamResult.getTeamName();
-//			teamUserBean.setTeamID(currentTeamName);
-			
-			if (userResult == null || teamResult == null) {
+			if (userResult == null) {
 				errors.put("action", "Insert fail");
 			}
 			session.setAttribute("UserInfo", userBean);
 			String path = request.getContextPath();
-			response.sendRedirect(path + "/login/welcome.jsp");
-
+			response.sendRedirect(path + "/login/invite.jsp");
 		}
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		this.doGet(req, resp);
 	}
 }

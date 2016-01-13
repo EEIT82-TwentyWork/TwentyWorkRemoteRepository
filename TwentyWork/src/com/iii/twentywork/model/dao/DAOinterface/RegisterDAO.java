@@ -7,7 +7,5 @@ public interface RegisterDAO {
 
 	public abstract UsersBean insertUserRegister(UsersBean userBean);
 
-	public abstract TeamBean insertTeamRegister(TeamBean teamBean);
-	
-
+	public abstract TeamBean selectTeamPersonal(String teanName);
 }

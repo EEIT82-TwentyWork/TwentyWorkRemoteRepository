@@ -1,5 +1,6 @@
 package com.iii.twentywork.model.dao;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,11 @@ import org.springframework.stereotype.Component;
 import com.iii.twentywork.model.bean.TeamBean;
 import com.iii.twentywork.model.bean.UsersBean;
 import com.iii.twentywork.model.dao.DAOinterface.RegisterDAO;
+
+/**
+ * @author kiwi 1.using DAO Interface 2.save userBean 3.entity Users Team
+ *         TeamUser
+ */
 @Component("registerDAO")
 public class RegisterDAOHibernate implements RegisterDAO {
 	@Autowired
@@ -24,21 +30,20 @@ public class RegisterDAOHibernate implements RegisterDAO {
 
 	@Override
 	public UsersBean insertUserRegister(UsersBean userBean) {
-		System.out.println("開始SAVE USERS");
 		getSession().save(userBean);
-//		Query query=getSession().createQuery("from users where email='"+ userBean.getEmail()+"'");
-//		UsersBean obj= (UsersBean)query.uniqueResult();
 		return userBean;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see PersonalService(java.lang.String)
+	 */
 	@Override
-	public TeamBean insertTeamRegister(TeamBean teamBean) {
-		System.out.println("開始SAVE team");
-		getSession().save(teamBean);
-//		Query query=getSession().createQuery("from users where teamName='"+ teamBean.getTeamName()+"'");
-//		TeamBean obj=(TeamBean)query.uniqueResult();
-		System.out.println("結束");
-		return teamBean;
+	public TeamBean selectTeamPersonal(String teanName) {
+		Query query = getSession().createQuery("from TeamBean where teamName='" + teanName + "'");
+		TeamBean obj = (TeamBean) query.uniqueResult();
+		return obj;
 	}
 
 }

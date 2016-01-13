@@ -1,0 +1,153 @@
+@CHARSET "UTF-8";
+
+html {
+	background: url("http://thecodeplayer.com/uploads/media/gs.png");
+	background: linear-gradient(rgba(196, 102, 0, 0.2),
+		rgba(20, 20, 20, 0.2)),
+		url('http://thecodeplayer.com/uploads/media/gs.png');
+}
+
+
+
+.form {
+	width: 400px;
+	margin: 0 auto;
+	/* 	position: absolute; */
+	/* 	top: 50%; */
+	/* 	left: 50%; */
+	/* 	background: #fff; */
+	/* 	width: 285px; */
+	/* 	margin: -140px 0 0 -182px; */
+	/* 	padding: 40px; */
+/* 	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); */
+}
+
+.form h2 {
+	font-size: 20px;
+	text-transform: uppercase;
+	color: #2C3E50;
+	margin-bottom: 10px;
+
+	/* 	margin: 0 0 20px; */
+	/* 	line-height: 1; */
+	/* 	color: #44c4e7; */
+	/* 	font-size: 18px; */
+	/* 	font-weight: 400; */
+}
+
+.form input {
+	outline: none;
+/* 	display: block; */
+	width: 100%;
+	margin: 0 0 20px;
+	padding: 10px 15px;
+	border: 1px solid #ccc;
+	color: #ccc;
+	font-family: "Roboto";
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	font-size: 14px;
+	font-wieght: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-transition: 0.2s linear;
+	-moz-transition: 0.2s linear;
+	-ms-transition: 0.2s linear;
+	-o-transition: 0.2s linear;
+	transition: 0.2s linear;
+}
+
+.form input:focus {
+	color: #333;
+	border: 1px solid #44c4e7;
+}
+
+#loginsubmit {
+	float:right;
+	width: 100px;
+	background: #27AE60;
+	font-weight: bold;
+	color: white;
+/* 	border: 0 none; */
+	cursor: pointer;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	padding: 15px;
+	
+}
+
+#loginsubmit:hover {
+	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+
+.form animated flipInX {
+	background: white;
+	border: 0 none;
+	border-radius: 3px;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+	padding: 20px 30px;
+	box-sizing: border-box;
+	width: 80%;
+	margin: 0 10%;
+	/*stacking fieldsets above each other*/
+	position: absolute;
+}
+#loginPageSetting{
+	width:100%;
+	height:800px;
+}
+
+
+/* ---------------------------rememberMe-------------------------------------------------------- */
+.login-checkbox {
+  display: inline-block;
+  height:30px;
+  position:relative;
+  width:30px;
+}
+
+.login-checkbox input[type=checkbox] {
+  display:none;
+  margin:0;
+}
+
+.login-checkbox input[type=checkbox] + label:before {
+  background-color: transparent;
+  border: 2px solid #4c4c4c;  
+  border-radius: 50%;  
+  content: "";
+  cursor: pointer;
+  display: inline-block;    
+  height: 30px;
+  margin-right: 8px;
+  vertical-align: middle;
+  width: 30px;
+}
+
+.login-checkbox > .toggle {
+  background-color: #7d7d7d;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 10px;
+  pointer-events: none;
+  position: absolute;
+  right: -6px;
+  top: 10px;
+  transition: all 0.5s ease-in-out;
+  width: 10px;
+}
+
+.login-checkbox > input[type=checkbox]:checked + label:before {
+	border: 2px solid #696969;
+  content:"";    
+  transition-delay: 0.5s;
+  transition-duration: 0.2s;
+}
+
+.login-checkbox > input[type=checkbox]:checked ~ .toggle {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 4px 0px rgba(255,255,255,0.99);
+  transform: translateX(-13px);
+  transition: all 0.5s ease-in-out;  
+}

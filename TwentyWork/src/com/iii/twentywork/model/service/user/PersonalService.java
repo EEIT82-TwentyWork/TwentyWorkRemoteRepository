@@ -4,12 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.iii.twentywork.model.bean.TeamBean;
-import com.iii.twentywork.model.bean.UsersBean;
 import com.iii.twentywork.model.dao.DAOinterface.RegisterDAO;
 
-@Component(value = "registerService")
-public class RegisterService {
-
+@Component("personalService")
+public class PersonalService {
 	@Autowired
 	private RegisterDAO registerDAO;
 
@@ -17,10 +15,9 @@ public class RegisterService {
 		this.registerDAO = registerDAO;
 	}
 
-	public UsersBean insertUserRegister(UsersBean userBean) {
-		UsersBean result = null;
-		result = registerDAO.insertUserRegister(userBean);
-
+	public TeamBean selectTeamName(String teamName) {
+		TeamBean result = registerDAO.selectTeamPersonal(teamName);
 		return result;
 	}
+
 }
