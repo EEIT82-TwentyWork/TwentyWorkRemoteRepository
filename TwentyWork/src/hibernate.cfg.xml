@@ -22,7 +22,7 @@
 
 		<mapping resource="com/iii/twentywork/model/bean/UsersBean.hbm.xml"/>
 		<mapping resource="com/iii/twentywork/model/bean/Team.hbm.xml"/>
+		<mapping resource="com/iii/twentywork/model/bean/MySchedule.hbm.xml"/>
 <!-- 		<mapping resource="com/iii/twentywork/model/bean/TeamUserBean.hbm.xml"/> -->
-
 	</session-factory>
 </hibernate-configuration>

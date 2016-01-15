@@ -25,7 +25,12 @@
 			<value>classpath:hibernate.cfg.xml</value>
 		</property>
 	</bean>
-
+	<bean id="calDao" class="com.iii.twentywork.model.dao.CalDAOHibernate">
+	<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="calService" class="com.iii.twentywork.model.service.calendar.CalService">
+	<property name="calDao" ref="calDao" />
+	</bean>
 	<!-- <bean id="userDAO" class="com.iii.twentywork.model.dao.UserDAOHibernate"> -->
 	<!-- <property name="sessionFactory" ref="sessionFactory"></property> -->
 	<!-- </bean> -->

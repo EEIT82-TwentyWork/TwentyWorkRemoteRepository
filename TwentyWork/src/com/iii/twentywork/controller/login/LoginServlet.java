@@ -31,12 +31,13 @@ public class LoginServlet extends HttpServlet {
 		ServletContext application = this.getServletContext();
 		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
 		this.loginAbstractService = (LoginAbstractService) context.getBean("loginAbstractService");
-
+		System.out.println("init GOGO");
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("doGet GOGO");
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		// 接收資料

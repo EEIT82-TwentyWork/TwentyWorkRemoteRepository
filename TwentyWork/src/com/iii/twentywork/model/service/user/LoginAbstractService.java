@@ -13,6 +13,7 @@ public class LoginAbstractService extends AbstractLoginDAOHibernate {
 
 	public UsersBean loginUserInfoCheck(String teamName, String email, String password) {
 		UsersBean usersInfo = SelectLoginEmail(email);
+		System.out.println("usersInfo檢查是否為空="+usersInfo);
 		if (usersInfo != null) {
 			if (password != null && password.trim().length() != 0) {
 				byte[] pass = usersInfo.getPassword();
