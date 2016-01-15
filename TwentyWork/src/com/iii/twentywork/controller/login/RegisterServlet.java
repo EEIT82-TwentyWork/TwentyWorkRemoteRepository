@@ -24,8 +24,9 @@ import com.iii.twentywork.model.service.user.RegisterService;
 @WebServlet("/main/workHome/main")
 public class RegisterServlet extends HttpServlet {
 	private RegisterService registerService;
-	private UsersBean userBean;
+//	private UsersBean userBean;
 	private TeamBean teamBean;
+	private UsersBean userBean=new UsersBean();
 
 	@Override
 	public void init() throws ServletException {

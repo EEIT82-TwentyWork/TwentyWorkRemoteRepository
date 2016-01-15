@@ -1,7 +1,10 @@
 @CHARSET "UTF-8";
 
 body {
-	background: #4EB889;
+	
+	background: -webkit-linear-gradient(#2C3E50,#4EB889);
+	
+	height:900px;
 }
 
 section {

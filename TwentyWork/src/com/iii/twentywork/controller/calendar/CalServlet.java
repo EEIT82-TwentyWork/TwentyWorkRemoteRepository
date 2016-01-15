@@ -65,7 +65,7 @@ public class CalServlet extends HttpServlet {
 				String allday = req.getParameter("allday");
 				String color = req.getParameter("color");
 				String prodaction = req.getParameter("prodaction");
-				UsersBean myuserbean = (UsersBean)session.getAttribute("LoginOK");
+				UsersBean myuserbean = (UsersBean)session.getAttribute("userinfo");
 				
 
 	//驗證資料
