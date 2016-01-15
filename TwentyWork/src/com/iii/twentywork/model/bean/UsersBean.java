@@ -37,7 +37,7 @@ public class UsersBean implements Serializable {
 	private String cellPhone;
 	private String phone;
 	private Set<TeamBean> teams;
-
+	private Set<MySchedule> mySchedules;
 	/**
 	 * 1.userID="TeamUser.userID"(target) 2.userID="UserBean" (Own)
 	 * 3.teamId="TeamUser.teamId"(match-target)
@@ -130,6 +130,14 @@ public class UsersBean implements Serializable {
 	public void setTeams(Set<TeamBean> teams) {
 		this.teams = teams;
 	}
+	
+	public Set<MySchedule> getMySchedules() {
+		return mySchedules;
+	}
+
+	public void setMySchedules(Set<MySchedule> mySchedules) {
+		this.mySchedules = mySchedules;
+	}
 
 
 
@@ -137,7 +145,7 @@ public class UsersBean implements Serializable {
 	public String toString() {
 		return "UsersBean [userID=" + userID + ", userName=" + userName + ", email=" + email + ", password="
 				+ Arrays.toString(password) + ", birth=" + birth + ", userImage=" + Arrays.toString(userImage)
-				+ ", cellPhone=" + cellPhone + ", phone=" + phone + ", teams=" + teams + "]";
+				+ ", cellPhone=" + cellPhone + ", phone=" + phone + "]";
 	}
 
 	public static UUID convertUUID(String data) {
