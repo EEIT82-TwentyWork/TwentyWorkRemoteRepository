@@ -64,8 +64,10 @@ public class LoginServlet extends HttpServlet {
 		}
 		setCookie(request, response, rm, teamName, email, password);
 		// 呼叫Model
+		System.out.println("呼叫Service");
 		UsersBean userinfo = loginAbstractService.loginUserInfoCheck(teamName, email, password);
-		TeamBean teamInfo = userinfo.getTeams().iterator().next();
+		String userName=userinfo.getUserName();
+		System.out.println("回傳"+userinfo);
 		// 根據Model執行結果，呼叫View
 		if (userinfo == null) {
 			errors.put("password", "登入失敗，請再試一次");
@@ -82,6 +84,8 @@ public class LoginServlet extends HttpServlet {
 			return;
 		} else {
 			String path = request.getContextPath();
+			session.setAttribute("UserInfo", userinfo);
+			session.setAttribute("userName", userName);
 			response.sendRedirect(path + "/main/workHome/main.jsp");
 			return;
 		}

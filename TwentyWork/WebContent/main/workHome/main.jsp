@@ -7,7 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../css/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="../../css/main/Main.css">
-
 <title>main</title>
 </head>
 	<body>	
@@ -15,14 +14,18 @@
 			<section>
 <!-- layout----E1 begin---------------------------------------------------->				
 				<div id="page-top">
-					<h3>Welcome ${teamUserBean.users.userName}</h3>
+					<h3>Welcome <%=session.getAttribute("userName") %></h3>
+					
+			
 				</div>
 				<div id="page-left">
 					<div id="accordian">
 						<ul>
+
 							<li>
 								<h3><span class="icon-dashboard"></span>Dashboard</h3>
 								<ul>
+									<li><a href="#">Reports</a></li>
 									<li><a href="#">Reports</a></li>
 									<li><a href="#">Search</a></li>
 									<li><a href="#">Graphs</a></li>
@@ -65,16 +68,7 @@
 							</li>
 							<li>
 								<h3><span class="icon-chat"></span>Chat List</h3>
-								<ul>
-									<li><a href="#">吳承恩</a></li>
-									<li><a href="#">黃莉婷</a></li>
-									<li><a href="#">陳凱尉</a></li>
-									<li><a href="#">Amy</a></li>
-									<li><a href="#">cat</a></li>
-									<li><a href="#">Azumi</a></li>
-									<li><a href="#">BOSS</a></li>
-									<li><a href="#">123456789012345678901234567890</a></li>
-									<li><a href="#">一二三四五六七八九十一二三四五六七八</a></li>
+								<ul id="chatName">
 								</ul>
 							</li>
 							<li>

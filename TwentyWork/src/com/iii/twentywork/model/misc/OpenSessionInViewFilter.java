@@ -17,40 +17,40 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.SessionFactory;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-@WebFilter(
-		urlPatterns={"/*"},
-		initParams={
-				@WebInitParam(name="sessionFactoryBeanName", value="sessionFactory")
-		}
-)
+
+@WebFilter(urlPatterns = { "/*" }, initParams = {
+		@WebInitParam(name = "sessionFactoryBeanName", value = "sessionFactory") })
 public class OpenSessionInViewFilter implements Filter {
 	private SessionFactory sessionFactory;
+
 	@Override
-	public void doFilter(ServletRequest req, ServletResponse resp,
-			FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+			throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		try {
 			sessionFactory.getCurrentSession().beginTransaction();
 			chain.doFilter(request, response);
 			sessionFactory.getCurrentSession().getTransaction().commit();
-		} catch(Throwable e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 			sessionFactory.getCurrentSession().getTransaction().rollback();
 			chain.doFilter(request, response);
 		}
 	}
+
 	private FilterConfig filterConfig;
+
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		this.filterConfig = filterConfig;
 		String sessionFactoryBeanName = filterConfig.getInitParameter("sessionFactoryBeanName");
-		
+
 		ServletContext application = filterConfig.getServletContext();
-		WebApplicationContext context = 
-				WebApplicationContextUtils.getWebApplicationContext(application);
+		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
 		sessionFactory = (SessionFactory) context.getBean(sessionFactoryBeanName);
 	}
+
 	@Override
 	public void destroy() {
 
