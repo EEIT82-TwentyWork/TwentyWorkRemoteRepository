@@ -6,19 +6,19 @@ public class FileTreeBean implements java.io.Serializable
 {
     private static final long serialVersionUID = 1L;
     //findFile (fileId, fileName_,fileType,fileSize,updateTime,userId, teamId,upperFolderId , fileLevel)
-    private String fileId; 
+    private int fileId; //PK
     private String fileName; 
     private String fileType; 
     private Integer fileSize;
     private Timestamp updateTime;
     private String userId; 
     private String teamId; 
-    private String upperFolderId; 
+    private Integer upperFolderId; 
     private Integer fileLevel;
     
-    public String getFileId()
+    public int getFileId()
     { return fileId; }
-    public void setFileId(String fileId)
+    public void setFileId(int fileId)
     { this.fileId = fileId; }
     
     public String getFileName()
@@ -41,9 +41,9 @@ public class FileTreeBean implements java.io.Serializable
     public void setTeamId(String teamId)
     { this.teamId = teamId; }
     
-    public String getUpperFolderId()
+    public Integer getUpperFolderId()
     { return upperFolderId; }
-    public void setUpperFolderId(String upperFolderId)
+    public void setUpperFolderId(Integer upperFolderId)
     { this.upperFolderId = upperFolderId; }
     
     public int getFileLevel()

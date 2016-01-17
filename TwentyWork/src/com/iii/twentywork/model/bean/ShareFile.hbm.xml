@@ -1,12 +1,16 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015/12/27 ?U?? 02:20:35 by Hibernate Tools 4.3.1.Final -->
 <hibernate-mapping>
     <class name="com.iii.twentywork.model.bean.ShareFileBean" table="ShareFile" schema="dbo" catalog="twentywork" optimistic-lock="version">
-        <id name="fileId" type="java.lang.String" length="32">
+        <id name="fileId" type="java.lang.Integer">
             <column name="fileId" />
-            <generator class="uuid" />
+            <generator class="identity" />
         </id>
+        <many-to-one name="upperFolder" class="com.iii.twentywork.model.bean.ShareFileBean" fetch="select">
+            <column name="upperFolderId" />
+        </many-to-one>
         <property name="fileName" type="string">
             <column name="fileName_" length="50" not-null="true" />
         </property>
@@ -19,14 +23,10 @@
         <property name="updateTime" type="timestamp">
             <column name="updateTime" length="23" />
         </property>
-        <many-to-one name="upperFolder" class="com.iii.twentywork.model.bean.ShareFileBean" fetch="select">
-            <column name="upperFolderId" />
-        </many-to-one>
-        
-        <many-to-one name="users" class="com.iii.twentywork.model.bean.UsersBean" fetch="select">
+        <many-to-one name="userBean" class="com.iii.twentywork.model.bean.UsersBean" fetch="select">
             <column name="userId" />
         </many-to-one>
-        <many-to-one name="team" class="com.iii.twentywork.model.bean.TeamBean" fetch="select">
+        <many-to-one name="teamBean" class="com.iii.twentywork.model.bean.TeamBean" fetch="select">
             <column name="teamId" />
         </many-to-one>
         <set name="innerFiles" table="ShareFile" inverse="true" lazy="true" fetch="select">

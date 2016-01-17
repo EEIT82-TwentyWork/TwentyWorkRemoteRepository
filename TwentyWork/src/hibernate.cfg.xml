@@ -9,7 +9,7 @@
 		<!-- <property name="hibernate.connection.password">passw0rd</property> -->
 <!-- <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;database=Java</property> -->
 		<!-- <property name="hibernate.connection.username">sa</property> -->
-		<property name="connection.datasource">java:comp/env/jdbc/xxx</property>
+<!-- 		<property name="connection.datasource">java:comp/env/jdbc/xxx</property> -->
 		<property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
 		<property name="current_session_context_class">thread</property>
 		<property name="show_sql">true</property>
@@ -24,6 +24,6 @@
 		<mapping resource="com/iii/twentywork/model/bean/Team.hbm.xml"/>
 		<mapping resource="com/iii/twentywork/model/bean/MySchedule.hbm.xml"/>
 		<mapping resource="com/iii/twentywork/model/bean/ShareFile.hbm.xml"/>
-<!-- 		<mapping resource="com/iii/twentywork/model/bean/TeamUserBean.hbm.xml"/> -->
+		<mapping resource="com/iii/twentywork/model/bean/FillTree.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

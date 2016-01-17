@@ -3,6 +3,7 @@ package com.iii.twentywork.model.dao.DAOinterface;
 import java.util.List;
 import java.util.Set;
 
+import com.iii.twentywork.model.bean.FileTreeBean;
 //import com.iii.twentywork.model.bean.FileTreeBean;
 import com.iii.twentywork.model.bean.ShareFileBean;
 
@@ -22,7 +23,7 @@ public interface ShareFileDAO
     /**
      * 取得該team的 Folder樹狀圖資料
      */
-//    public abstract List<FileTreeBean> getGroupFolderTree(int teamId);
+    public abstract List<FileTreeBean> getGroupFolderTree(String teamId);
 
     
     /**
