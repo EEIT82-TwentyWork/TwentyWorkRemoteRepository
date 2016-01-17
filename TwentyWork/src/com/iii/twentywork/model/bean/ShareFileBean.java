@@ -36,15 +36,15 @@ public class ShareFileBean implements Serializable
      * 此建構子會將fileName,fileType,fileSize,updateTime,userId,teamId,upperFolder設定好<br>
      * 沒設定的屬性:fileId
      */
-//    public ShareFileBean(TeamUserBean teamUser,String fileName,ShareFileBean upperFolder) {
-//    	this.setTeamBean(teamUser.getTeam());
-//    	this.setUserBean(teamUser.getUsers());
-//    	this.setUpperFolder(upperFolder);
-//        insertSetFileName(fileName);
-//        insertSetFileType(fileName);
-//        insertSetFileSize(fileName);
-//        insertSetUpdateTime();
-//    }
+    public ShareFileBean(TeamBean team,UsersBean user,String fileName,ShareFileBean upperFolder) {
+    	this.setTeamBean(team);
+    	this.setUserBean(user);
+    	this.setUpperFolder(upperFolder);
+        insertSetFileName(fileName);
+        insertSetFileType(fileName);
+        insertSetFileSize(fileName);
+        insertSetUpdateTime();
+    }
     
     /**
      * 新增folder時使用的建構子<br>
@@ -56,23 +56,23 @@ public class ShareFileBean implements Serializable
      * @param folderName
      * @param upperFolderId
      */
-//    public ShareFileBean(TeamUserBean teamUser,String folderName,ShareFileBean upperFolder,boolean isFolder) {
-//	    if(isFolder){
-//	    	this.setTeamBean(teamUser.getTeam());
-//	    	this.setUserBean(teamUser.getUsers());
-//	    	this.setUpperFolder(upperFolder);
-//	    	this.fileName = folderName;
-//	        this.fileType = "資料夾";
-//	    }else{
-//	    	this.setTeamBean(teamUser.getTeam());
-//	    	this.setUserBean(teamUser.getUsers());
-//	    	this.setUpperFolder(upperFolder);
-//	        insertSetFileName(folderName);
-//	        insertSetFileType(folderName);
-//	        insertSetFileSize(folderName);
-//	        insertSetUpdateTime();
-//	    }
-//    }
+    public ShareFileBean(TeamBean team,UsersBean user,String folderName,ShareFileBean upperFolder,boolean isFolder) {
+	    if(isFolder){
+	    	this.setTeamBean(team);
+	    	this.setUserBean(user);
+	    	this.setUpperFolder(upperFolder);
+	    	this.fileName = folderName;
+	        this.fileType = "資料夾";
+	    }else{
+	        this.setTeamBean(team);
+            this.setUserBean(user);
+	    	this.setUpperFolder(upperFolder);
+	        insertSetFileName(folderName);
+	        insertSetFileType(folderName);
+	        insertSetFileSize(folderName);
+	        insertSetUpdateTime();
+	    }
+    }
 
     /**
      * vvvvvvvvv

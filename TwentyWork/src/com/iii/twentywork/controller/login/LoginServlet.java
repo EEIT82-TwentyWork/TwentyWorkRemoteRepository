@@ -3,6 +3,7 @@ package com.iii.twentywork.controller.login;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -76,6 +77,15 @@ public class LoginServlet extends HttpServlet {
 			return;
 		} else {
 			session.setAttribute("LoginOK", userinfo);
+			Set<TeamBean> temp = userinfo.getTeams();
+			TeamBean teambean =null;
+			for(TeamBean e:temp) {
+			    if(e.getTeamName().equals(teamName)) {
+			        teambean=e;
+			        break;
+			    }
+			}
+			session.setAttribute("teamBean", teambean);
 		}
 		// 依照 Business Logic 運算結果來挑選適當的畫面
 		if (requestURI != null && requestURI.length() != 0) {
