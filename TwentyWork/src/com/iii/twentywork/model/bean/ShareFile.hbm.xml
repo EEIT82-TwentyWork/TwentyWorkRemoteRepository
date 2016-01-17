@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.iii.twentywork.model.bean.ShareFileBean" table="ShareFile" schema="dbo" catalog="twentywork" optimistic-lock="version">
+        <id name="fileId" type="java.lang.String" length="32">
+            <column name="fileId" />
+            <generator class="uuid" />
+        </id>
+        <property name="fileName" type="string">
+            <column name="fileName_" length="50" not-null="true" />
+        </property>
+        <property name="fileType" type="string">
+            <column name="fileType" length="10" not-null="true" />
+        </property>
+        <property name="fileSize" type="java.lang.Integer">
+            <column name="fileSize" />
+        </property>
+        <property name="updateTime" type="timestamp">
+            <column name="updateTime" length="23" />
+        </property>
+        <many-to-one name="upperFolder" class="com.iii.twentywork.model.bean.ShareFileBean" fetch="select">
+            <column name="upperFolderId" />
+        </many-to-one>
+        
+        <many-to-one name="users" class="com.iii.twentywork.model.bean.UsersBean" fetch="select">
+            <column name="userId" />
+        </many-to-one>
+        <many-to-one name="team" class="com.iii.twentywork.model.bean.TeamBean" fetch="select">
+            <column name="teamId" />
+        </many-to-one>
+        <set name="innerFiles" table="ShareFile" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="upperFolderId" />
+            </key>
+            <one-to-many class="com.iii.twentywork.model.bean.ShareFileBean" />
+        </set>
+    </class>
+</hibernate-mapping>
