@@ -26,6 +26,8 @@ dependencies {						//宣告dependency library
 	compile 'com.googlecode.json-simple:json-simple:1.1.1'
 	compile 'com.google.code.gson:gson:2.5'
 	
+	compile 'javax.websocket:javax.websocket-api:1.1'
+	compile 'javax.json:javax.json-api:1.0'
 	
 	compile 'javax.mail:mail:1.4.7'
 	
