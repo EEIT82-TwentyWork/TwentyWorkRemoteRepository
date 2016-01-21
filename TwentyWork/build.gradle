@@ -10,7 +10,7 @@ repositories {
 }
 dependencies {						//宣告dependency library
 	providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
-	providedRuntime 'javax.servlet:jstl:1.2'
+	compile 'javax.servlet:jstl:1.2'
 	
 	compile 'org.springframework:spring-context:4.2.4.RELEASE'
 	compile 'org.springframework:spring-web:4.2.4.RELEASE'

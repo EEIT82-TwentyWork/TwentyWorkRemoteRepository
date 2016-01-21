@@ -5,8 +5,20 @@
 <html lang="zn-Hantn-TW">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../../css/bootstrap/bootstrap.css">
-<link rel="stylesheet" href="../../css/main/Main.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/bootstrap/bootstrap.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/main/Main.css">
+<style>
+.mainPageContext{
+	float:left;
+ 	background-color:white; 
+ 	width: 1000px;
+	height:620px;
+	margin-top:20px;
+	box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.6), 0 0 200px 1px
+ rgba(255, 255, 255, 0.5);
+ 	overflow-y:auto;
+}
+</style>
 <title>main</title>
 </head>
 	<body>	
@@ -18,6 +30,7 @@
 					
 			
 				</div>
+				<div id="E1E2body">
 				<div id="page-left">
 					<div id="accordian">
 						<ul>
@@ -85,29 +98,6 @@
 						</ul>
 					</div>
 				</div>
-<!-- layout----E1 end---------------------------------------------------->								
-				<div id="page-center">
-					<div id="chat-top"></div>
-					<div id="chat-context">
-						<div id="status"></div>
-						<ul id ="chat-messages"></ul>
-					</div>
-					<div id="chat-box">
-						<form id="message-form" action ="#" method="post">
-							<input type="textarea" id="chat-text" placeholder="strat chat" required/>
-							<button type="submit" >Send Message</button>
-							<input type ="button" id ="close" value="close">
-						</form>
-					</div>
-				</div>
-				<div id="page-right">right</div>
-				<div id="page-bottom">bottom</div>
-			</section>
-		</div>	
-<!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="../../js/login/Main.js"></script>
-<script src="../../js/main/Websocket.js"></script>
-	</body>
-
-</html>
+<!-- layout----E1 end---------------------------------------------------->
+<div id="page-left">
+<div class = 'mainPageContext'>	

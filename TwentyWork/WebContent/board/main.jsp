@@ -14,9 +14,15 @@
 	padding-right: 30px;
 	padding-top: 5px;
 }
+
+
 </style>
 </head>
 <body>
+<jsp:include page="../main/workHome/head.jsp" />
+<!---------------- main page code ---------------------------------->
+
+
 <div id = "iconNav" class = "padding">
 	<div><a href="<%= request.getContextPath() %>/board/addNewBoard.jsp"><img src = "<%= request.getContextPath() %>/images/board/add182.png" />Add Channle</a></div>
 </div>
@@ -38,7 +44,7 @@
 					<td><a href="Board/${boardList.boardId }">${boardList.boardTitle }</a></td>
 					<td>${fn:substring(boardList.boardTime ,0,16) }</td>
 					<td>${boardList.users.userName }</td>
-					<td>${fn:length(boardList.subs)} </td>
+					<td>${fn:length(boardList.subs)-1} </td>
 				</tr>
 			</c:forEach>
 			</c:if>
@@ -47,5 +53,8 @@
 
 
 </div>
+
+<!---------------- main page code end---------------------------------->
+<jsp:include page="../main/workHome/foot.jsp" />
 </body>
 </html>

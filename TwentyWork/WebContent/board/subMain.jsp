@@ -9,48 +9,63 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/bootstrap/bootstrap.min.css">
 <title>Insert title here</title>
 <style>
-.padding {
+.padding,.commentArea {
 	padding-left: 30px;
 	padding-right: 30px;
 	padding-top: 5px;
 }
+.UserInformation{
+	float:left;
+}
+.userimage{
+/* 	width:'40px'; */
+/* 	height:'40px'; */
+	padding:14px
+}
+.eachPost{
+	border:1px black;
+}
 </style>
 </head>
 <body>
-<div id = "iconNav" class = "padding">
-	<div><a href="#"><img src = "<%= request.getContextPath() %>/images/board/add182.png" />Add Comment</a></div>
-</div>
-<br><br>
+<jsp:include page="../main/workHome/head.jsp" />
+<!---------------- main page code ---------------------------------->
+
 <div id="boardList" class="padding">
-<h4>${boardBean.boardTitle}</h4><br>
-	<table class = "table">
-		<thead>
-			<tr>
-				<td>內文</td>
-				<td>留言時間</td>
-				<td>發言人</td>
-				
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>${boardBean.boardText}</td>
-				<td>${fn:substring(boardBean.boardTime ,0,16) }</td>
-				<td>${boardBean.users.userName }</td>
-			</tr>
-			<c:if test="${! empty subList}">
-				<c:forEach var="subList" items="${subList}">
-					<tr>
-						<td>${subList.subText }</td>
-						<td>${fn:substring(subList.subTime ,0,16) }</td>
-						<td>${subList.users.userName }</td>
-					</tr>
-				</c:forEach>
-			</c:if>
-		</tbody>
-	</table>
+<h4>${boardBean.boardTitle}</h4>
+<hr>
+<c:set var="index" value='1' />
 
-
+<c:forEach var="subList" items="${subList }">
+<div class="eachPost">
+	<div class="postUser">
+		<div class = "UserInformation">
+			<img class = 'userimage' src = "<%= request.getContextPath() %>/images/board/silhouette78.png" />
+		</div>
+ 		<div >
+  			<span>#${index}</span><br>
+  			<c:set var="index" value='${index+1}' />
+  			<span>${subList.users.userName }</span><br>
+  			<span>${fn:substring(subList.subTime ,0,16) }</span>
+  		</div>
+  	</div>
+  	<hr>
+  	<div class = "subTextContext">
+  		${subList.subText }
+  	</div>
+  	-------------------------------------------------------------------------------------------
+  </div>
+ </c:forEach>		
 </div>
+<div class='commentArea'>
+<form action="<%= request.getContextPath() %>/BoardServlet/subInsert">
+	<textarea rows="8" cols="50" name="boardText" placeholder="輸入回覆內容"></textarea>
+	<input type = "submit" value="送出" />
+	<input type ="hidden" name="boardID" value="${boardBean.boardId }"  display='none'/>
+</form> 
+</div>
+
+<!---------------- main page code end---------------------------------->
+<jsp:include page="../main/workHome/foot.jsp" />
 </body>
 </html>

@@ -1,8 +1,8 @@
 package com.iii.twentywork.model.dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -13,6 +13,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.iii.twentywork.model.bean.Board;
+import com.iii.twentywork.model.bean.Sub;
+import com.iii.twentywork.model.bean.UsersBean;
 
 @Component("boardDAO")
 public class BoardDAOHibernate 
@@ -52,6 +54,30 @@ public class BoardDAOHibernate
 	    return selectByID(pk);
 	}
 
+	public Sub insertSub(Sub bean){
+		String pk = (String) getSession().save(bean);
+		return selectSubByID(pk);
+	}
+	public Sub selectSubByID(String id){
+		Sub bean = (Sub) getSession().get(Sub.class, id);
+		return bean;
+	}
+	
+	/**
+	 * 更新Board的發言人及發佈時間
+	 *
+	 */
+	public Board updateBoardInfo(String boardId,UsersBean user){
+		Board updated =(Board) getSession().get(Board.class,boardId);
+		updated.setBoardTime(new Date());
+		updated.setUsers(user);
+		return updated;
+	}
+	
+	
+	
+	
+	
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");
 		SessionFactory sessionFactory =(SessionFactory) context.getBean("sessionFactory");

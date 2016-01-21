@@ -36,34 +36,32 @@ public class BoardService {
 	}
 	
 	//testing#1
+	//排序新的在前面
 	public List<Board> boardList(String teamId){
 		List<Board> list = boardDAO.selectByTeamID(teamId);
-//		System.out.println("排序前");
-//		for(Board e:list){
-//			System.out.println(e);
-//		}
 		Collections.sort(list,new Comparator<Board>(){
 			public int compare(Board o1, Board o2){
 				return -o1.getBoardTime().compareTo(o2.getBoardTime());
 			}
 		});
-//		System.out.println("排序後");
-//		for(Board e:list){
-//			System.out.println(e);
-//		}
 		return list;
 	}
 	
 	//web testing pass
-	public void insert(TeamBean team,UsersBean user,String boardTitle,String boardText) {
+	public void insertBoard(TeamBean team,UsersBean user,String boardTitle,String boardText) {
 	    Board bean = new Board();
 	    bean.setBoardTitle(boardTitle);
-	    bean.setBoardText(boardText);
+//	    bean.setBoardText(boardText);
 	    bean.setBoardTime(new Date());
 	    bean.setUsers(user);
 	    bean.setTeam(team);
-	    boardDAO.insert(bean);
-	    
+	    Board boardBean= boardDAO.insert(bean);
+	    Sub subBean = new Sub();
+	    subBean.setBoard(boardBean);
+	    subBean.setSubText(boardText);
+	    subBean.setSubTime(boardBean.getBoardTime());
+	    subBean.setUsers(user);
+	    subBean =  boardDAO.insertSub(subBean);
 	}
 //	boardID 	boardTitle	boardText	boardTime	userID	teamID	boardClassID
 	
@@ -84,6 +82,17 @@ public class BoardService {
 	//testing#3
 	public Board getBoardBean(String id) {
 	    return boardDAO.selectByID(id);
+	}
+	
+	
+	public void addComment(UsersBean user,String boardID,String comment){
+		Board boardBean = boardDAO.updateBoardInfo(boardID, user);
+		Sub bean = new Sub();
+		bean.setBoard(boardBean);
+		bean.setSubText(comment);
+		bean.setSubTime(boardBean.getBoardTime());
+		bean.setUsers(user);
+		bean =  boardDAO.insertSub(bean);
 	}
 	
 	public static void main(String[] args) {

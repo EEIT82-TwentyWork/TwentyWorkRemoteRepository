@@ -42,17 +42,18 @@ public class BoardServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//接收資料
 			HttpSession session = request.getSession();
-			UsersBean usersBean = (UsersBean) session.getAttribute("LoginOK");
-		    TeamBean teamBean = (TeamBean) session.getAttribute("teamBean");
+			UsersBean user = (UsersBean) session.getAttribute("LoginOK");
+		    TeamBean team = (TeamBean) session.getAttribute("teamBean");
 		    String servletPath = request.getServletPath();
 		    String pathInfo = request.getPathInfo();
 		    System.out.println("servletPath = "+servletPath +"-----pathInfo = "+pathInfo);
 		    
 		    Map<String,String> errors = new HashMap<String,String>();
-		    if(servletPath.equals("/Board") && pathInfo==null){
-		    	List<Board> list = boardService.boardList(teamBean.getTeamId());
+		    if(servletPath.equals("/Board") && pathInfo==null)
+		    {//討論區列表
+		    	List<Board> list = boardService.boardList(team.getTeamId());
 		    	request.setAttribute("boardList", list);
-		    	System.out.println("BoardServlet--list:"+list);
+//		    	System.out.println("BoardServlet--list:"+list);
 		    	request.getRequestDispatcher("/board/main.jsp").forward(request, response);
 		    }else if(pathInfo.equals("/insert") &&servletPath.equals("/BoardServlet")) 
 		    {//insert board 新增討論版項目
@@ -66,31 +67,36 @@ public class BoardServlet extends HttpServlet {
 		            request.getRequestDispatcher("board/addNewBoard.jsp").forward(request, response);
 		            return;
 		        }
-		        System.out.println(boardTitle + " : "+boardText);
-		        boardService.insert(teamBean, usersBean, boardTitle, boardText);
+//		        System.out.println(boardTitle + " : "+boardText);
+		        boardService.insertBoard(team, user, boardTitle, boardText);
 		        String contextPath = request.getContextPath();
 		        response.sendRedirect(contextPath+"/Board");
 		        return;
 		    }else if(servletPath.equals("/Board")) 
-		    {
+		    {//取得留言板內容
 		        String contextPath = request.getContextPath();
 		        String[] pathInfoSp = pathInfo.split("/");
 		        List<Sub> list ;
-//		        System.out.println(pathInfoSp.length);
 		        for(String e:pathInfoSp) {
 		            System.out.print(e+"  ,  ");
 		            if(!e.isEmpty() && e.length()==32) {
 		                Board boardBean = boardService.getBoardBean(e);
 		                list = boardService.getSubList(e);
-		                
 		                request.setAttribute("boardBean",boardBean);
 		                request.setAttribute("subList", list);//List<Sub>
 		                request.getRequestDispatcher("../board/subMain.jsp").forward(request, response);
-		                System.out.println("before return");
 		                return;
 		            }
 		        }
 		        response.sendRedirect(contextPath+"/Board");
+		    }else if(pathInfo.equals("/subInsert") &&servletPath.equals("/BoardServlet"))
+		    {//留言
+		    	String boardId = request.getParameter("boardID");
+		    	String comment = request.getParameter("boardText");
+		    	System.out.println("here is /BoardServlet/subInsert");
+		    	boardService.addComment(user,boardId,comment);
+		    	String contextPath = request.getContextPath();
+		        response.sendRedirect(contextPath+"/Board/"+boardId);
 		    }
 		    else{
 		    	System.out.println("wrong path");

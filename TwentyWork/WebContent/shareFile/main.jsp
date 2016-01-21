@@ -130,6 +130,9 @@
 								</ul>
 							</li>
 							<li>
+								<h3><a href = "<%=request.getContextPath() %>/Board">討論版</a></h3>
+							</li>
+							<li>
 								<h3><a href = "<%=request.getContextPath() %>/ShareFile">檔案分享</a></h3>
 							</li>
 							<li>
