@@ -25,5 +25,8 @@
 		<mapping resource="com/iii/twentywork/model/bean/MySchedule.hbm.xml"/>
 		<mapping resource="com/iii/twentywork/model/bean/ShareFile.hbm.xml"/>
 		<mapping resource="com/iii/twentywork/model/bean/FillTree.hbm.xml"/>
+		<mapping resource="com/iii/twentywork/model/bean/Board.hbm.xml"/>
+		<mapping resource="com/iii/twentywork/model/bean/BoardClass.hbm.xml"/>
+		<mapping resource="com/iii/twentywork/model/bean/Sub.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

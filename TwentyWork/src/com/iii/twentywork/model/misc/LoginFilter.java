@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.iii.twentywork.model.bean.UsersBean;
 
-@WebFilter({"/ShareFile/*","/main/*"})
+@WebFilter({"/ShareFile/*","/main/*","/Board/*"})
 public class LoginFilter implements Filter {
 	private FilterConfig fConfig;
 	public void init(FilterConfig fConfig) throws ServletException {
