@@ -14,7 +14,9 @@
 	padding-right: 30px;
 	padding-top: 5px;
 }
-
+.starNotShow{
+	display: none;
+}
 
 </style>
 </head>
@@ -31,6 +33,7 @@
 	<table class = "table">
 		<thead>
 			<tr>
+				<td>收藏</td>
 				<td>標題</td>
 				<td>更新時間</td>
 				<td>發言人</td>
@@ -41,6 +44,9 @@
 			<c:if test="${! empty boardList}">
 			<c:forEach var="boardList" items="${boardList}">
 				<tr>
+					<td class="starIcon" id="${boardList.boardId }">
+						<img  src = "<%= request.getContextPath() %>/images/board/star129_gray.png"></img>
+					</td>
 					<td><a href="Board/${boardList.boardId }">${boardList.boardTitle }</a></td>
 					<td>${fn:substring(boardList.boardTime ,0,16) }</td>
 					<td>${boardList.users.userName }</td>
@@ -56,5 +62,20 @@
 
 <!---------------- main page code end---------------------------------->
 <jsp:include page="../main/workHome/foot.jsp" />
+<script>
+$(function(){
+	$("td[class='starIcon']>img").click(function(){
+		console.log($(this).attr('src'));
+		if($(this).attr('src')=="/TwentyWork/images/board/star129_gray.png"){
+			console.log("gray")
+			$(this).attr('src','/TwentyWork/images/board/star129_yellow.png')
+		}else{
+			console.log("yellow")
+			$(this).attr('src','/TwentyWork/images/board/star129_gray.png')
+		}
+
+	})//end of $("td[class='starIcon']>img").click(function(){   .find('img')
+})// end of $(function(){
+</script>
 </body>
 </html>

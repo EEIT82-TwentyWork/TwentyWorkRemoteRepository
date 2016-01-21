@@ -196,7 +196,7 @@ public class ShareFileDAOHibernate implements ShareFileDAO
       //testing#4 List<FileTreeBean> getGroupFolderTree(int teamId)
 //        System.out.println("testing#4");
 //        ShareFileDAO dao = (ShareFileDAO) context.getBean("shareFileDAO");
-//        String teamId = "30654172-858D-4C0E-A512-7A58E90C2B43";
+//        String teamId = "F617582D839E4CC2B0B50DB977DEFF59";
 //        List<FileTreeBean> fileList =  dao.getGroupFolderTree(teamId);
 //        for(Iterator<FileTreeBean> item = fileList.iterator();item.hasNext(); ) {
 //          System.out.println(item.next());
@@ -212,11 +212,11 @@ public class ShareFileDAOHibernate implements ShareFileDAO
 //        }
         
       //testing#6 int deleteFile(int fileId, boolean isFolder)
-        System.out.println("testing#6");
-      ShareFileDAO dao = (ShareFileDAO) context.getBean("shareFileDAO");
-      
-      System.out.println(dao.deleteFile(903, true));
-      System.out.println(dao.deleteFile(916, false));
+//        System.out.println("testing#6");
+//      ShareFileDAO dao = (ShareFileDAO) context.getBean("shareFileDAO");
+//      
+//      System.out.println(dao.deleteFile(903, true));
+//      System.out.println(dao.deleteFile(916, false));
         sessionFactory.getCurrentSession().getTransaction().commit();
     }
     private static final String SELECT_BY_TEAMID = "select * from ShareFile where teamId=? and upperFolderId=900";

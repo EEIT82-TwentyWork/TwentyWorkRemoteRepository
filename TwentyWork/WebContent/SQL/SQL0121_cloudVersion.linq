@@ -1,16 +1,15 @@
 <Query Kind="SQL">
   <Connection>
-    <ID>189b9ca2-8f2a-4aad-8e62-b7ab330ff405</ID>
+    <ID>da7e50f7-1cf7-4e53-85c3-84626b3b01bc</ID>
     <Persist>true</Persist>
     <Server>twentywork.database.windows.net</Server>
     <SqlSecurity>true</SqlSecurity>
     <Database>twentywork</Database>
     <UserName>twentyworkuser</UserName>
-    <Password>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWhnVkbG/CEqQvx0SVLjykQAAAAACAAAAAAAQZgAAAAEAACAAAABuRE5Q99e0M6IeLJghudhUq9XHBrZt3R6yGOs+Zxpi6QAAAAAOgAAAAAIAACAAAABeKi5QZbefwGtdXekjY28M9AYmDLcBSnKOlqajTuUkPBAAAAA6Qo0I1ZgTropCRUV7vS+6QAAAAI2nOuEwmIPpmbZgmtnsdEwPvMZiF4EUrmYZPE/9QYwT3aBRFeL1PJqeRkySsrnWhRkY/IvD1Q2zDOjcGgId5cI=</Password>
+    <Password>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA4yrylCWV90Ssw9BHCr8T0AAAAAACAAAAAAAQZgAAAAEAACAAAAC4pdVy01CdQ9Jd34pk4OXfQAQboGIAgVwzpB0M+r6uEQAAAAAOgAAAAAIAACAAAAAzq2pSmM4P2pb/54lbUDNAOcAIHDlzIZUm1G+Is6x+rBAAAACSM/3wGxyk90JmxNLMvXeYQAAAACLhomKhkd69PoBtlrNUOoBrgcZztihvQ7NwFy+WFlybLSiUyNpFzfhKY3aivDHjBnbZ1cbUq4KVtpMCXJms/Go=</Password>
     <DbVersion>Azure</DbVersion>
   </Connection>
 </Query>
-
 
 drop table Sub
 drop table Msg
@@ -25,6 +24,7 @@ drop table Participant
 drop table MySchedule
 drop table Board
 drop table BoardClass
+drop table fakeTeamUser
 
 drop table TeamUser
 drop table Users
@@ -168,6 +168,7 @@ GO
 --14--
 create table MyFav
 (
+	teamID varchar(32) references Team  (teamID),
     userID varchar(32) references Users (userID),
     boardID varchar(32) references Board(boardID),
     constraint MyFavID primary key(userID,boardID),
@@ -188,6 +189,17 @@ CREATE TABLE ShareFile(
     CONSTRAINT FK_ShareFile_userId          foreign key (userId)        references Users(userID) ,
     CONSTRAINT FK_ShareFile_teamId          foreign key (teamId)        references Team(teamID),
 )
+CREATE TABLE fakeTeamUser(
+	userId		varchar(32), 
+	teamId		varchar(32), 
+	activeDate	date			,
+	rights		varchar(5) not null,
+	CONSTRAINT FK_fakeTeamUser_userId  foreign key (userId) references Users(userID) ,
+	CONSTRAINT FK_fakeTeamUser_teamId  foreign key (teamId) references Team (teamId) ,
+	CONSTRAINT PK_fakeTeamUser PRIMARY KEY (userId,teamId)
+);
+
+
 go
 /*
 create procedure gen_folder_tree ( @v_teamId  varchar(32) )
@@ -317,6 +329,12 @@ insert into Sub (subID,subText,subTime,userID,boardID) values
 				(@subID4,'woooooo2','2016-01-05',@userId3,@boardID2)
 insert into Sub (subID,subText,subTime,userID,boardID) values
 				(@subID5,'mowmowmowomow3','2016-01-08',@userId1,@boardID2)
+
+insert into MyFav(teamID,userID,boardID) values
+			(@userId1,@teamId1,@boardID1)
+insert into MyFav(teamID,userID,boardID) values
+			(@userId1,@teamId1,@boardID2)
+				
 				
 go
 
