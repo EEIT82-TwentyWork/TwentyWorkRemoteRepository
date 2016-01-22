@@ -10,7 +10,14 @@ public class MyFavId implements java.io.Serializable
     private String userId;
     private String boardId;
 
-    public MyFavId()
+    
+    
+    @Override
+	public String toString() {
+		return "MyFavId [userId=" + userId + ", boardId=" + boardId + "]";
+	}
+
+	public MyFavId()
     {
     }
 

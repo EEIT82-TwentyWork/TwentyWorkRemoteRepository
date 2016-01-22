@@ -92,7 +92,7 @@ $(function(){
 				'type':'get', 
 				'url':'BoardServlet/deleteMyFav',
 				'dataType':'json',  
-				'data':{},
+				'data':{boardId:},
 				'success':function(data){
 					
 				}
