@@ -22,7 +22,7 @@ public class SetchServerEndpoint {
 	@OnOpen
 	public void handleOpen(Session userSession){
 		sketchusers.add(userSession);
-		System.out.println("開始連上線");
+		System.out.println("開始上線");
 	}
 	@OnMessage
 	public void dhandleMessage(SketchMessage incomingSketchMessge,Session userSession) throws IOException, EncodeException{
