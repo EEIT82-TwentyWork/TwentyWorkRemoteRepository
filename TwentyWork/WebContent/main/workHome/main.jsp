@@ -21,18 +21,20 @@
 // })
 </script>
 </head>
-	<body>	
+	<body onload="initializeCanvas()">
 		<div class="container-fluid">
 			<section>
 <!-- layout----E1 begin---------------------------------------------------->				
 				<div id="page-top">
 					<h3>Welcome <%=session.getAttribute("userName") %></h3>
-					
-			
 				</div>
 				<div id="page-left">
 					<div id="accordian">
 						<ul>
+
+							<li>
+								<h3><a href = "<%=request.getContextPath() %>/main/workHome/main.jsp">首頁</a></h3>
+							</li>
 
 							<li>
 								<h3><span class="icon-dashboard"></span>Dashboard</h3>
@@ -84,6 +86,9 @@
 								</ul>
 							</li>
 							<li>
+								<h3><a href = "<%=request.getContextPath() %>/ShareFile">檔案分享</a></h3>
+							</li>
+							<li>
 								<h3><span class="icon-close"></span>close</h3>
 							</li>
 						</ul>
@@ -91,30 +96,39 @@
 				</div>
 <!-- layout----E1 end---------------------------------------------------->								
 				<div id="page-center">
-					<div id="chat-top"></div>
-					<div id="chat-context">
-						<div id="status"></div>
-						<ul id ="chat-messages"></ul>
+<!-- 					<div id="chat-top"></div> -->	
+				<div>
+					<div id="page-textarea">
+						<div id="chat-context">
+							<div id="status"></div>
+							<ul id ="chat-messages"></ul>
+							<textarea id="messagesTextArea" readonly="readonly" rows="10" cols="45"></textarea>
+							
+	<!-- 						 -->
+						</div>
 					</div>
+					<canvas  id="sketchCanvas" width ="500" height="480"></canvas><br>
+				</div>
+		
 					<div id="chat-box">
 						<form id="message-form" action ="#" method="post">
 							<input type="textarea" id="chat-text" placeholder="strat chat" required/>
 							<button type="submit" >Send Message</button>
-							<input type ="button" id ="close" value="close">
+							<input type="button" value="Erase" onclick ="toggleState(this)">
+							<input id ="colorChooser" type ="color" onchange="chooseColor(colorChooser.value)"/><br>
+<!-- 							<input type="button" value="test" id="toabc"/> -->
 						</form>
 					</div>
 				</div>
-				<div id="page-right">right</div>
-				<div id="page-bottom">bottom</div>
 			</section>
 		</div>	
-<%-- <input type="text" id="teamleadercheck" value="<%=session.getAttribute("userPhone")%>" style="display:block"> --%>
 
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="../../js/login/Main.js"></script>
 <script src="../../js/main/Websocket.js"></script>
 <script src="../../js/calendar/CheckTeamLeader.js"></script>
+<script src="../../js/main/sketch.js"></script>
 	</body>
 
 </html>

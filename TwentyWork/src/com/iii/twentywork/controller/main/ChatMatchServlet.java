@@ -1,6 +1,7 @@
 package com.iii.twentywork.controller.main;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.iii.twentywork.model.bean.UsersBean;
 import com.iii.twentywork.model.service.main.AbstractMainService;
 
@@ -50,11 +53,10 @@ public class ChatMatchServlet extends HttpServlet {
 		System.out.println("轉" + matchint);
 		System.out.println("切完" + own);
 		System.out.println("切完" + match);
-
 		System.out.println("原本" + ownID);
 		System.out.println("原本" + matchID);
 		//比大小
-		 String chatID;
+		 String chatID=null;
 		if (ownint < matchint) {
 			chatID = matchID + ownID;
 			System.out.println("小於"+chatID);
@@ -65,6 +67,19 @@ public class ChatMatchServlet extends HttpServlet {
 			chatID =Integer.toString(ownint)+Integer.toString(matchint) ;
 			System.out.println("等於"+chatID);
 		}
+			
+			Gson gson =new GsonBuilder().create();
+		String jsonchatID = gson.toJson(chatID);	
+				
+		session.setAttribute("chatID", chatID);
+	
+		session.setAttribute("chatOwnName", ownName);
+		response.setContentType("appliction/json;charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		out.print(chatID);
+		out.flush();
+		out.close();
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

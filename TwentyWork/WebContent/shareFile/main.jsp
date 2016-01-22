@@ -14,7 +14,11 @@
 <script type="text/javascript" src="<%= request.getContextPath() %>/css/fancybox/jquery.easing-1.3.pack.js"></script>
 <script type="text/javascript" src="<%= request.getContextPath() %>/css/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
-	
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/main/Main.css">	
+<!-- jQuery -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+<%-- <script src="<%= request.getContextPath() %>/js/login/Main.js"></script> --%>
+
 	
 <style>
 .padding {
@@ -29,6 +33,15 @@
 }
 #fancybox-wrap {
 	padding: 0px;
+}
+.mainPageContext{
+	float:left;
+ 	background-color:white; 
+ 	width: 1000px;
+	height:100%;
+	margin-top:20px;
+	box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.6), 0 0 200px 1px
+ rgba(255, 255, 255, 0.5);
 }
 
 #fancybox-wrap *,
@@ -55,16 +68,87 @@
 
 </head>
 <body>
+<div class="container-fluid">
+			<section>
+<!-- layout----E1 begin---------------------------------------------------->				
+				<div id="page-top">
+					<h3>Welcome ${LoginOK.userName}</h3>
+				</div>
+				<div id="page-left">
+					<div id="accordian">
+						<ul>
+							<li>
+								<h3><a href = "<%=request.getContextPath() %>/main/workHome/main.jsp">首頁</a></h3>
+							</li>
+							<li>
+								<h3><span class="icon-dashboard"></span>Dashboard</h3>
+								<ul>
+									<li><a href="#">Reports</a></li>
+									<li><a href="#">Reports</a></li>
+									<li><a href="#">Search</a></li>
+									<li><a href="#">Graphs</a></li>
+									<li><a href="#">Settings</a></li>
+								</ul>
+							</li>
+							<!-- we will keep this LI open by default -->
+							<li class="active">
+								<h3><span class="icon-tasks"></span>Tasks</h3>
+								<ul>
+									<li><a href="#">Today's tasks</a></li>
+									<li><a href="#">Urgent</a></li>
+									<li><a href="#">Overdues</a></li>
+									<li><a href="#">Recurring</a></li>
+									<li><a href="#">Settings</a></li>
+								</ul>
+							</li>
+							<li>
+								<h3><span class="icon-calendar"></span>Calendar</h3>
+								<ul>
+									<li><a href="#">Current Month</a></li>
+									<li><a href="#">Current Week</a></li>
+									<li><a href="#">Previous Month</a></li>
+									<li><a href="#">Previous Week</a></li>
+									<li><a href="#">Next Month</a></li>
+									<li><a href="#">Next Week</a></li>
+									<li><a href="#">Team Calendar</a></li>
+									<li><a href="#">Private Calendar</a></li>
+									<li><a href="#">Settings</a></li>
+								</ul>
+							</li>
+							<li>
+								<h3><span class="icon-heart"></span>Favourites</h3>
+								<ul>
+									<li><a href="#">Global favs</a></li>
+									<li><a href="#">My favs</a></li>
+									<li><a href="#">Team favs</a></li>
+									<li><a href="#">Settings</a></li>
+								</ul>
+							</li>
+							<li>
+								<h3><span class="icon-chat"></span>Chat List</h3>
+								<ul id="chatName">
+								</ul>
+							</li>
+							<li>
+								<h3><a href = "<%=request.getContextPath() %>/ShareFile">檔案分享</a></h3>
+							</li>
+							<li>
+								<h3><span class="icon-close"></span>close</h3>
+							</li>
+						</ul>
+					</div>
+				</div>
+<!-- layout----E1 end---------------------------------------------------->		
 
-<div  class='padding'>
-	<table ><tr>
-		<td class='padding2'>Hello</td>
-		<td class='padding2'>userID:${teamUserBean.users.userID}</td>
-		<td class='padding2'>userName:${teamUserBean.users.userName}</td>
-		<td class='padding2'>groupID:${teamUserBean.team.teamId}</td>
-	</tr></table>
-	<br>fileUploadMessage:${message}<br>
-</div>
+
+
+
+
+
+<!---------------- main page code ---------------------------------->
+<div id="page-left">
+<div class = 'mainPageContext'>
+
 <hr>
 <!-- path -->
 <div   class='padding' id = navPath>
@@ -171,6 +255,17 @@
 </table>
 </div>
 <iframe id="downloadFrame" style="display:none"></iframe>
+</div>
+</div>
+<!---------------- main page code end---------------------------------->
+
+
+
+<div id="page-bottom">bottom</div>
+			</section>
+		</div>
+
+
 
 
 <script >
