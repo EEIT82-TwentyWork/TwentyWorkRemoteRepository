@@ -19,6 +19,11 @@
 				<div id="page-left">
 					<div id="accordian">
 						<ul>
+
+							<li>
+								<h3><a href = "<%=request.getContextPath() %>/main/workHome/main.jsp">首頁</a></h3>
+							</li>
+
 							<li>
 								<h3><span class="icon-dashboard"></span>Dashboard</h3>
 								<ul>
@@ -67,6 +72,9 @@
 								<h3><span class="icon-chat"></span>Chat List</h3>
 								<ul id="chatName">
 								</ul>
+							</li>
+							<li>
+								<h3><a href = "<%=request.getContextPath() %>/ShareFile">檔案分享</a></h3>
 							</li>
 							<li>
 								<h3><span class="icon-close"></span>close</h3>
