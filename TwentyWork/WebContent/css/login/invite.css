@@ -1,0 +1,103 @@
+@CHARSET "UTF-8";
+
+h1 {
+	color: red;
+}
+li{
+	list-style-position:outside;
+	color:#DDDDDD;
+}
+
+html {
+	height: 100%;
+	/*Image only BG fallback*/
+	background: url('http://thecodeplayer.com/uploads/media/gs.png');
+	/*background = gradient + image pattern combo*/
+	background: linear-gradient(rgba(196, 102, 0, 0.2),
+		rgba(155, 89, 182, 0.2)),
+		url('http://thecodeplayer.com/uploads/media/gs.png');
+}
+.emails{
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+
+#EmailAdd {
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: montserrat;
+	color: #2C3E50;
+	font-size: 13px;
+}
+
+#inviteForm {
+	width: 400px;
+	margin: 50px auto;
+	text-align: center;
+	position: relative;
+}
+
+#inviteForm .action-button {
+	width: 100px;
+	background: #27AE60;
+	font-weight: bold;
+	color: white;
+	border: 0 none;
+	border-radius: 1px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+}
+
+#inviteForm .action-button:hover {
+	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+
+/* ---------------------------logo-------------------------------------------------------- */
+.logocontainer {
+  width: 690px;
+  height: 200px;
+  margin: 0 auto;
+}
+.logo {
+  font-weight: 400;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+  color: #E6E9ED;
+  font-size: 80px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.word {
+  color: #3BAFDA;
+}
+
+.right, .left {
+  font-family: arial;
+  font-size: 180px;
+  position: relative;
+  top: 55px;
+  color: #3BAFDA;
+  margin: 0 0 0 20px;
+}
+
+.text {
+  font-size: 30px;
+  position: absolute;
+  top: 168px;
+  left: 214px;
+}
+.left {
+  margin: 0 30px 0 0;
+}

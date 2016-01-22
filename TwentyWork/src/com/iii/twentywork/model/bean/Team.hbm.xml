@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015/12/28 ?U?? 11:25:13 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+	<class name="com.iii.twentywork.model.bean.TeamBean" table="Team" schema="dbo" catalog="TwentyWork" optimistic-lock="version">
+		<id name="teamId" type="java.lang.String" length="32">
+			<column name="teamID" />
+			<generator class="uuid" />
+		</id>
+		<property name="teamName" type="string">
+			<column name="teamName" length="20" not-null="true" />
+		</property>
+		<property name="teamImage" type="binary">
+			<column name="teamImage" />
+		</property>
+		<property name="teamAbout" type="string">
+			<column name="teamAbout"/>
+		</property>
+		<set name="userses" table="TeamUser" inverse="false" lazy="true" fetch="select" cascade="save-update">
+			<key>
+				<column name="teamID" length="32" not-null="true" />
+			</key>
+			<many-to-many class	="com.iii.twentywork.model.bean.UsersBean">
+				<column name="userID" length="32" not-null="true"/>
+			</many-to-many>
+		</set>
+		
+<!-- 		<set name="teamSchedules" table="TeamSchedule" inverse="false" lazy="true" fetch="select" cascade="save-update"> -->
+<!-- 			<key> -->
+<!-- 				<column name="teamID" length="32" not-null="true" /> -->
+<!-- 			</key> -->
+<!-- 			<one-to-many class	="com.iii.twentywork.model.bean.TeamSchedule" /> -->
+<!-- 		</set> -->
+		
+	</class>
+</hibernate-mapping>
