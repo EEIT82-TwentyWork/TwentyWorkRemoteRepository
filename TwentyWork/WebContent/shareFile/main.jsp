@@ -63,7 +63,12 @@
 .table{
 	text-align: center;
 }
- 
+#logOut{
+	float:right;
+	padding-right:20px;
+	
+}
+
 </style>
 
 </head>
@@ -72,6 +77,7 @@
 			<section>
 <!-- layout----E1 begin---------------------------------------------------->				
 				<div id="page-top">
+					<h5 id="logOut"><a href="<%=request.getContextPath() %>/logout">登出</a></h5>
 					<h3>Welcome ${LoginOK.userName}</h3>
 				</div>
 				<div id="page-left">

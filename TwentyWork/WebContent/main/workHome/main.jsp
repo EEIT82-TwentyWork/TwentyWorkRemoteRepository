@@ -8,13 +8,21 @@
 <link rel="stylesheet" href="../../css/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="../../css/main/Main.css">
 <title>main</title>
+<style>
+#logOut{
+	float:right;
+	padding-right:20px;
+	
+}
+</style>
 </head>
 	<body onload="initializeCanvas()">
 		<div class="container-fluid">
 			<section>
 <!-- layout----E1 begin---------------------------------------------------->				
 				<div id="page-top">
-					<h3>Welcome <%=session.getAttribute("userName") %></h3>
+					<h5 id="logOut"><a href="<%=request.getContextPath() %>/logout">登出</a></h5>
+					<h3 id="Welcome">Welcome ${LoginOK.userName}</h3>
 				</div>
 				<div id="page-left">
 					<div id="accordian">
