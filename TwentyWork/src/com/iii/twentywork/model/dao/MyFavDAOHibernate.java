@@ -11,7 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.iii.twentywork.model.bean.MyFav;
-import com.iii.twentywork.model.dao.DAOinterface.ShareFileDAO;
+import com.iii.twentywork.model.bean.MyFavId;
 
 @Component("myFavDAO")
 public class MyFavDAOHibernate {
@@ -35,7 +35,18 @@ public class MyFavDAOHibernate {
         return query.list();
     }
 	
+	public MyFav selectByPk(String pk){
+		return (MyFav) getSession().get(MyFav.class,pk);
+	}
+	public MyFav insert(MyFav bean){
+		String pk = (String) getSession().save(bean);
+		return selectByPk(pk);
+	}
 	
+	public void delete(MyFavId pk){
+		MyFav bean = (MyFav) getSession().get(MyFav.class,pk);
+        getSession().delete(bean);
+	}
 	
 	public static void main(String[] args) {
 		 ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");

@@ -47,6 +47,8 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String rm = request.getParameter("rememberMe");
 		String requestURI = (String) session.getAttribute("requestURI");
+		System.out.println("teamName:"+teamName+",email:"+email+",password"+password);
+		
 		// 驗證資料
 		Map<String, String> errors = new HashMap<String, String>();
 		request.setAttribute("errors", errors);
@@ -84,6 +86,8 @@ public class LoginServlet extends HttpServlet {
 			for(TeamBean e:temp) {
 			    if(e.getTeamName().equals(teamName)) {
 			        teambean=e;
+			        System.out.println("++++++++++++teambean"+teambean);
+			        
 			        break;
 			    }
 			}

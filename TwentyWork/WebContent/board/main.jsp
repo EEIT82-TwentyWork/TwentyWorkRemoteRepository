@@ -64,6 +64,22 @@
 <jsp:include page="../main/workHome/foot.jsp" />
 <script>
 $(function(){
+	$.ajax({
+		  'type':'get', 
+		  'url':'BoardServlet/getMyFav',
+		  'dataType':'json',  
+		  'data':{},
+		  'success':function(data){
+			  console.log("here is response");
+			  console.log(data)
+			  $.each(data,function(i,product){
+				  console.log(product.boardId);
+				  console.log(product.favTitle)
+				  $("#"+product.boardId+">img").attr('src','/TwentyWork/images/board/star129_yellow.png')
+			  })
+		  }
+	  });//end of $.ajax({ 
+			
 	$("td[class='starIcon']>img").click(function(){
 		console.log($(this).attr('src'));
 		if($(this).attr('src')=="/TwentyWork/images/board/star129_gray.png"){
@@ -72,9 +88,21 @@ $(function(){
 		}else{
 			console.log("yellow")
 			$(this).attr('src','/TwentyWork/images/board/star129_gray.png')
+			$.ajax({
+				'type':'get', 
+				'url':'BoardServlet/deleteMyFav',
+				'dataType':'json',  
+				'data':{},
+				'success':function(data){
+					
+				}
+			});//end of $.ajax({ 
 		}
 
 	})//end of $("td[class='starIcon']>img").click(function(){   .find('img')
+		
+	
+		
 })// end of $(function(){
 </script>
 </body>

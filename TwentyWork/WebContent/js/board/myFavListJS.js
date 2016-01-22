@@ -1,5 +1,5 @@
 $(function(){
-	 console.log("here is response");
+	 console.log("here is js/board/myFavListJS.js");
 	$.ajax({
 		  'type':'get', 
 		  'url':'BoardServlet/getMyFav',

@@ -17,8 +17,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.iii.twentywork.model.bean.Board;
-import com.iii.twentywork.model.bean.FileTreeBean;
 import com.iii.twentywork.model.bean.MyFav;
+import com.iii.twentywork.model.bean.MyFavId;
 import com.iii.twentywork.model.bean.Sub;
 import com.iii.twentywork.model.bean.TeamBean;
 import com.iii.twentywork.model.bean.UsersBean;
@@ -103,9 +103,6 @@ public class BoardService {
 	
 	//testing#4
 	/**
-	 * 
-	 * @param teamId
-	 * @param userId
 	 * @return MyFavList的JSON字串
 	 */
 	public String selectMyFavList(String teamId,String userId){
@@ -129,6 +126,16 @@ public class BoardService {
 		String jsonString = JSONValue.toJSONString(jsonList); 
 		return jsonString;
 	}
+	
+	public void deleteMyFav(String boardId,UsersBean users){
+		MyFavId  id = new MyFavId();
+		id.setBoardId(boardId);
+		id.setUserId(users.getUserID());
+		myFavDAO.delete(id);
+		
+	}
+	
+	
 	
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");
@@ -181,5 +188,17 @@ public class BoardService {
         System.out.println(jsonString);
         return jsonString;
     }
-    
+    public void addMyFav(String boardId,TeamBean team,UsersBean users){
+		MyFav bean = new MyFav();
+		bean.setActiveTime(new Date());
+		bean.setBoard(getBoardBean(boardId));
+		bean.setFavTitle(bean.getBoard().getBoardTitle());
+		MyFavId  id = new MyFavId();
+		id.setBoardId(boardId);
+		id.setUserId(users.getUserID());
+		bean.setId(id);
+		bean.setTeam(team);
+		bean.setUsers(users);
+//		MyFav insert(MyFav bean)
+	}
 }

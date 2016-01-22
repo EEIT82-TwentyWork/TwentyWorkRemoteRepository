@@ -107,6 +107,11 @@ public class BoardServlet extends HttpServlet {
 	            PrintWriter out = response.getWriter();
 	            out.println(jsonString);
 	            System.out.println(jsonString);   
+		    }else if(pathInfo.equals("/addMyFav") &&servletPath.equals("/BoardServlet")){
+		    	
+		    }else if(pathInfo.equals("/deleteMyFav") &&servletPath.equals("/BoardServlet")){
+		    	String boardId = request.getParameter("boardId");
+		    	boardService.deleteMyFav(boardId, user);
 		    }
 		    else{
 		    	System.out.println("wrong path");
