@@ -29,6 +29,7 @@ dependencies {						//宣告dependency library
 	compile 'javax.websocket:javax.websocket-api:1.1'
 	compile 'javax.json:javax.json-api:1.0'
 	
+	
 	compile 'javax.mail:mail:1.4.7'
 	
 	compile 'org.hibernate:hibernate-core:4.3.11.Final'

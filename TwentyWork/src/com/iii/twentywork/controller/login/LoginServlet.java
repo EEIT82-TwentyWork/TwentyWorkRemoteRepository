@@ -87,6 +87,7 @@ public class LoginServlet extends HttpServlet {
 			String path = request.getContextPath();
 			session.setAttribute("UserInfo", userinfo);
 			session.setAttribute("userName", userName);
+			
 			response.sendRedirect(path + "/main/workHome/main.jsp");
 			return;
 		}
