@@ -32,7 +32,10 @@
         <property name="color" type="java.lang.String">
             <column name="myEventColor" />
         </property>
-        <set name="userses" table="Participant" inverse="true" lazy="true" fetch="select" cascade="save-update">
+        <property name="myUserID" type="java.lang.String">
+            <column name="myUserID" />
+        </property>
+        <set name="userses" table="Participant" inverse="false" lazy="true" fetch="select" cascade="all">
 			<key>
 				<column name="myEventID" length="32" not-null="true" />
 			</key>

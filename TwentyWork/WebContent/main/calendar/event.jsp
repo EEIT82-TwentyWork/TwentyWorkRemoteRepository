@@ -16,84 +16,103 @@
 		<table>
 			<tr>
 				<td>事件標題 : </td>
-				<td><input type="text" name="title" value=<%=request.getParameter("title")==null ? "" : request.getParameter("title")%>></td>
+				<td><input type="text" class="checkreadonly" id="title" name="title" value=<%=request.getParameter("title")==null ? "" : request.getParameter("title")%>></td>
 				<td>${errors.title}</td>
 			</tr>
 			<tr>
 				<td>開始時間 : </td>
-				<td><input type="text" name="start" value="<%=request.getParameter("startdate")+" "+request.getParameter("starttime")%>" id="start" class="input datepicker"></td>
+				<td><input type="text" class="checkreadonly" id="start" name="start" value="<%=request.getParameter("startdate")+" "+request.getParameter("starttime")%>" ></td>
 				<td>${errors.starttime}</td>
 			</tr>
 			<tr>
 				<td>結束時間 : </td>
-				<td><input type="text" name="end" value="<%=request.getParameter("enddate")+" "+request.getParameter("endtime")%>" id="end" class="input datepicker"></td>
+				<td><input type="text" class="checkreadonly" id="end" name="end" value="<%=request.getParameter("enddate")+" "+request.getParameter("endtime")%>" ></td>
 				<td>${errors.endtime}</td>
 			</tr>
 			<tr>
 				<td>全天 : </td>
-				<td><input type="checkbox" name="allday" value=<%=request.getParameter("allday")==null ? "1" : request.getParameter("allday")%> id="allday" <%=request.getParameter("allday")==null ? "" : "checked"%>></td>
-<!-- 				checked -->
+				<td><input type="checkbox" class="checkreadonly" id="allday" name="allday" value="1"></td>
 				<td>${errors.allday}</td>
 			</tr>
 			<tr>
 				<td>事件內文 : </td>
-				<td><input type="text" name="myEventDesp" value=<%=request.getParameter("myEventDesp")==null ? "" : request.getParameter("myEventDesp")%>></td>
-				<td>${errors.myEventDesp}</td>
+				<td><input type="textarea" class="checkreadonly" id="eventDesp" name="eventDesp" value="<%=request.getParameter("eventDesp")==null ? "" : request.getParameter("eventDesp")%>"></td>
+				<td>${errors.eventDesp}</td>
 			</tr>
 			<tr>
 				<td>地點 : </td>
-				<td><input type="text" name="myLocation" value=<%=request.getParameter("myLocation")==null ? "" : request.getParameter("myLocation")%>></td>
-				<td>${errors.myLocation}</td>
+				<td><input type="text" class="checkreadonly" id="location" name="location" value=<%=request.getParameter("location")==null ? "" : request.getParameter("location")%>></td>
+				<td>${errors.location}</td>
 			</tr>
-			<tr>
-				<td>提醒時間 : </td>
-				<td><input type="checkbox" name="myRmindercheckbox" value=<%=request.getParameter("myRmindercheckbox")==null ? "1" : request.getParameter("myRmindercheckbox")%> id="myRmindercheckbox" <%=request.getParameter("myRmindercheckbox")==null ? "" : "checked"%>>
-				<input type="text" name="myRminder" value="<%=request.getParameter("myRminder")+" "+request.getParameter("myRminder")%>" id="myRminder" class="input datepicker" style="display:<%=request.getParameter("myRmindercheckbox")=="1" ? "inline" : "inline"%>"></td>
-				<td>${errors.endtime}</td>
+			<tr style='display:none'>
+				<td >提醒時間 : </td>
+				<td><input type="checkbox" class="checkreadonly" id="rmindercheckbox" name="rmindercheckbox" value=<%=request.getParameter("rmindercheckbox")==null ? "1" : request.getParameter("rmindercheckbox")%> <%=request.getParameter("rmindercheckbox")==null ? "" : "checked"%>>
+				<input type="text" class="checkreadonly" id="rminder" name="rminder" value="<%=request.getParameter("rminder")+" "+request.getParameter("rminder")%>" style="display:<%=request.getParameter("rmindercheckbox")=="1" ? "inline" : "inline"%>"></td>
+				<td>${errors.rminder}</td>
 			</tr>
 			
 			<tr>
 				<td>
-					<input type="submit" name="prodaction" value="Insert" >
-					<input type="submit" name="prodaction" value="Update" style="display:<%=request.getParameter("id")==null ? "none" : "inline"%>" >
+					<input type="submit" class="checkreadonly" name="prodaction" value="Insert" style="display:<%=request.getParameter("id")==null ? "inline" : "none"%>">
+					<input type="submit" class="checkreadonly" name="prodaction" value="Update" style="display:<%=request.getParameter("id")==null ? "none" : "inline"%>" >
+					<input type="submit" class="checkreadonly" name="prodaction" value="Delete" style="display:<%=request.getParameter("id")==null ? "none" : "inline"%>">
 				</td>
+<!-- 				檢查id號碼 -->
 				<td>
-					<input type="submit" name="prodaction" value="Delete" style="display:<%=request.getParameter("id")==null ? "none" : "inline"%>">
-					<input type="submit" name="prodaction" value="Select">
-				</td>
-				<td>
-					<input type="text" name="id" id="id" value=<%=request.getParameter("id")%> readonly="readonly" >
+					<input type="text" class="checkreadonly" id="id" name="id" value="<%=request.getParameter("id")%>" style="display:none" >
+					<input type="text" class="checkreadonly" id="color" name="color" value="<%=request.getParameter("color")%>" style="display:none" >
+					<input type="text" class="checkreadonly" id="lookallday" name="lookallday" value="<%=request.getParameter("allday")%>" style="display:none">
 				</td>
 			</tr>
 		</table>
 
 		</form>
 	</div>
-	<script>
-var starttimeBox = $('#start');
-var endtimeBox = $('#end');
-var myRminderBox = $('#myRminder');
+<script>
 
-$.timepicker.datetimeRange(
-		starttimeBox,
-		endtimeBox,
-	{
-		minInterval: (1000*60*60), // 1hr
-		dateFormat: 'yy-mm-dd',
-		timeFormat: 'HH:mm',
-		addSliderAccess:true,
-        showTime: false,
-        sliderAccessArgs:{touchonly:false}
+$(document).ready(function(){
+	var col1 =$("#color").val();
+	var checkallday = $("#lookallday").val();
+	
+	if(checkallday == "1") {
+		$("#allday").attr("checked","checked");
 	}
-);
-myRminderBox.datetimepicker({
-		dateFormat: 'yy-mm-dd',
-		timeFormat: 'HH:mm',
-		addSliderAccess:true,
-	    showTime: false,
-	    sliderAccessArgs:{touchonly:false}
+	
+	if(col1=="red"){
+// 		利用ID設定唯讀方法
+// 		document.getElementById("color").readOnly=true
+// 		利用class設定唯讀方法
+		$(".checkreadonly").attr("readonly","readonly");
+	} else {
+		var starttimeBox = $('#start');
+		var endtimeBox = $('#end');
+		var myRminderBox = $('#rminder');
+
+		$.timepicker.datetimeRange(
+				starttimeBox,
+				endtimeBox,
+			{
+				minInterval: (1000*60*60), // 1hr
+				dateFormat: 'yy-mm-dd',
+				timeFormat: 'HH:mm',
+				addSliderAccess:true,
+		        showTime: false,
+		        sliderAccessArgs:{touchonly:false}
+			}
+		);
+		myRminderBox.datetimepicker({
+				dateFormat: 'yy-mm-dd',
+				timeFormat: 'HH:mm',
+				addSliderAccess:true,
+			    showTime: false,
+			    sliderAccessArgs:{touchonly:false}
+		});
+	}
+	
+	
 })
-	</script>
+
+</script>
 	
 	
 </body>

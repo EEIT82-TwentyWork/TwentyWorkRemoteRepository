@@ -37,6 +37,8 @@ dependencies {						//宣告dependency library
 	compile 'commons-io:commons-io:2.4'
 	compile 'org.json:json:20140107'
 	compile 'com.googlecode.json-simple:json-simple:1.1.1'
+	compile 'javax.websocket:javax.websocket-api:1.1' 
+	compile 'javax.json:javax.json-api:1.0'
 }
 import org.gradle.plugins.ide.eclipse.model.Facet
 eclipse {

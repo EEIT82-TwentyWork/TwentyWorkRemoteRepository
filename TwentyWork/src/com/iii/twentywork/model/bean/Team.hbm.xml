@@ -25,5 +25,13 @@
 				<column name="userID" length="32" not-null="true"/>
 			</many-to-many>
 		</set>
+		
+<!-- 		<set name="teamSchedules" table="TeamSchedule" inverse="false" lazy="true" fetch="select" cascade="save-update"> -->
+<!-- 			<key> -->
+<!-- 				<column name="teamID" length="32" not-null="true" /> -->
+<!-- 			</key> -->
+<!-- 			<one-to-many class	="com.iii.twentywork.model.bean.TeamSchedule" /> -->
+<!-- 		</set> -->
+		
 	</class>
 </hibernate-mapping>

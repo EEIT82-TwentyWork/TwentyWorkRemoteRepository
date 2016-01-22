@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name="MySchedule")
-@Component("MySchedule")
+@Component("mySchedule")
 public class MySchedule implements java.io.Serializable {
 	@Id
 	@GeneratedValue(generator = "uuid")
@@ -32,16 +32,18 @@ public class MySchedule implements java.io.Serializable {
 	private java.util.Date start;
 	@Column(name = "myEventEndDate")
 	private java.util.Date end;
-	
+	@Column(name = "myEventDesp")
     private String myEventDesp;
-    
+	@Column(name = "myLocation")
     private String myLocation;
-    
+	@Column(name = "myRminder")
     private Date myRminder;
 	@Column(name = "myEventAllday")
 	private String allday;
 	@Column(name = "myEventColor")
 	private String color;
+	@Column(name = "myUserID")
+	private String myUserID;
 
     private Set<UsersBean> userses;
 
@@ -86,7 +88,7 @@ public class MySchedule implements java.io.Serializable {
 	}
 
 	public MySchedule(String id, String title, Date start, Date end, String myEventDesp, String myLocation,
-			Date myRminder, String allday, String color, UsersBean users, Set<UsersBean> userses) {
+			Date myRminder, String allday, String color, UsersBean users, String myUserID, Set<UsersBean> userses) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -97,6 +99,7 @@ public class MySchedule implements java.io.Serializable {
 		this.myRminder = myRminder;
 		this.allday = allday;
 		this.color = color;
+		this.myUserID = myUserID;
 		this.userses = userses;
 	}
 
@@ -172,7 +175,17 @@ public class MySchedule implements java.io.Serializable {
 		this.color = color;
 	}
 
-    public Set<UsersBean> getUserses() {
+    public String getMyUserID() {
+		return myUserID;
+	}
+
+
+	public void setMyUserID(String myUserID) {
+		this.myUserID = myUserID;
+	}
+
+
+	public Set<UsersBean> getUserses() {
         return this.userses;
     }
 
@@ -184,7 +197,7 @@ public class MySchedule implements java.io.Serializable {
 	public String toString() {
 		return "MySchedule [id=" + id + ", title=" + title + ", start=" + start + ", end=" + end + ", myEventDesp="
 				+ myEventDesp + ", myLocation=" + myLocation + ", myRminder=" + myRminder + ", allday=" + allday
-				+ ", color=" + color + "]";
+				+ ", color=" + color + ", myUserID=" + myUserID + "]";
 	}
 
 }

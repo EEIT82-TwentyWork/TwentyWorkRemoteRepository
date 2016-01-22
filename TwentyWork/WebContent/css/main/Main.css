@@ -91,6 +91,9 @@ section {
 #accordian ul ul {
 	display: none;
 }
+#teamCalLink {
+	display:;
+}
 
 #accordian li.active ul {
 	display: block;

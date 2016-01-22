@@ -10,7 +10,7 @@ window.onload = function() {
 
   // Create a new WebSocket.
   var socket = new WebSocket('ws://echo.websocket.org');
-
+//  var socket = new WebSocket('ws://127.0.0.1:8080/TwentyWork/test');
 
   // Handle any errors that occur.
   socket.onerror = function(error) {

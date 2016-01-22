@@ -29,6 +29,7 @@ public class TeamBean implements java.io.Serializable {
 	private byte[] teamImage;
 	private String teamAbout;
 	private Set<UsersBean> userses;
+//	private Set<TeamSchedule> teamSchedules;
 
 	/*
 	 * @OneToMany(cascade = CascadeType.ALL)
@@ -99,6 +100,14 @@ public class TeamBean implements java.io.Serializable {
 	public void setUserses(Set<UsersBean> userses) {
 		this.userses = userses;
 	}
+	
+//	public Set<TeamSchedule> getTeamSchedules() {
+//		return teamSchedules;
+//	}
+//
+//	public void setTeamSchedules(Set<TeamSchedule> teamSchedules) {
+//		this.teamSchedules = teamSchedules;
+//	}
 
 	@Override
 	public String toString() {
