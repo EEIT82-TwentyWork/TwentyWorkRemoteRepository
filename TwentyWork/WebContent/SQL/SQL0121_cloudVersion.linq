@@ -171,6 +171,8 @@ create table MyFav
 	teamID varchar(32) references Team  (teamID),
     userID varchar(32) references Users (userID),
     boardID varchar(32) references Board(boardID),
+	activeTime datetime not null,
+	favTitle varchar(50) not null,
     constraint MyFavID primary key(userID,boardID),
 )
 GO
@@ -330,10 +332,10 @@ insert into Sub (subID,subText,subTime,userID,boardID) values
 insert into Sub (subID,subText,subTime,userID,boardID) values
 				(@subID5,'mowmowmowomow3','2016-01-08',@userId1,@boardID2)
 
-insert into MyFav(teamID,userID,boardID) values
-			(@userId1,@teamId1,@boardID1)
-insert into MyFav(teamID,userID,boardID) values
-			(@userId1,@teamId1,@boardID2)
+insert into MyFav(teamID,userID,boardID,activeTime,favTitle) values
+			(@teamId1,@userId1,@boardID1,'2016-01-22','測試1捷徑')
+insert into MyFav(teamID,userID,boardID,activeTime,favTitle) values
+			(@teamId1,@userId1,@boardID2,'2016-01-23','測試2捷徑')
 				
 				
 go

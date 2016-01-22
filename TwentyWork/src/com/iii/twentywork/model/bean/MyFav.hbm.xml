@@ -21,5 +21,11 @@
         <many-to-one name="users" class="com.iii.twentywork.model.bean.UsersBean" update="false" insert="false" fetch="select">
             <column name="userID" length="32" not-null="true" />
         </many-to-one>
+        <property name="activeTime" type="timestamp">
+            <column name="activeTime" length="23" not-null="true" />
+        </property>
+        <property name="favTitle" type="string">
+            <column name="favTitle" length="50" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

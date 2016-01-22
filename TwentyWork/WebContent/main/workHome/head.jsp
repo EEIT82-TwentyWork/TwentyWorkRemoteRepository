@@ -26,7 +26,7 @@
 			<section>
 <!-- layout----E1 begin---------------------------------------------------->				
 				<div id="page-top">
-					<h3>Welcome <%=session.getAttribute("userName") %></h3>
+					<h3>Welcome ${LoginOK.userName}</h3>
 					
 			
 				</div>

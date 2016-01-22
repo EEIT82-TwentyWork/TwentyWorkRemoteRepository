@@ -1,5 +1,7 @@
 package com.iii.twentywork.model.bean;
 
+import java.util.Date;
+
 public class MyFav implements java.io.Serializable
 {
 
@@ -12,6 +14,8 @@ public class MyFav implements java.io.Serializable
     private Board board;
     private TeamBean team;
     private UsersBean users;
+    private Date activeTime;
+    private String favTitle;
 
     public MyFav()
     {
@@ -71,5 +75,21 @@ public class MyFav implements java.io.Serializable
     {
         this.users = users;
     }
+
+	public Date getActiveTime() {
+		return activeTime;
+	}
+
+	public void setActiveTime(Date activeTime) {
+		this.activeTime = activeTime;
+	}
+
+	public String getFavTitle() {
+		return favTitle;
+	}
+
+	public void setFavTitle(String favTitle) {
+		this.favTitle = favTitle;
+	}
 
 }

@@ -1,6 +1,7 @@
 package com.iii.twentywork.controller.board;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.iii.twentywork.model.bean.Board;
+import com.iii.twentywork.model.bean.MyFav;
 import com.iii.twentywork.model.bean.Sub;
 import com.iii.twentywork.model.bean.TeamBean;
 import com.iii.twentywork.model.bean.UsersBean;
@@ -90,13 +92,21 @@ public class BoardServlet extends HttpServlet {
 		        }
 		        response.sendRedirect(contextPath+"/Board");
 		    }else if(pathInfo.equals("/subInsert") &&servletPath.equals("/BoardServlet"))
-		    {//留言
+		    {//留言功能
 		    	String boardId = request.getParameter("boardID");
 		    	String comment = request.getParameter("boardText");
 		    	System.out.println("here is /BoardServlet/subInsert");
 		    	boardService.addComment(user,boardId,comment);
 		    	String contextPath = request.getContextPath();
 		        response.sendRedirect(contextPath+"/Board/"+boardId);
+		    }else if(pathInfo.equals("/getMyFav") &&servletPath.equals("/BoardServlet"))
+		    {//取得關注的聊天版列表
+		    	System.out.println("here is /BoardServlet/getMyFav");
+//		    	String jsonString = boardService.selectMyFavList( team.getTeamId(), user.getUserID());
+//	            response.setContentType("text/html; charset=UTF-8");
+//	            PrintWriter out = response.getWriter();
+//	            out.println(jsonString);
+//	            System.out.println(jsonString);   
 		    }
 		    else{
 		    	System.out.println("wrong path");
