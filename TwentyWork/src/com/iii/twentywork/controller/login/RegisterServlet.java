@@ -19,6 +19,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.iii.twentywork.model.bean.TeamBean;
 import com.iii.twentywork.model.bean.UsersBean;
+import com.iii.twentywork.model.service.sharefile.ShareFileService;
 import com.iii.twentywork.model.service.user.RegisterService;
 
 @WebServlet("/main/workHome/main")
@@ -122,6 +123,18 @@ public class RegisterServlet extends HttpServlet {
 			if (userResult == null) {
 				errors.put("action", "Insert fail");
 			}
+			
+			Set<TeamBean> temp = userResult.getTeams();
+			System.out.println(temp);
+//			TeamBean teambean =null;
+//			for(TeamBean e:temp) {
+//			    if(e.getTeamName().equals(teamName)) {
+//			        teambean=e;
+//			        break;
+//			    }
+//			}
+//			ShareFileService shareFileService = new ShareFileService();
+//			shareFileService.insertGroupRootFolder(teambean);
 			session.setAttribute("UserInfo", userBean);
 			String path = request.getContextPath();
 			response.sendRedirect(path + "/login/invite.jsp");
