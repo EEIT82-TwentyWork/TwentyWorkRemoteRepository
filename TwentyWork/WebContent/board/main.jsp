@@ -64,27 +64,43 @@
 <jsp:include page="../main/workHome/foot.jsp" />
 <script>
 $(function(){
+	//E2 stat icon ajax
 	$.ajax({
 		  'type':'get', 
 		  'url':'BoardServlet/getMyFav',
 		  'dataType':'json',  
 		  'data':{},
 		  'success':function(data){
-			  console.log("here is response");
-			  console.log(data)
+// 			  console.log("here is response");
+// 			  console.log(data)
 			  $.each(data,function(i,product){
-				  console.log(product.boardId);
-				  console.log(product.favTitle)
+// 				  console.log(product.boardId);
+// 				  console.log(product.favTitle)
 				  $("#"+product.boardId+">img").attr('src','/TwentyWork/images/board/star129_yellow.png')
 			  })
 		  }
 	  });//end of $.ajax({ 
 			
 	$("td[class='starIcon']>img").click(function(){
+		var varboardId=$(this).parent().attr('id');
 		console.log($(this).attr('src'));
 		if($(this).attr('src')=="/TwentyWork/images/board/star129_gray.png"){
 			console.log("gray")
+			console.log($(this).parent())
 			$(this).attr('src','/TwentyWork/images/board/star129_yellow.png')
+			$.ajax({
+				'type':'get', 
+				'url':'BoardServlet/addMyFav',
+				'dataType':'json',  
+				'data':{boardId:varboardId},
+				'success':function(data){
+// 					console.log(data)					
+// 					console.log(data[0].boardId)	
+// 					console.log(data[0].favTitle)
+					$("#myFavLeftList>ul").append("<li id='leftList"+data[0].boardId+"'><div><img  src = 'images/board/star129_yellow.png'></div><a href='/TwentyWork/Board/"+data[0].boardId+"'>"+data[0].favTitle+"</a></li>")
+	 			  	$("#myFavLeftList>ul>li>div").addClass('floatLeftOnly');
+				}
+			});//end of $.ajax({ 
 		}else{
 			console.log("yellow")
 			$(this).attr('src','/TwentyWork/images/board/star129_gray.png')
@@ -92,9 +108,9 @@ $(function(){
 				'type':'get', 
 				'url':'BoardServlet/deleteMyFav',
 				'dataType':'json',  
-				'data':{boardId:},
+				'data':{boardId:varboardId},
 				'success':function(data){
-					
+					$("#myFavLeftList>ul>li#leftList"+data[0].boardId).remove();
 				}
 			});//end of $.ajax({ 
 		}

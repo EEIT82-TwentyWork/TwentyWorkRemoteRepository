@@ -101,17 +101,27 @@ public class BoardServlet extends HttpServlet {
 		        response.sendRedirect(contextPath+"/Board/"+boardId);
 		    }else if(pathInfo.equals("/getMyFav") &&servletPath.equals("/BoardServlet"))
 		    {//取得關注的聊天版列表
-		    	System.out.println("here is /BoardServlet/getMyFav");
 		    	String jsonString = boardService.selectMyFavList( team.getTeamId(), user.getUserID());
 	            response.setContentType("text/html; charset=UTF-8");
 	            PrintWriter out = response.getWriter();
 	            out.println(jsonString);
-	            System.out.println(jsonString);   
-		    }else if(pathInfo.equals("/addMyFav") &&servletPath.equals("/BoardServlet")){
-		    	
-		    }else if(pathInfo.equals("/deleteMyFav") &&servletPath.equals("/BoardServlet")){
+	            System.out.println("getMyFav:"+jsonString);   
+		    }else if(pathInfo.equals("/addMyFav") &&servletPath.equals("/BoardServlet"))
+		    {//新增關注的討論版
 		    	String boardId = request.getParameter("boardId");
-		    	boardService.deleteMyFav(boardId, user);
+		    	String jsonString =boardService.addMyFav( boardId,team,user);
+		    	response.setContentType("text/html; charset=UTF-8");
+	            PrintWriter out = response.getWriter();
+	            out.println(jsonString);
+	            System.out.println("addMyFav:"+jsonString);  
+		    }else if(pathInfo.equals("/deleteMyFav") &&servletPath.equals("/BoardServlet"))
+		    {//刪除關注的討論版
+		    	String boardId = request.getParameter("boardId");
+		    	String jsonString =boardService.deleteMyFav(boardId, user);
+		    	response.setContentType("text/html; charset=UTF-8");
+	            PrintWriter out = response.getWriter();
+	            out.println(jsonString);
+	            System.out.println("deleteMyFav:"+jsonString); 
 		    }
 		    else{
 		    	System.out.println("wrong path");

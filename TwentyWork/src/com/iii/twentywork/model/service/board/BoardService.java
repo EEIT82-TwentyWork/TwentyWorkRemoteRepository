@@ -127,16 +127,41 @@ public class BoardService {
 		return jsonString;
 	}
 	
-	public void deleteMyFav(String boardId,UsersBean users){
+	public String deleteMyFav(String boardId,UsersBean users){
 		MyFavId  id = new MyFavId();
 		id.setBoardId(boardId);
 		id.setUserId(users.getUserID());
+		MyFav bean = myFavDAO.selectByPk(id);
+		String result = myFavConver2JSON(bean);
 		myFavDAO.delete(id);
-		
+		return result;
 	}
 	
 	
+	public String addMyFav(String boardId,TeamBean team,UsersBean users){
+		MyFav bean = new MyFav();
+		bean.setActiveTime(new Date());
+		bean.setBoard(getBoardBean(boardId));
+		bean.setFavTitle(bean.getBoard().getBoardTitle());
+		MyFavId  id = new MyFavId();
+		id.setBoardId(boardId);
+		id.setUserId(users.getUserID());
+		bean.setId(id);
+		bean.setTeam(team);
+		bean.setUsers(users);
+		myFavDAO.insert(bean);
+		return myFavConver2JSON( bean);
+	}
 	
+	public String myFavConver2JSON(MyFav bean) {
+		List<Map<String, String>> jsonList = new ArrayList<Map<String, String>>();
+		Map<String, String> e = new HashMap<String, String>();
+		e.put("boardId", bean.getBoard().getBoardId());
+		e.put("favTitle", bean.getFavTitle());
+		jsonList.add(e);
+		String jsonString = JSONValue.toJSONString(jsonList);
+		return jsonString;
+	}
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");
 		SessionFactory sessionFactory =(SessionFactory) context.getBean("sessionFactory");
@@ -188,17 +213,5 @@ public class BoardService {
         System.out.println(jsonString);
         return jsonString;
     }
-    public void addMyFav(String boardId,TeamBean team,UsersBean users){
-		MyFav bean = new MyFav();
-		bean.setActiveTime(new Date());
-		bean.setBoard(getBoardBean(boardId));
-		bean.setFavTitle(bean.getBoard().getBoardTitle());
-		MyFavId  id = new MyFavId();
-		id.setBoardId(boardId);
-		id.setUserId(users.getUserID());
-		bean.setId(id);
-		bean.setTeam(team);
-		bean.setUsers(users);
-//		MyFav insert(MyFav bean)
-	}
+    
 }
