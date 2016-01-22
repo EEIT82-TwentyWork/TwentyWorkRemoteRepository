@@ -26,37 +26,29 @@ public class CalDAOHibernate implements CalDao {
 		return sessionFactory.getCurrentSession();
 	}
 	
-	@Override
-	public MySchedule findEvent(MySchedule bean) {
-		String queryStart = bean.convertDateToString(bean.getStart());
-		String queryEnd = bean.convertDateToString(bean.getEnd());
-		Query query = getSession().createQuery("from MySchedule where myEvent='"+bean.getTitle()+"' and myEventStartDate='"+queryStart+"' and myEventEndDate='"+queryEnd+"'");
-		MySchedule currMySchedule = (MySchedule) query.uniqueResult();
-		System.out.println("CalDAOHibernate findEvent currMySchedule="+currMySchedule);
-		return currMySchedule;
-	}
+//	@Override
+//	public MySchedule findEvent(MySchedule bean) {
+//		String queryStart = bean.convertDateToString(bean.getStart());
+//		String queryEnd = bean.convertDateToString(bean.getEnd());
+//		Query query = getSession().createQuery("from MySchedule where myEvent='"+bean.getTitle()+"' and myEventStartDate='"+queryStart+"' and myEventEndDate='"+queryEnd+"'");
+//		MySchedule currMySchedule = (MySchedule) query.uniqueResult();
+//		System.out.println("CalDAOHibernate findEvent currMySchedule="+currMySchedule);
+//		return currMySchedule;
+//	}
+
+//	@Override
+//	public MySchedule select(MySchedule bean) {
+//		return (MySchedule) getSession().createSQLQuery("select * from MySchedule where myEvent='"+bean.getTitle()+"' and myEventStartDate='"+bean.getStart()+"' and myEventEndDate='"+bean.getEnd()+"'");
+//	}
 
 	@Override
-	public MySchedule select(MySchedule bean) {
-		return (MySchedule) getSession().createSQLQuery("select * from MySchedule where myEvent='"+bean.getTitle()+"' and myEventStartDate='"+bean.getStart()+"' and myEventEndDate='"+bean.getEnd()+"'");
-	}
-
-	@Override
-	public List<MySchedule> select() {
-//		List<CalBean>  temp =  (List<CalBean>) getSession().createSQLQuery("select * from calendar").list();
-//		List<CalBean> temp = (List<CalBean>) getSession().createQuery("from CalList<CalBean> Bean").list();
-		UsersBean bean = (UsersBean) getSession().get(UsersBean.class, "40289f005243513901524352418e0002");
-		System.out.println("UsersBean="+bean);
-		 SQLQuery query = getSession().createSQLQuery("select * from MySchedule");
-	        query.addEntity(MySchedule.class);
-	        System.out.println("Hibernate >> List<MySchedule>"+query.list());
-	        return query.list();
-		
-		//格式正常
-//		java.util.Date start = temp.get(0).getStarttime();
-//		System.out.println(start);
-//		System.out.println(temp);
-//		return temp;
+	public List<MySchedule> select(String id) {
+		System.out.println("CalDAOHibernate 裡面 select方法的ID等於 =>"+id);
+		 Query query = getSession().createQuery("from MySchedule where myUserID='" + id + "'");
+//	        query.addEntity(MySchedule.class);
+		 List<MySchedule> mySchedules = query.list();
+	        System.out.println("Hibernate >> List<MySchedule>"+mySchedules);
+	        return mySchedules;
 	}
 
 	@Override
@@ -71,43 +63,73 @@ public class CalDAOHibernate implements CalDao {
 
 	@Override
 	public MySchedule update(String title, Date start,
-			Date end, String myEventDesp, String myLocation, java.util.Date myRminder, String allday, String color, String id) {
-		MySchedule result = (MySchedule) getSession().get(MySchedule.class, id);
-		if(result!=null) {
-			result.setTitle(title);
-			result.setStart(start);
-			result.setEnd(end);
-			result.setMyEventDesp(myEventDesp);
-			result.setMyLocation(myLocation);
-			result.setMyRminder(myRminder);
-			result.setAllday(allday);
-			result.setColor(color);
+			Date end, String myEventDesp, String myLocation, java.util.Date myRminder, String allday, String color, String myUserID, String id) {
+		System.out.println("HiberNate裡面update方法輸入的id等於" + id);
+		MySchedule currMySchedule = (MySchedule) getSession().get(MySchedule.class, id);
+//		Query query = getSession().createQuery("from MySchedule where myEventID='" + id + "'");
+//		System.out.println("查詢from MySchedule where myEventID=id成功");
+//		MySchedule currMySchedule = (MySchedule) query.uniqueResult();
+//		System.out.println("取得單筆MySchedule成功");
+		if(currMySchedule!=null) {
+			currMySchedule.setId(id);
+			currMySchedule.setTitle(title);
+			currMySchedule.setStart(start);
+			currMySchedule.setEnd(end);
+			currMySchedule.setMyEventDesp(myEventDesp);
+			currMySchedule.setMyLocation(myLocation);
+			currMySchedule.setMyRminder(myRminder);
+			currMySchedule.setAllday(allday);
+			currMySchedule.setColor(color);
+			currMySchedule.setMyUserID(myUserID);
 		}
-		return result;
+		return currMySchedule;
 	}
-
+	
+//	@Override
+//	public boolean deleteParticipant(String id) {
+//		if(id!=null) {
+//			System.out.println("deleteParticipant id不等於null");
+//			SQLQuery queryParticipant = getSession().createSQLQuery("delete Participant where MyEventID='" + id + "'");
+////			SQLQuery queryMySchedule = getSession().createSQLQuery("delete MySchedule where myEventID='" + id + "'");
+//			System.out.println("deleteParticipant 做完SQLQuery return true");
+//
+//			return true;
+//		}
+//		System.out.println("deleteParticipant id等於null return false");
+//		return false;
+//	}
+	
 	@Override
 	public boolean delete(String id) {
 		MySchedule bean = (MySchedule) getSession().get(MySchedule.class, id);
-		if(bean!=null) {
-			Query queryParticipant = getSession().createQuery("delete Participant where MyEventID='" + id + "'");
-			Query queryMySchedule = getSession().createQuery("delete MySchedule where MyEventID='" + id + "'");
+		System.out.println("進入Hibernate delete方法");
+		if(id!=null) {
+			System.out.println("id不等於null");
+//			SQLQuery queryParticipant = getSession().createSQLQuery("delete Participant where MyEventID='" + id + "'");
+//			SQLQuery queryMySchedule = getSession().createSQLQuery("delete MySchedule where myEventID='" + id + "'");
+//			System.out.println("做完SQLQuery return true");
+//			Query queryMySchedule = getSession().createQuery("delete MySchedule where MyEventID='" + id + "'");
 //			MySchedule currMySchedule = (MySchedule) query.uniqueResult();
-			System.out.println(queryParticipant);
-			System.out.println(queryMySchedule);
+//			System.out.println(queryParticipant);
+//			System.out.println(queryMySchedule);
 //			delete Participant where MyEventID='40289f005243edfb015243eeaf630000'
 //			delete MySchedule where MyEventID='40289f005243edfb015243eeaf630000'
 
-//			getSession().delete(bean);
+			getSession().delete(bean);
 			return true;
 		}
+		System.out.println("id等於null return false");
 		return false;
 	}
 	
 	@Override
 	public UsersBean selectMyUsersBean(UsersBean userbean) {
-		UsersBean currbean = (UsersBean) getSession().get(UsersBean.class, userbean.getUserID());
-		return currbean;
+		System.out.println("selectMyUsersBean取得的ID等於"+userbean.getUserID());
+		Query query = getSession().createQuery("from UsersBean where userID='" + userbean.getUserID() + "'");
+		System.out.println("selectMyUsersBean取得的query等於"+query);
+		UsersBean currUsersBean = (UsersBean) query.uniqueResult();
+		System.out.println("selectMyUsersBean取得的currUsersBean等於"+query);
+		return currUsersBean;
 	}
 
 }

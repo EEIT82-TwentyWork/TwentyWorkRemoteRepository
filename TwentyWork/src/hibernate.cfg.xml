@@ -23,6 +23,7 @@
 		<mapping resource="com/iii/twentywork/model/bean/UsersBean.hbm.xml"/>
 		<mapping resource="com/iii/twentywork/model/bean/Team.hbm.xml"/>
 		<mapping resource="com/iii/twentywork/model/bean/MySchedule.hbm.xml"/>
+		<mapping resource="com/iii/twentywork/model/bean/TeamSchedule.hbm.xml"/>
 		<mapping resource="com/iii/twentywork/model/bean/ShareFile.hbm.xml"/>
 		<mapping resource="com/iii/twentywork/model/bean/FillTree.hbm.xml"/>
 	</session-factory>

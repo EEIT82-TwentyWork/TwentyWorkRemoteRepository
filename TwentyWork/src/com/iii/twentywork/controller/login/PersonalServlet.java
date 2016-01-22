@@ -70,7 +70,8 @@ public class PersonalServlet extends HttpServlet {
 		userBean.setUserName(fullName);
 		userBean.setCellPhone(cellPhone);
 		userBean.setBirth(birth);
-
+		userBean.setPhone("0");
+		
 		userBean.setTeams(new HashSet<TeamBean>());
 		teamBean.setUserses(new HashSet<UsersBean>());
 		TeamBean teamInfo = personalService.selectTeamName(teanName);

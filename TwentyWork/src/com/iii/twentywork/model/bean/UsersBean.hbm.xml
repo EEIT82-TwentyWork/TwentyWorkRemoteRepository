@@ -39,7 +39,7 @@
 			</many-to-many>
 		</set>
 		
-		<set name="mySchedules" table="Participant" lazy="true" inverse="false" fetch="select" cascade="save-update">
+		<set name="mySchedules" table="Participant" lazy="true" inverse="true" fetch="select" cascade="save-update">
 			<key>
 				<column name="userID" length="32" not-null="true" />
 			</key>
