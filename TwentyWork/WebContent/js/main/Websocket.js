@@ -1,4 +1,7 @@
 window.onload = function() {
+	
+	
+	
 
   // Get references to elements on the page.
   var form = document.getElementById('message-form');
@@ -6,17 +9,16 @@ window.onload = function() {
   var messagesList = document.getElementById('chat-messages');
   var socketStatus = document.getElementById('status');
   var closeBtn = document.getElementById('close');
-
+  
 
   // Create a new WebSocket.
-  var socket = new WebSocket('ws://echo.websocket.org');
-//  var socket = new WebSocket('ws://127.0.0.1:8080/TwentyWork/test');
+  var socket = new WebSocket("ws://localhost:8080/TwentyWork/com/iii/twentywork/model/service/websocket/TestEndpoint");
+//  var socket = new WebSocket("ws://echo.websocket.org");
 
   // Handle any errors that occur.
-  socket.onerror = function(error) {
+  socket.onerror = function(error) {           
     console.log('WebSocket Error: ' + error);
   };
-
 
   // Show a connected message when the WebSocket is opened.
   socket.onopen = function(event) {

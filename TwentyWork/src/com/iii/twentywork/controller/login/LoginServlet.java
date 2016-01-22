@@ -100,6 +100,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("UserInfo", userinfo);
 			session.setAttribute("userName", userName);
 			session.setAttribute("userPhone", userPhone);
+
 			response.sendRedirect(path + "/main/workHome/main.jsp");
 			return;
 		}
