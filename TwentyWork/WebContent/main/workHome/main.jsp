@@ -8,6 +8,18 @@
 <link rel="stylesheet" href="../../css/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="../../css/main/Main.css">
 <title>main</title>
+
+<script type="text/javascript">
+// $(document).ready(function(){
+// 	var teamcalcheck =$("#teamleadercheck").val();
+// 	alert(teamcalcheck);
+// 	if(teamcalcheck == "1") {
+// 		$("#teamCalLink").attr("style","display:block");
+// 	} else {
+// 		$("#teamCalLink").attr("style","display:none");
+// 	}
+// })
+</script>
 </head>
 	<body onload="initializeCanvas()">
 		<div class="container-fluid">
@@ -46,17 +58,17 @@
 								</ul>
 							</li>
 							<li>
-								<h3><span class="icon-calendar"></span>Calendar</h3>
-								<ul>
-									<li><a href="#">Current Month</a></li>
-									<li><a href="#">Current Week</a></li>
-									<li><a href="#">Previous Month</a></li>
-									<li><a href="#">Previous Week</a></li>
-									<li><a href="#">Next Month</a></li>
-									<li><a href="#">Next Week</a></li>
-									<li><a href="#">Team Calendar</a></li>
-									<li><a href="#">Private Calendar</a></li>
-									<li><a href="#">Settings</a></li>
+								<h3 id="calendarh3id" ><span class="icon-calendar"></span>Calendar</h3>
+								<ul id="calendarulid">
+									<li><a href="../calendar/cal_opt.jsp">個人行事曆</a></li>
+<!-- 									<li id="teamCalLink"><a href="../calendar/teamcal_opt.jsp">團隊行事曆</a></li> -->
+<!-- 									<li><a href="#">Previous Month</a></li> -->
+<!-- 									<li><a href="#">Previous Week</a></li> -->
+<!-- 									<li><a href="#">Next Month</a></li> -->
+<!-- 									<li><a href="#">Next Week</a></li> -->
+<!-- 									<li><a href="#">Team Calendar</a></li> -->
+<!-- 									<li><a href="#">Private Calendar</a></li> -->
+<!-- 									<li><a href="#">Settings</a></li> -->
 								</ul>
 							</li>
 							<li>
@@ -110,12 +122,13 @@
 				</div>
 			</section>
 		</div>	
-	
+
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="../../js/login/Main.js"></script>
+<script src="../../js/main/Websocket.js"></script>
+<script src="../../js/calendar/CheckTeamLeader.js"></script>
 <script src="../../js/main/sketch.js"></script>
-<!-- <script src="../../js/main/Websocket.js"></script> -->
 	</body>
 
 </html>

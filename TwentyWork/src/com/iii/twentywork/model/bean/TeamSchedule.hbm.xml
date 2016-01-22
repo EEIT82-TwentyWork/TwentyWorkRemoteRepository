@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016/1/10 ?U?? 06:05:35 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.iii.twentywork.model.bean.TeamSchedule" table="TeamSchedule" schema="dbo" catalog="TwentyWork" optimistic-lock="version">
+        <id name="eventId" type="java.lang.String" length="32">
+            <column name="eventID" />
+            <generator class="uuid"></generator>
+        </id>
+        <many-to-one name="team" class="com.iii.twentywork.model.bean.TeamBean" cascade="save-update" outer-join="true" fetch="select">
+            <column name="teamID" length="32" />
+        </many-to-one>
+        <property name="eventName" type="string">
+            <column name="eventName" length="50" not-null="true" />
+        </property>
+        <property name="eventStartDate" type="timestamp">
+            <column name="eventStartDate" length="23" not-null="true" />
+        </property>
+        <property name="eventEndDate" type="timestamp">
+            <column name="eventEndDate" length="23" not-null="true" />
+        </property>
+        <property name="eventDesp" type="string">
+            <column name="eventDesp" />
+        </property>
+        <property name="location" type="string">
+            <column name="location" length="50" />
+        </property>
+        <property name="reminder" type="timestamp">
+            <column name="reminder" length="23" />
+        </property>
+        <property name="eventAllday" type="java.lang.String">
+            <column name="eventAllday" />
+        </property>
+        <property name="eventColor" type="java.lang.String">
+            <column name="eventColor" />
+        </property>
+        <property name="teamScheduleUserID" type="java.lang.String">
+            <column name="teamScheduleUserID" />
+        </property>
+    </class>
+</hibernate-mapping>
