@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/main/Main.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/favList.css">
+
 <style>
 .mainPageContext{
 	float:left;
@@ -18,6 +20,8 @@
  rgba(255, 255, 255, 0.5);
  	overflow-y:auto;
 }
+
+
 </style>
 <title>main</title>
 </head>
@@ -86,8 +90,10 @@
 								<ul id="chatName">
 								</ul>
 							</li>
-							<li>
+							<li id="myFavLeftList">
 								<h3><a href = "<%=request.getContextPath() %>/Board">討論版</a></h3>
+								<ul>
+								</ul>
 							</li>
 							<li>
 								<h3><a href = "<%=request.getContextPath() %>/ShareFile">檔案分享</a></h3>

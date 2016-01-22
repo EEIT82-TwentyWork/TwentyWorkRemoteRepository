@@ -18,6 +18,7 @@
 <!-- jQuery -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
 <%-- <script src="<%= request.getContextPath() %>/js/login/Main.js"></script> --%>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/favList.css">
 
 	
 <style>
@@ -129,8 +130,9 @@
 								<ul id="chatName">
 								</ul>
 							</li>
-							<li>
+							<li id="myFavLeftList">
 								<h3><a href = "<%=request.getContextPath() %>/Board">討論版</a></h3>
+								<ul></ul>
 							</li>
 							<li>
 								<h3><a href = "<%=request.getContextPath() %>/ShareFile">檔案分享</a></h3>
@@ -381,5 +383,9 @@
 		}
 	}; //end of function icondisplay(){
 </script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+<script src="<%=request.getContextPath() %>/js/login/Main.js"></script>
+<script src="<%=request.getContextPath() %>/js/main/Websocket.js"></script>
+<script src="<%=request.getContextPath() %>/js/board/myFavListJS.js"></script>
 </body>
 </html>

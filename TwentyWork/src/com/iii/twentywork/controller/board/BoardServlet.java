@@ -102,11 +102,11 @@ public class BoardServlet extends HttpServlet {
 		    }else if(pathInfo.equals("/getMyFav") &&servletPath.equals("/BoardServlet"))
 		    {//取得關注的聊天版列表
 		    	System.out.println("here is /BoardServlet/getMyFav");
-//		    	String jsonString = boardService.selectMyFavList( team.getTeamId(), user.getUserID());
-//	            response.setContentType("text/html; charset=UTF-8");
-//	            PrintWriter out = response.getWriter();
-//	            out.println(jsonString);
-//	            System.out.println(jsonString);   
+		    	String jsonString = boardService.selectMyFavList( team.getTeamId(), user.getUserID());
+	            response.setContentType("text/html; charset=UTF-8");
+	            PrintWriter out = response.getWriter();
+	            out.println(jsonString);
+	            System.out.println(jsonString);   
 		    }
 		    else{
 		    	System.out.println("wrong path");
