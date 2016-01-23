@@ -248,13 +248,13 @@ create table Notify
 (
 	teamID varchar(32) references Team  (teamID),
     userID varchar(32) references Users (userID),
+	sendUserID varchar(32) references Users (userID),
     fileId int references ShareFile(fileId),
 	shareTime datetime not null,
 	comment varchar(max) ,
 	readState  varchar(5),
     constraint PK_Notify primary key(userID,fileId),
 )
-GO
 
 /*
   declare @teamId1 varchar(32) 
