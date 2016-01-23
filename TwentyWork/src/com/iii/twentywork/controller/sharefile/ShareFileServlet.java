@@ -233,12 +233,15 @@ public class ShareFileServlet extends HttpServlet {
 			
 	    }else if(pathInfo.equals("/getMember") && servletPath.equals("/ShareFileServlet")){
 	    	System.out.println("here is ShareFileServlet  getMember");
-	    	System.out.println("999teamID"+teamBean.getTeamId());
 	    	String jsonString  = shareFileService.getTeamMember(teamBean.getTeamId());
 	    	response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println(jsonString);
 	    	return;
+	    }else if(pathInfo.equals("/insertNotify") && servletPath.equals("/ShareFileServlet")){
+	    	System.out.println("here is ShareFileServlet  getMember");
+	    	String inputData = request.getParameter("data");
+	    	System.out.println(inputData);
 	    }
 	    else{
 	    	System.out.println("What the Hall");

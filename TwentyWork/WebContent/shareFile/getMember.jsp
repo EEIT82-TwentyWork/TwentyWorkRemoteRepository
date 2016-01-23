@@ -40,7 +40,7 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<td><input type ="button" value = "確定"  id="getMemberSubmitButton">></td>
+			<td><input type ="button" value = "確定"  id="getMemberSubmitButton"></td>
 			<td><input type ="button" value = "取消"  id="getMemberCancleButton"></td>
 		</tr>
 	</tfoot>
@@ -79,9 +79,30 @@ $(function(){
 	
 	$('#getMemberSubmitButton').click(function(){
 		var fileID=$('table#shareFileMain>tbody>tr[id^="f"][class="listBackground"]').attr('id');
-		console.log(fileID)
-	})//end of  $('#getMemberSubmitButton').click(function(){
-	
+		var session = {'userID': [],'fileID':fileID};
+		$("table#memberListTable>tbody>tr[class='listBackground']").each(function(i, selected){ 
+			 session.userID.push($(selected).attr('id' ));
+		 });//取得選取的id	
+		 console.log(session);
+		 console.log(JSON.stringify(session));
+		
+// 		var session = {'list':{'userID': [],'fileID':fileID};
+// 		$("table#memberListTable>tbody>tr[class='listBackground']").each(function(i, selected){ 
+// 			session.list.userID.push( $(selected).attr('id' ) );
+// 		});//取得選取的id	
+// 		console.log(session);
+// 		console.log(JSON.stringify(session));//{"userID":["40289fee526ddeb501526ddfc6da0000","40289fee526ddeb501526de8f0ed0002"],"fileID":"folder909"}
+		$.ajax({
+			'type':'get', 
+			'url':'<%= request.getContextPath() %>/ShareFileServlet/insertNotify',
+			'dataType':'json',  
+			'data':{data:JSON.stringify(session)},
+			'success':function(data){
+				console.log("here is response");
+				$.fancybox.close();
+				}//end of 'success':function(data){
+			});//end of $.ajax({	
+	})//end of  $('#getMemberSubmitButton').click(function(){  	
 });//end of $(function(){	
 </script>
 

@@ -357,11 +357,13 @@
 		$('input[id^="sharefile_f"]').fancybox({
             'href' :"<%= request.getContextPath() %>/shareFile/getMember.jsp",
 		});//end of $('input[id^="sharefile_f"]').fancybox({
-			
-// 		$('table#shareFileMain>tbody>tr>td:nth-child()').mouseover(function(){
-// 			console.log($(this))
-// 		});
-// 		<td><input type = "button" value="分享" id= "sharefile_file${fileList.fileId}" class="iconNotDisplay"> </td>
+		
+		$('table#shareFileMain>tbody>tr>td:nth-child(9)').mouseover(function(){
+			$(this).children().removeClass("iconNotDisplay")
+		});
+		$('table#shareFileMain>tbody>tr>td:nth-child(9)').mouseout(function(){
+			$(this).children().addClass("iconNotDisplay")
+		});
 		
 		});//end of $(function(){
 			
