@@ -37,46 +37,52 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr >
-		</tr>
 	</tbody>
 	<tfoot>
 		<tr>
-			<td><input type ="button" value = "確定"></td>
-			 <td><input type ="button" value = "取消"></td>
+			<td><input type ="button" value = "確定"  id="getMemberSubmitButton">></td>
+			<td><input type ="button" value = "取消"  id="getMemberCancleButton"></td>
 		</tr>
 	</tfoot>
 </table>
 
 <script>
 $(function(){
-$.ajax({
-	  'type':'get', 
-	  'url':'<%= request.getContextPath() %>/ShareFileServlet/getMember',
-	  'dataType':'json',  
-	  'data':{},
-	  'success':function(data){
-		  console.log("here is response");
-		  console.log(data);
-		  $.each(data,function(i,product){
-			  $("table#memberListTable>tbody").append("<tr><td COLSPAN='2'>"+product.userName+"</td></tr>")
-			   $("table#memberListTable>tbody>tr").click(listBackGround);
-			  console.log(product.userID);
-			  console.log(product.userName);
-		  })
-	  }
-});//end of $.ajax({
+	$.ajax({
+		  'type':'get', 
+		  'url':'<%= request.getContextPath() %>/ShareFileServlet/getMember',
+		  'dataType':'json',  
+		  'data':{},
+		  'success':function(data){
+			  console.log("here is response");
+			  console.log(data);
+			  $.each(data,function(i,product){
+				  $("table#memberListTable>tbody").append("<tr id='"+product.userID+"'><td COLSPAN='2'>"+product.userName+"</td></tr>")
+			  })
+			  $("table#memberListTable>tbody>tr").click(memberListBackGround);
+		  }//end of 'success':function(data){
+	});//end of $.ajax({
 	
-function changeColor(){
-	if($(this).hasClass('listBackground')){
-			 $(this).removeClass('listBackground');
-		 }else{
-			 $('span[class="listBackground"]').removeClass('listBackground');
-			 $(this).addClass('listBackground');
-		 }
+	function memberListBackGround(){
+		if($(this).hasClass('listBackground')){
+			$(this).removeClass('listBackground');
+		}else{
+			$(this).addClass('listBackground');
+		}
 	}//end of  function listBackGround(){
+		
+	$('#getMemberCancleButton').click(function(){
+		$.fancybox.close();
+		$('table#shareFileMain>tbody>tr[id^="f"][class="listBackground"]').removeClass('listBackground');
+		icondisplay();
+	})//end of  $('#getMemberCancleButton').click(function(){
 	
-});
+	$('#getMemberSubmitButton').click(function(){
+		var fileID=$('table#shareFileMain>tbody>tr[id^="f"][class="listBackground"]').attr('id');
+		console.log(fileID)
+	})//end of  $('#getMemberSubmitButton').click(function(){
+	
+});//end of $(function(){	
 </script>
 
 

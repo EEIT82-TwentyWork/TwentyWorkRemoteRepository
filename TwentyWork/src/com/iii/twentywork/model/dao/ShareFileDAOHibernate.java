@@ -66,10 +66,11 @@ public class ShareFileDAOHibernate implements ShareFileDAO
     public List<FileTreeBean> getGroupFolderTree(String teamId)
     {//testing#4
 //    	System.out.println("ShareFileDAOHibernate -- getGroupFolderTree ");
+    	System.out.println("ShareFileDAOHibernate -- getGroupFolderTree: "+teamId);
         SQLQuery query = getSession().createSQLQuery(FOLDER_TREE);
         query.setParameter(0, teamId);
         query.addEntity(FileTreeBean.class);
-//        System.out.println(query.list());
+        System.out.println(query.list());
         return query.list();
     }
 
@@ -195,12 +196,12 @@ public class ShareFileDAOHibernate implements ShareFileDAO
         
       //testing#4 List<FileTreeBean> getGroupFolderTree(int teamId)
 //        System.out.println("testing#4");
-//        ShareFileDAO dao = (ShareFileDAO) context.getBean("shareFileDAO");
-//        String teamId = "30654172-858D-4C0E-A512-7A58E90C2B43";
-//        List<FileTreeBean> fileList =  dao.getGroupFolderTree(teamId);
-//        for(Iterator<FileTreeBean> item = fileList.iterator();item.hasNext(); ) {
-//          System.out.println(item.next());
-//        }
+        ShareFileDAO dao = (ShareFileDAO) context.getBean("shareFileDAO");
+        String teamId = "40289fee526ddeb501526ddfc71f0001";
+        List<FileTreeBean> fileList =  dao.getGroupFolderTree(teamId);
+        for(Iterator<FileTreeBean> item = fileList.iterator();item.hasNext(); ) {
+          System.out.println(item.next());
+        }
         
         
         //testing#5 List<FileTreeBean> findFileByFileName(String queryString,int upperFolderId)
@@ -212,11 +213,11 @@ public class ShareFileDAOHibernate implements ShareFileDAO
 //        }
         
       //testing#6 int deleteFile(int fileId, boolean isFolder)
-        System.out.println("testing#6");
-      ShareFileDAO dao = (ShareFileDAO) context.getBean("shareFileDAO");
-      
-      System.out.println(dao.deleteFile(903, true));
-      System.out.println(dao.deleteFile(916, false));
+//        System.out.println("testing#6");
+//      ShareFileDAO dao = (ShareFileDAO) context.getBean("shareFileDAO");
+//      
+//      System.out.println(dao.deleteFile(903, true));
+//      System.out.println(dao.deleteFile(916, false));
         sessionFactory.getCurrentSession().getTransaction().commit();
     }
     private static final String SELECT_BY_TEAMID = "select * from ShareFile where teamId=? and upperFolderId=900";

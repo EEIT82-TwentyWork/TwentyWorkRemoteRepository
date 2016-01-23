@@ -4,14 +4,10 @@
 <!-- Generated 2016/1/22 ?W?? 01:44:34 by Hibernate Tools 4.3.1.Final -->
 <hibernate-mapping>
     <class name="com.iii.twentywork.model.bean.Notify" table="Notify" schema="dbo" catalog="twentywork" optimistic-lock="version">
-        <composite-id name="id" class="com.iii.twentywork.model.bean.NotifyId">
-            <key-property name="userId" type="string">
-                <column name="userID" length="32" />
-            </key-property>
-            <key-property name="fileId" type="java.lang.Integer">
-                <column name="fileId" />
-            </key-property>
-        </composite-id>
+        <id name="notifyID" type="string">
+			<column name="notifyID" length="32" />
+			<generator class="uuid" />
+		</id>
         <many-to-one name="file" class="com.iii.twentywork.model.bean.ShareFileBean" update="false" insert="false" fetch="select">
             <column name="fileId"  not-null="true" />
         </many-to-one>
@@ -20,6 +16,9 @@
         </many-to-one>
         <many-to-one name="users" class="com.iii.twentywork.model.bean.UsersBean" update="false" insert="false" fetch="select">
             <column name="userID" length="32" not-null="true" />
+        </many-to-one>
+        <many-to-one name="sendUser" class="com.iii.twentywork.model.bean.UsersBean" update="false" insert="false" fetch="select">
+            <column name="sendUserID" length="32" not-null="true" />
         </many-to-one>
         <property name="shareTime" type="timestamp">
             <column name="shareTime" length="23" not-null="true" />

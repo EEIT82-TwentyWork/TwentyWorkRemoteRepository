@@ -1,6 +1,7 @@
 <Query Kind="SQL">
   <Connection>
     <ID>da7e50f7-1cf7-4e53-85c3-84626b3b01bc</ID>
+    <Persist>true</Persist>
     <Server>twentywork.database.windows.net</Server>
     <SqlSecurity>true</SqlSecurity>
     <Database>twentywork</Database>
@@ -196,6 +197,7 @@ CREATE TABLE ShareFile(
 )
 go
 INSERT INTO ShareFile VALUES ( 'WebApp根目錄' , '資料夾' ,null ,null,null,null, null);--900
+
 go
 create procedure gen_folder_tree ( @v_teamId  varchar(32) )
   AS
@@ -243,9 +245,10 @@ create procedure gen_folder_tree ( @v_teamId  varchar(32) )
     )
  END;
  GO
-
+drop table Notify
 create table Notify
 (
+	notifyID varchar(32) NOT NULL PRIMARY KEY  default replace(NEWID(),'-',''),
 	teamID varchar(32) references Team  (teamID),
     userID varchar(32) references Users (userID),
 	sendUserID varchar(32) references Users (userID),
@@ -253,8 +256,9 @@ create table Notify
 	shareTime datetime not null,
 	comment varchar(max) ,
 	readState  varchar(5),
-    constraint PK_Notify primary key(userID,fileId),
+    
 )
+GO
 
 /*
   declare @teamId1 varchar(32) 
@@ -430,6 +434,5 @@ go
  END;
  GO
  -- exec find_file_by_fileName 2,'g'
-  
   
    */

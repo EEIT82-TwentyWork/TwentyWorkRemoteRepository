@@ -204,7 +204,7 @@
 <br>
 <!-- file list -->
 <div  id='fileListxxxxxx' class='padding'>
-<table class="table">
+<table id='shareFileMain' class="table">
 	<thead>
 		<tr>
 			<td style="display:none">fileId</td>
@@ -215,6 +215,7 @@
 			<td>上傳人員</td>
 			<td style="display:none">teamId</td>
 			<td style="display:none">teamName</td>
+			<td>分享檔案</td>
 		</tr>
 	</thead>
 	<tbody id = "fileList">
@@ -231,7 +232,7 @@
 					<td>${fileList.userBean.userName}</td>
 					<td style="display:none">${fileList.teamBean.teamId}</td>
 					<td style="display:none">${fileList.teamBean.teamName}</td>
-					<td><input type = "button" value="分享" id= "sharefile_folder${fileList.fileId}"> </td>
+					<td><input type = "button" value="分享" id= "sharefile_folder${fileList.fileId}" class="iconNotDisplay"> </td>
 					</tr>
 				</c:when>
 			    <c:otherwise>
@@ -247,13 +248,10 @@
 					<td>${fileList.userBean.userName}</td>
 					<td style="display:none">${fileList.teamBean.teamId}</td>
 					<td style="display:none">${fileList.teamBean.teamName}</td>
-					<td><input type = "button" value="分享" id= "sharefile_file${fileList.fileId}"> </td>
+					<td><input type = "button" value="分享" id= "sharefile_file${fileList.fileId}" class="iconNotDisplay"> </td>
 					</tr>
 			    </c:otherwise>
 			</c:choose>
-				
-				
-			</tr>
 		</c:forEach>
 		</c:if>
 	</tbody>
@@ -293,7 +291,6 @@
 
 
 
-
 <script >
 	$(function(){
 		$("#insertFile").fancybox();
@@ -301,7 +298,7 @@
 		$("#renameFile").fancybox();
 		$("#iconMove").fancybox();
 		
-		$('tr[id^="f"]').click(listBackGround);
+		$('table#shareFileMain>tbody>tr[id^="f"]').click(listBackGround);
 			
 		
 	
@@ -361,8 +358,11 @@
             'href' :"<%= request.getContextPath() %>/shareFile/getMember.jsp",
 		});//end of $('input[id^="sharefile_f"]').fancybox({
 			
+// 		$('table#shareFileMain>tbody>tr>td:nth-child()').mouseover(function(){
+// 			console.log($(this))
+// 		});
+// 		<td><input type = "button" value="分享" id= "sharefile_file${fileList.fileId}" class="iconNotDisplay"> </td>
 		
-			
 		});//end of $(function(){
 			
 // --------------------------------------------------------------------------------------------------

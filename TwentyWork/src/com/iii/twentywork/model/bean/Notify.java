@@ -4,32 +4,17 @@ import java.util.Date;
 
 public class Notify implements java.io.Serializable
 {
-
-//	--14--
-//	create table MyFav									||create table Notify
-//	(
-//		teamID varchar(32) references Team  (teamID), ||teamID varchar(32) references Team  (teamID),
-//	    userID varchar(32) references Users (userID), ||userID varchar(32) references Users (userID),
-//	    boardID varchar(32) references Board(boardID),||fileId int references ShareFile(fileId),
-//		activeTime datetime not null,					||shareTime datetime not null,
-//		favTitle varchar(50) not null,					||comment varchar(max) ,
-//														||readState  varchar(5),
-//	    constraint MyFavID primary key(userID,boardID),	||constraint Notify primary key(userID,fileId),
-//	)
-//	GO
-	
-	
-	
-
-	private NotifyId id;
-    @Override
+	@Override
 	public String toString() {
-		return "Notify [id=" + id + ", team=" + team + ", users=" + users + ", file=" + file + ", shareTime="
-				+ shareTime + ", comment=" + comment + ", readState=" + readState + "]";
+		return "Notify [notifyID=" + notifyID + ", team=" + team + ", users=" + users + ", sendUser=" + sendUser
+				+ ", file=" + file + ", shareTime=" + shareTime + ", comment=" + comment + ", readState=" + readState
+				+ "]";
 	}
 
+	private String notifyID;
 	private TeamBean team;
     private UsersBean users;
+    private UsersBean sendUser;
     private ShareFileBean file;
     private Date shareTime;
     private String comment;
@@ -39,13 +24,16 @@ public class Notify implements java.io.Serializable
     {
     }
 
-	public NotifyId getId() {
-		return id;
+
+	public String getNotifyID() {
+		return notifyID;
 	}
 
-	public void setId(NotifyId id) {
-		this.id = id;
+
+	public void setNotifyID(String notifyID) {
+		this.notifyID = notifyID;
 	}
+
 
 	public TeamBean getTeam() {
 		return team;
@@ -93,6 +81,14 @@ public class Notify implements java.io.Serializable
 
 	public void setReadState(String readState) {
 		this.readState = readState;
+	}
+
+	public UsersBean getSendUser() {
+		return sendUser;
+	}
+
+	public void setSendUser(UsersBean sendUser) {
+		this.sendUser = sendUser;
 	}
 
 
