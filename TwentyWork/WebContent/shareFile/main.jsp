@@ -26,7 +26,6 @@
 	padding-right: 30px;
 	padding-top: 5px;
 }
-
 .padding2 {
 	padding-left: 15px;
 	padding-right: 15px;
@@ -43,7 +42,6 @@
 	box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.6), 0 0 200px 1px
  rgba(255, 255, 255, 0.5);
 }
-
 #fancybox-wrap *,
 #fancybox-wrap *:before,
 #fancybox-wrap *:after {
@@ -56,7 +54,6 @@
 }
 .iconShow{
 }
-
 .listBackground{
 	background-color: #DFFFDF;
 }
@@ -68,7 +65,6 @@
 	padding-right:20px;
 	
 }
-
 </style>
 
 </head>
@@ -156,6 +152,20 @@
 <div class = 'mainPageContext'>
 
 <hr>
+<!-- userInfo -->
+<table  ><tr>
+		<td class='padding2'>Hello</td>
+		<td>userID:</td>
+		<td class='padding2' id="userID">${LoginOK.userID}</td>
+		<td>userName:</td>
+		<td class='padding2'>${LoginOK.userName}</td>
+		<td>teamID:</td>
+		<td class='padding2' id="teamID">${teamBean.teamId}</td>
+		<td>teamName:</td>
+		<td class='padding2' id="teamID">${teamBean.teamName}</td>
+</tr></table>
+
+
 <!-- path -->
 <div   class='padding' id = navPath>
 <c:set var="path" value="<%= request.getContextPath() %>" />
@@ -217,6 +227,11 @@
 					<td><a href ="${requestURI}/${fileList.fileName}"  class='fileName'>${fileList.fileName}</a></td>
 					<td style="display:none">${fileList.fileType}</td>
 					<td>-</td>
+					<td style="display:none">${fileList.userBean.userID}</td>
+					<td>${fileList.userBean.userName}</td>
+					<td style="display:none">${fileList.teamBean.teamId}</td>
+					<td style="display:none">${fileList.teamBean.teamName}</td>
+					<td><input type = "button" value="分享" id= "sharefile_folder${fileList.fileId}"> </td>
 				</c:when>
 			    <c:otherwise>
 			    	<tr id="file${fileList.fileId}">
@@ -227,12 +242,15 @@
 			    	<c:set var="string1" value='${fileList.updateTime}'/>
 					<c:set var="updateTime" value="${fn:substring(string1, 0, 16)}" />
 			    	<td>${updateTime}</td>
+			    	<td style="display:none">${fileList.userBean.userID}</td>
+					<td>${fileList.userBean.userName}</td>
+					<td style="display:none">${fileList.teamBean.teamId}</td>
+					<td style="display:none">${fileList.teamBean.teamName}</td>
+					<td><input type = "button" value="分享" id= "sharefile_file${fileList.fileId}"> </td>
 			    </c:otherwise>
 			</c:choose>
-				<td style="display:none">${fileList.userBean.userID}</td>
-				<td>${fileList.userBean.userName}</td>
-				<td style="display:none">${fileList.teamBean.teamId}</td>
-				<td style="display:none">${fileList.teamBean.teamName}</td>
+				
+				
 			</tr>
 		</c:forEach>
 		</c:if>
@@ -280,9 +298,10 @@
 		$("#NewFolder").fancybox();
 		$("#renameFile").fancybox();
 		$("#iconMove").fancybox();
+		
 		$('tr[id^="f"]').click(listBackGround);
 			
-	
+		
 	
 		$('#iconDelete').click(deletefile);
 		function deletefile(){
@@ -336,9 +355,18 @@
 			  });//end of $.ajax({ 
 		}); //end of $('#iconRename').click(function(){ 
 		
+		$('input[id^="sharefile_f"]').fancybox({
+            'href' :"<%= request.getContextPath() %>/shareFile/getMember.jsp",
+//             'autoScale' : false,
+//             'type':'iframe'
+		});//end of $('input[id^="sharefile_f"]').fancybox({
+			
+		
+			
 		});//end of $(function(){
 			
-			
+// --------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------
 			
 			
 	function listBackGround(){

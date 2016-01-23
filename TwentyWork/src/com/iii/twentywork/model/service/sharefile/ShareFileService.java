@@ -21,6 +21,7 @@ import com.iii.twentywork.model.bean.FileTreeBean;
 import com.iii.twentywork.model.bean.ShareFileBean;
 import com.iii.twentywork.model.bean.TeamBean;
 import com.iii.twentywork.model.bean.UsersBean;
+import com.iii.twentywork.model.dao.TeamDAOHibernate;
 import com.iii.twentywork.model.dao.DAOinterface.ShareFileDAO;
 
 @Component(value = "shareFileService")
@@ -31,10 +32,16 @@ public class ShareFileService
     public void setShareFileDAO(ShareFileDAO shareFileDAO)
     {
         this.shareFileDAO = shareFileDAO;
-//        System.out.println("ShareFileService setShareFileDAO");
     }
     
-  //testing#2
+    @Autowired
+    private TeamDAOHibernate teamFileDAO;
+    public void setTeamFileDAO(TeamDAOHibernate teamFileDAO) {
+		this.teamFileDAO = teamFileDAO;
+	}
+    
+    
+	//testing#2
     public CheckPathInfoBean checkPathInfo(String pathInfo, TeamBean team,UsersBean user)  {
         String teamId = team.getTeamId();
         List<FileTreeBean> folderTree = getGroupFolderTree(teamId);
@@ -274,6 +281,22 @@ public class ShareFileService
 			return shareFileDAO.insert(bean);
 		}
 		
+	//testing#6
+	public String getTeamMember(String teamId) {
+		TeamBean teamBean = teamFileDAO.selectByTeamId(teamId);
+		List<UsersBean> list = new ArrayList(teamBean.getUserses());
+		List<Map<String, String>> memberList = new ArrayList<Map<String, String>>();
+		for (int i = 0; i < list.size(); i++) {
+			UsersBean bean = list.get(i);
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("userID", bean.getUserID());
+			map.put("userName", bean.getUserName());
+			memberList.add(map);
+		}
+		String jsonString = JSONValue.toJSONString(memberList);
+		return jsonString;
+	}
+		
 	public static void main(String[] args)
     {
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");
@@ -281,6 +304,11 @@ public class ShareFileService
         Session session = sessionFactory.getCurrentSession();
         sessionFactory.getCurrentSession().beginTransaction();
        
+      //testing#6
+        ShareFileService service = (ShareFileService) context.getBean("shareFileService");
+        System.out.println(service.getTeamMember("8a808084526c94bc01526c97eb1a0001"));
+        
+        
       //testing#5
 //        ShareFileService service = (ShareFileService) context.getBean("shareFileService");
 //        System.out.println(service.getGroupFolderTree(201));
@@ -314,6 +342,7 @@ public class ShareFileService
 //        fileIdList.add("file930");
 //        System.out.println(fileIdList);
 //        service.deleteFileFunction(fileIdList);
+        
         
         sessionFactory.getCurrentSession().getTransaction().commit();
     }
