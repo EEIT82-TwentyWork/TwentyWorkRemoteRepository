@@ -261,6 +261,19 @@ public class ShareFileService
 		return listResult;
 	}
 	
+	
+	//Web testing pass
+		public ShareFileBean insertGroupRootFolder(TeamBean team) {
+			ShareFileBean upperFolder = shareFileDAO.selectByFileId(900);
+			
+			ShareFileBean bean = new ShareFileBean();
+			bean.setTeamBean(team);
+			bean.setUpperFolder(upperFolder);
+			bean.setFileName(team.getTeamName()+"根目錄");
+			bean.setFileType("資料夾");
+			return shareFileDAO.insert(bean);
+		}
+		
 	public static void main(String[] args)
     {
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");
