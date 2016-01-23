@@ -65,7 +65,13 @@
 					  $('#fileList>tr#folder'+fileList.fileId).append("<td>"+fileList.userName+"</td>");
 					  $('#fileList>tr#folder'+fileList.fileId).append("<td  style='display:none'>"+fileList.teamId+"</td>");
 					  $('#fileList>tr#folder'+fileList.fileId).append("<td  style='display:none'>"+fileList.teamName+"</td>");
-			  }
+					  $('#fileList>tr#folder'+fileList.fileId).append("<td><input type = 'button' value='分享' id= 'sharefile_folder"+fileList.fileId+"'> </td>");
+			  
+					  $('input[id^="sharefile_f"]').fancybox({
+				            'href' :"<%= request.getContextPath() %>/shareFile/getMember.jsp",
+						});//end of $('input[id^="sharefile_f"]').fancybox({
+			  }											
+				
 		  });//end of $.ajax({ 
 	});
 </script>

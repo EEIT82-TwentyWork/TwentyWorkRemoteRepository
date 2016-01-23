@@ -232,6 +232,7 @@
 					<td style="display:none">${fileList.teamBean.teamId}</td>
 					<td style="display:none">${fileList.teamBean.teamName}</td>
 					<td><input type = "button" value="分享" id= "sharefile_folder${fileList.fileId}"> </td>
+					</tr>
 				</c:when>
 			    <c:otherwise>
 			    	<tr id="file${fileList.fileId}">
@@ -247,6 +248,7 @@
 					<td style="display:none">${fileList.teamBean.teamId}</td>
 					<td style="display:none">${fileList.teamBean.teamName}</td>
 					<td><input type = "button" value="分享" id= "sharefile_file${fileList.fileId}"> </td>
+					</tr>
 			    </c:otherwise>
 			</c:choose>
 				
@@ -357,8 +359,6 @@
 		
 		$('input[id^="sharefile_f"]').fancybox({
             'href' :"<%= request.getContextPath() %>/shareFile/getMember.jsp",
-//             'autoScale' : false,
-//             'type':'iframe'
 		});//end of $('input[id^="sharefile_f"]').fancybox({
 			
 		
