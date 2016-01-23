@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016/1/22 ?W?? 01:44:34 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.iii.twentywork.model.bean.Notify" table="Notify" schema="dbo" catalog="twentywork" optimistic-lock="version">
+        <composite-id name="id" class="com.iii.twentywork.model.bean.NotifyId">
+            <key-property name="userId" type="string">
+                <column name="userID" length="32" />
+            </key-property>
+            <key-property name="fileId" type="java.lang.Integer">
+                <column name="fileId" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="file" class="com.iii.twentywork.model.bean.ShareFileBean" update="false" insert="false" fetch="select">
+            <column name="fileId"  not-null="true" />
+        </many-to-one>
+        <many-to-one name="team" class="com.iii.twentywork.model.bean.TeamBean" fetch="select">
+            <column name="teamID" length="32" />
+        </many-to-one>
+        <many-to-one name="users" class="com.iii.twentywork.model.bean.UsersBean" update="false" insert="false" fetch="select">
+            <column name="userID" length="32" not-null="true" />
+        </many-to-one>
+        <property name="shareTime" type="timestamp">
+            <column name="shareTime" length="23" not-null="true" />
+        </property>
+        <property name="readState" type="string">
+            <column name="readState" length="5" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" />
+        </property>
+    </class>
+</hibernate-mapping>

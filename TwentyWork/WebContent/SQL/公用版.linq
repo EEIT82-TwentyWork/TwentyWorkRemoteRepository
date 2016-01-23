@@ -1,7 +1,6 @@
 <Query Kind="SQL">
   <Connection>
     <ID>da7e50f7-1cf7-4e53-85c3-84626b3b01bc</ID>
-    <Persist>true</Persist>
     <Server>twentywork.database.windows.net</Server>
     <SqlSecurity>true</SqlSecurity>
     <Database>twentywork</Database>
@@ -11,11 +10,13 @@
   </Connection>
 </Query>
 
+/*
 drop table Sub
 drop table Msg
 drop table GroupUser
 drop table Groups
 drop table Images
+drop table Notify
 drop table ShareFile
 
 drop table TeamSchedule
@@ -31,7 +32,7 @@ drop table Team
 
 DROP PROCEDURE [dbo].[gen_folder_tree]
 DROP PROCEDURE [dbo].[find_delete_files]
-  
+  */
 --1--INSERT INTO Users (userName, email, password, birth, userImage, cellPhone, phone)
 create table Users
 (   userID varchar(32) NOT NULL PRIMARY KEY  default replace(NEWID(),'-',''),
@@ -243,7 +244,19 @@ create procedure gen_folder_tree ( @v_teamId  varchar(32) )
  END;
  GO
 
- /*
+create table Notify
+(
+	teamID varchar(32) references Team  (teamID),
+    userID varchar(32) references Users (userID),
+    fileId int references ShareFile(fileId),
+	shareTime datetime not null,
+	comment varchar(max) ,
+	readState  varchar(5),
+    constraint PK_Notify primary key(userID,fileId),
+)
+GO
+
+/*
   declare @teamId1 varchar(32) 
   set @teamId1=NEWID()
   INSERT INTO Team VALUES(@teamId1,'TinaTeam',null,null)
@@ -275,7 +288,7 @@ create procedure gen_folder_tree ( @v_teamId  varchar(32) )
   INSERT INTO TeamUser values(@userId5,@teamId2)
   
  -- fileName_ not null, fileType  not null,   fileSize ,   updateTime , userId , teamId ,   upperFolderId   int,     
- INSERT INTO ShareFile VALUES ( 'WebApp根目錄' , '資料夾' ,null ,null,null,null, null);--900
+ --INSERT INTO ShareFile VALUES ( 'WebApp根目錄' , '資料夾' ,null ,null,null,null, null);--900
  INSERT INTO ShareFile VALUES ( 'Group1根目錄' , '資料夾' ,null ,null,null,@teamId1, '900');--901
  INSERT INTO ShareFile VALUES ( 'Group2根目錄' , '資料夾' ,null ,null ,null,@teamId2, '900');--902
  INSERT INTO ShareFile VALUES ( 'Group2-1' , '資料夾' ,null ,null ,null,@teamId2, '902');
@@ -295,7 +308,7 @@ create procedure gen_folder_tree ( @v_teamId  varchar(32) )
 go
 
 
-  
+   /*
 
 --create Users data--
 insert into Users values ('100', 'Kirin', 'x6041500@hotmail.com',0x41,'1990-05-13',null,'0933-456-781','03-4567891');
