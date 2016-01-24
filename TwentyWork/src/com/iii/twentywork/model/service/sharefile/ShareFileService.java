@@ -352,7 +352,7 @@ public class ShareFileService
 			}
 			
 			String ahref="" ;
-			System.out.println("i="+i+"-----"+fileId+"----------------");
+//			System.out.println("i="+i+"-----"+fileId+"----------------");
 			if(!bean.getFileType().equals("資料夾")){
 //				System.out.println("不是資料夾");
 				bean=bean.getUpperFolder();
@@ -368,12 +368,16 @@ public class ShareFileService
 				bean=bean.getUpperFolder();
 			}
 			ahref="/"+ahref;
-			System.out.println(ahref);
+//			System.out.println(ahref);
 			map.put(fileId_String, ahref);
 		}
 //		System.out.println(groupRootFolder);
 		return map;
 	}
+	public Notify updateReadState(String notifyId){
+		return notifyDAO.updateReadState(notifyId);
+	}
+	
 	
 	public static void main(String[] args)
     {

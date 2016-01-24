@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.iii.twentywork.model.bean.FileTreeBean;
 import com.iii.twentywork.model.bean.Notify;
+import com.iii.twentywork.model.bean.ShareFileBean;
 import com.iii.twentywork.model.bean.TeamBean;
 import com.iii.twentywork.model.bean.UsersBean;
 
@@ -78,6 +79,14 @@ public class NotifyDAOHibernate {
 		System.out.println("end--------------------------");
 		return list;
 	}
+	
+	public Notify updateReadState(String notifyId)
+    {
+		Notify newFolderBean = (Notify) getSession().get(Notify.class,notifyId);
+    	newFolderBean.setReadState("yes");
+        return newFolderBean;
+    }
+	
 
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");

@@ -283,10 +283,16 @@ public class ShareFileServlet extends HttpServlet {
 		    
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-		    
 			out.println(json.toString());
-	    	System.out.println(jsonString);
-	    }else{
+//	    	System.out.println(jsonString);
+	    }else if(pathInfo.equals("/changeReadState") && servletPath.equals("/ShareFileServlet"))
+	    {//更改訊息狀態
+	    	String notifyID = request.getParameter("data");
+	    	System.out.println(notifyID);
+	    	shareFileService.updateReadState(notifyID);
+	    	return;
+	    }
+	    else{
 	    	System.out.println("What the Hall");
 	    }
 	}

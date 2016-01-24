@@ -190,17 +190,27 @@
 <table class='table' id='shareNotifyList'>
 <thead>
 	<tr>
-		<td  style="display:none">收件者</td>
+		<td style="display:none">fileId</td>
+		<td style="display:none">notifyID</td>
+		<td>狀態</td>
+		<td style="display:none">收件者</td>
 		<td>寄件者</td>
 		<td>檔名</td>
 		<td>發送時間</td>
 	</tr>
 </thead>
 <tbody>
-<c:forEach var="list" items="${shareFileRecordList}">
+<c:forEach var="list" items="${shareFileRecordList}">   <!-- List<Notify>  -->
 	<c:choose>
 		<c:when test="${list.file.fileType == '資料夾'}">
-			<tr id="folder${list.file.fileId}">
+			<tr id="folder_notify${list.notifyID}}">
+				<td  style="display:none">folder${list.file.fileId}</td>
+				<td  style="display:none">notify${list.notifyID}</td>
+				
+				<td id='notify${list.notifyID}'>
+					<c:if test="${list.readState == 'no'}">未讀</c:if>
+				</td>
+	
 				<td  style="display:none">${list.users.userName}</td>
 				<td>${list.sendUser.userName}</td>
 				<td><a>${list.file.fileName}</a></td>
@@ -211,7 +221,13 @@
 			</tr>
 		</c:when>
 		<c:otherwise>
-			<tr id="file${list.file.fileId}">
+			<tr id="file_notify${list.notifyID}">
+				<td  style="display:none">file${list.file.fileId}</td>
+				<td  style="display:none">notify${list.notifyID}</td>
+				<td  id='notify${list.notifyID}'>
+					<c:if test="${list.readState == 'no'}">未讀</c:if>
+				</td>
+				
 				<td  style="display:none">${list.users.userName}</td>
 				<td>${list.sendUser.userName}</td>
 				<td>${list.file.fileName}<a><img src="<%= request.getContextPath() %>/images/shareFile/open131.png"></a></td>
@@ -264,22 +280,20 @@ $(function(){
 	}; //end of function icondisplay(){
 
 	$('#iconDownload').click(function(){
-		$('tr[class^="listBackground"][id^="f"]').each(function(i, selected){ 
-			 console.log( $(selected).attr('id' ) );
-			 var iframe = document.getElementById("downloadFrame");
-			 iframe .src = "<%= request.getContextPath() %>/ShareFileServlet/downloadfile?fileID="+$(selected).attr('id' );
-		 });//取得選取的id
+		var fileId =  $('tr[class^="listBackground"]').children(':nth-child(1)').text() ;
+	    var iframe = document.getElementById("downloadFrame");
+		iframe .src = "<%= request.getContextPath() %>/ShareFileServlet/downloadfile?fileID="+fileId;
 		$('table#shareNotifyList>tbody>tr').removeClass('listBackground'); 
 		icondisplay();
 	});//end of $('#iconDownload').click(function(){
 
-	 
+// 	取得頁面列表的超連結--------------------------------------------------------------
 	var fileIdList = {'fileID': []};
 	 $('table#shareNotifyList>tbody>tr[id^="f"]').each(function(i, selected){ 
-		 fileIdList.fileID.push( $(selected).attr('id' ) );
-	 });//取得選取的id	
-	console.log(fileIdList);
-	console.log(JSON.stringify(fileIdList));
+		 fileIdList.fileID.push( $(selected).children(':nth-child(1)').text());
+	 });
+// 	console.log(fileIdList);
+// 	console.log(JSON.stringify(fileIdList));
 	var jsonData = JSON.stringify(fileIdList);
 	$.ajax({
 		  'type':'get', 
@@ -287,24 +301,45 @@ $(function(){
 		  'dataType':'json',  
 		  'data':{data:JSON.stringify(fileIdList)},
 		  'success':function(data){
-			  console.log("here is response");
-			  console.log(data)
+// 			  console.log("here is response");
+// 			  console.log(data)
 			  $('table#shareNotifyList>tbody>tr[id^="folder"]').each(function(i, selected){ 
-		 			 var ttt=$(selected).attr('id' );
-					 var href = '<%= request.getContextPath() %>/ShareFile'+data[ttt];
-// 					 console.log(href)
-					 $('table#shareNotifyList>tbody>tr[id^="'+$(selected).attr('id' )+'"]>td>a').attr('href',href);
+		 			 var fileId=$(selected).children(':nth-child(1)').text();
+		 			 var file_notifyID=$(selected).attr('id' );
+					 var href = '<%= request.getContextPath() %>/ShareFile'+data[fileId];
+					 $('table#shareNotifyList>tbody>tr[id^="'+file_notifyID+'"]>td>a').attr('href',href);
 	 		  });	//end of $('table#shareNotifyList>tbody>tr[id^="folder"]').each(function(i, selected){ 
-	 		 $('table#shareNotifyList>tbody>tr[id^="file"]').each(function(i, selected){ 
-	 			 var ttt=$(selected).attr('id' );
-	 			 var href = '<%= request.getContextPath() %>/ShareFile'+data[ttt];
-// 	 			 console.log(ttt);
-// 	 			 console.log(href);
-	 			$('table#shareNotifyList>tbody>tr[id^="'+$(selected).attr('id' )+'"]>td>a').attr('href',href)
+	 		  $('table#shareNotifyList>tbody>tr[id^="file"]').each(function(i, selected){ 
+	 			 var fileId=$(selected).children(':nth-child(1)').text();
+	 			 var file_notifyID=$(selected).attr('id' );
+	 			 var href = '<%= request.getContextPath() %>/ShareFile'+data[fileId];
+	 			$('table#shareNotifyList>tbody>tr[id^="'+file_notifyID+'"]>td>a').attr('href',href)
 	 		 })
 		  }//end of 'success':function(data){
 	  });//end of $.ajax({ 
+//	 	取得頁面列表的超連結------##########################################---------	
+
 	
+	//更改訊息狀態
+	  $('table#shareNotifyList>tbody>tr[id^="f"]').click(function(){
+		  var state =$(this).children(':nth-child(3)').text()
+		  var substring = "未讀";
+		  var isUnRead =state.indexOf(substring) > -1
+ 		  if(isUnRead){
+			var notifyID = $('tr[class^="listBackground"]>td[id^="notify"]').attr('id')
+			$.ajax({
+			  'type':'get', 
+			  'url':'<%= request.getContextPath() %>/ShareFileServlet/changeReadState',
+			  'dataType':'json',  
+			  'data':{data:notifyID.substring(6)},
+			  'success':function(data){
+				 console.log("sldfjslkdfjlksdjlk")
+				 $('tr[class^="listBackground"]	>td[id^="notify"]').text("");
+			  }//end of 'success':function(data){
+		  });//end of $.ajax({ 	 
+		  }
+	  })//$('table#shareNotifyList>tbody>tr[id^="f"]').click(function(){
+		  
 });//end of $(function(){
 </script>
 
