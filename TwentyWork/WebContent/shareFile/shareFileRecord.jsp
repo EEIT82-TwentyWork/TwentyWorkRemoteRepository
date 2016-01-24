@@ -66,6 +66,10 @@
     color: white;
     padding-left:12px;
 }
+
+.folderImg{
+	padding-left:12px;
+}
 </style>
 
 </head>
@@ -170,18 +174,8 @@
 <!-- path -->
 <div   class='padding' id = navPath>
 <c:set var="path" value="<%= request.getContextPath() %>" />
-	<c:forEach var="fileTree" items="${folders}">
-	<c:choose>
-		<c:when test="${fileTree.fileLevel ==0}">
 			<c:set var="path" value="${path}/ShareFile" />
 			<a href = "${path}">ShareFile</a>
-		</c:when>
-		<c:otherwise>
-			<c:set var="path" value="${path}/${fileTree.fileName}" />
-			 > <a href = "${path}">${fileTree.fileName}</a>
-		</c:otherwise>
-	</c:choose>
-	</c:forEach>
 </div>
 <br>
 <!-- icon -->
@@ -209,7 +203,7 @@
 			<tr id="folder${list.file.fileId}">
 				<td  style="display:none">${list.users.userName}</td>
 				<td>${list.sendUser.userName}</td>
-				<td>${list.file.fileName}</td>
+				<td><a>${list.file.fileName}</a></td>
 
 				<c:set var="string1" value='${list.shareTime}'/>
 				<c:set var="updateTime" value="${fn:substring(string1, 0, 16)}" />
@@ -220,7 +214,7 @@
 			<tr id="file${list.file.fileId}">
 				<td  style="display:none">${list.users.userName}</td>
 				<td>${list.sendUser.userName}</td>
-				<td>${list.file.fileName}</td>
+				<td>${list.file.fileName}<a><img src="<%= request.getContextPath() %>/images/shareFile/open131.png"></a></td>
 
 				<c:set var="string1" value='${list.shareTime}'/>
 				<c:set var="updateTime" value="${fn:substring(string1, 0, 16)}" />
@@ -240,6 +234,8 @@
 
 <script >
 $(function(){
+	$('table#shareNotifyList>tbody>tr>td>a>img').addClass('folderImg');
+	
 	
 	$('table#shareNotifyList>tbody>tr').click(listBackGround);	
 	function listBackGround(){
@@ -277,7 +273,38 @@ $(function(){
 		icondisplay();
 	});//end of $('#iconDownload').click(function(){
 
-		
+	 
+	var fileIdList = {'fileID': []};
+	 $('table#shareNotifyList>tbody>tr[id^="f"]').each(function(i, selected){ 
+		 fileIdList.fileID.push( $(selected).attr('id' ) );
+	 });//取得選取的id	
+	console.log(fileIdList);
+	console.log(JSON.stringify(fileIdList));
+	var jsonData = JSON.stringify(fileIdList);
+	$.ajax({
+		  'type':'get', 
+		  'url':'<%= request.getContextPath() %>/ShareFileServlet/getHref',
+		  'dataType':'json',  
+		  'data':{data:JSON.stringify(fileIdList)},
+		  'success':function(data){
+			  console.log("here is response");
+			  console.log(data)
+			  $('table#shareNotifyList>tbody>tr[id^="folder"]').each(function(i, selected){ 
+		 			 var ttt=$(selected).attr('id' );
+					 var href = '<%= request.getContextPath() %>/ShareFile'+data[ttt];
+// 					 console.log(href)
+					 $('table#shareNotifyList>tbody>tr[id^="'+$(selected).attr('id' )+'"]>td>a').attr('href',href);
+	 		  });	//end of $('table#shareNotifyList>tbody>tr[id^="folder"]').each(function(i, selected){ 
+	 		 $('table#shareNotifyList>tbody>tr[id^="file"]').each(function(i, selected){ 
+	 			 var ttt=$(selected).attr('id' );
+	 			 var href = '<%= request.getContextPath() %>/ShareFile'+data[ttt];
+// 	 			 console.log(ttt);
+// 	 			 console.log(href);
+	 			$('table#shareNotifyList>tbody>tr[id^="'+$(selected).attr('id' )+'"]>td>a').attr('href',href)
+	 		 })
+		  }//end of 'success':function(data){
+	  });//end of $.ajax({ 
+	
 });//end of $(function(){
 </script>
 

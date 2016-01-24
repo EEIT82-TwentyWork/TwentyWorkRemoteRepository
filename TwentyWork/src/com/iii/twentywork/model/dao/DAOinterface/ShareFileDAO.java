@@ -50,6 +50,6 @@ public interface ShareFileDAO
      */
     public abstract ShareFileBean selectByFileId(int fileId);
     
-    public abstract ShareFileBean getGroupRootBean(int teamId);
+    public abstract ShareFileBean getGroupRootBean(String teamId);
    
 }

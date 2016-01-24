@@ -333,6 +333,48 @@ public class ShareFileService
 		return list;
 	}
 	
+	public ShareFileBean getGroupRootFolder(String teamId) {
+        return shareFileDAO.getGroupRootBean(teamId);
+    }
+	
+	/**
+	 * inputList內容格式:folder954、file919
+	 */
+	public Map<String,String> getHref(List<String> inputList){
+		int groupRootFolder =0;
+		Map<String, String> map = new HashMap<String, String>();
+		for (int i = 0; i < inputList.size(); i++) {
+			String fileId_String = inputList.get(i);
+			int fileId = fileIdConver2Int(fileId_String);
+			ShareFileBean bean = shareFileDAO.selectByFileId(fileId);
+			if(i==0){
+				groupRootFolder = getGroupRootFolder(bean.getTeamBean().getTeamId()).getFileId();
+			}
+			
+			String ahref="" ;
+			System.out.println("i="+i+"-----"+fileId+"----------------");
+			if(!bean.getFileType().equals("資料夾")){
+//				System.out.println("不是資料夾");
+				bean=bean.getUpperFolder();
+			}
+			
+			while(bean.getFileId()!=groupRootFolder){
+				if(ahref.length()==0){
+					ahref=(bean.getFileName());
+				}else{
+					ahref=(bean.getFileName())+"/"+ahref;
+				}
+				
+				bean=bean.getUpperFolder();
+			}
+			ahref="/"+ahref;
+			System.out.println(ahref);
+			map.put(fileId_String, ahref);
+		}
+//		System.out.println(groupRootFolder);
+		return map;
+	}
+	
 	public static void main(String[] args)
     {
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");
@@ -384,9 +426,7 @@ public class ShareFileService
     }
     
     
-    public ShareFileBean getGroupRootFolder(int teamId) {
-        return shareFileDAO.getGroupRootBean(teamId);
-    }
+    
     
     
 
