@@ -62,6 +62,10 @@
 	padding-right:20px;
 	
 }
+.leftBarA {
+    color: white;
+    padding-left:12px;
+}
 </style>
 
 </head>
@@ -70,14 +74,14 @@
 			<section>
 <!-- layout----E1 begin---------------------------------------------------->				
 				<div id="page-top">
-					<h5 id="logOut"><a href="<%=request.getContextPath() %>/logout">登出</a></h5>
+					<h5 id="logOut"><a href="<%=request.getContextPath() %>/logout" >登出</a></h5>
 					<h3>Welcome ${LoginOK.userName}</h3>
 				</div>
 				<div id="page-left">
 					<div id="accordian">
 						<ul>
 							<li>
-								<h3><a href = "<%=request.getContextPath() %>/main/workHome/main.jsp">首頁</a></h3>
+								<h3><a href = "<%=request.getContextPath() %>/main/workHome/main.jsp" class="leftBarA">首頁</a></h3>
 							</li>
 							<li>
 								<h3><span class="icon-dashboard"></span>Dashboard</h3>
@@ -117,7 +121,7 @@
 								</ul>
 							</li>
 							<li>
-								<h3><a href = "<%=request.getContextPath() %>/ShareFile">檔案分享</a></h3>
+								<h3><a href = "<%=request.getContextPath() %>/ShareFile"  class="leftBarA">檔案分享</a></h3>
 							</li>
 							<li>
 								<h3><span class="icon-close"></span>close</h3>
