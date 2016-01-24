@@ -69,13 +69,7 @@
 							<!-- we will keep this LI open by default -->
 							<li class="active">
 								<h3><span class="icon-tasks"></span>Tasks</h3>
-								<ul>
-									<li><a href="#">Today's tasks</a></li>
-									<li><a href="#">Urgent</a></li>
-									<li><a href="#">Overdues</a></li>
-									<li><a href="#">Recurring</a></li>
-									<li><a href="#">Settings</a></li>
-								</ul>
+								<ul></ul>
 							</li>
 							<li> 
 						       	 <h3 id="calendarh3id" ><span class="icon-calendar"></span>Calendar</h3> 

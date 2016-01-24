@@ -69,43 +69,62 @@
 </style>
 
 </head>
-<body>
-<div class="container-fluid">
+	<body onload="initializeCanvas()">
+		<div class="container-fluid">
 			<section>
-<!-- layout----E1 begin---------------------------------------------------->				
-				<div id="page-top">
-					<h5 id="logOut"><a href="<%=request.getContextPath() %>/logout" >登出</a></h5>
-					<h3>Welcome ${LoginOK.userName}</h3>
+			<div id="page-top">
+<!-- 				<a href="/TwentyWork/main/workHome/main.jsp"><img id="logoMainID" src="../../images/index/Logo-main.png" border="0" title="TwentyWork HomePage"></a> -->
+				<div class="logocontainer">
+					<div class="logo">
+						<a href="/TwentyWork/main/workHome/main.jsp">
+							<span class="left">< </span>TwentyWork<span class="right"> /></span>
+						</a>
+						<span id="top-userinfo">
+								<span>Hi！</span>
+								<span id="top-name" ><%=session.getAttribute("userName") %></span>
+								 | 
+								<a href="#">Setting	</a>
+								 | 
+								<a id="logoutid" href="<%=request.getContextPath()%>">Logout</a>
+						</span>
+					</div>
+					
 				</div>
+				
+<%-- 				<h3>Welcome <%=session.getAttribute("userName") %></h3> --%>
+				
+				
+			</div>
+<!-- layout----E1 begin---------------------------------------------------->				
 				<div id="page-left">
 					<div id="accordian">
 						<ul>
+
 							<li>
-								<h3><a href = "<%=request.getContextPath() %>/main/workHome/main.jsp" class="leftBarA">首頁</a></h3>
+								<h3><a href = "<%=request.getContextPath() %>/main/workHome/main.jsp">首頁</a></h3>
 							</li>
+
 							<li>
 								<h3><span class="icon-dashboard"></span>Dashboard</h3>
-								<ul></ul>
+								<ul>
+									<li><a href="#">Reports</a></li>
+									<li><a href="#">Reports</a></li>
+									<li><a href="#">Search</a></li>
+									<li><a href="#">Graphs</a></li>
+									<li><a href="#">Settings</a></li>
+								</ul>
 							</li>
 							<!-- we will keep this LI open by default -->
 							<li class="active">
 								<h3><span class="icon-tasks"></span>Tasks</h3>
 								<ul></ul>
 							</li>
-							<li>
-								<h3><span class="icon-calendar"></span>Calendar</h3>
-								<ul>
-									<li><a href="#">Current Month</a></li>
-									<li><a href="#">Current Week</a></li>
-									<li><a href="#">Previous Month</a></li>
-									<li><a href="#">Previous Week</a></li>
-									<li><a href="#">Next Month</a></li>
-									<li><a href="#">Next Week</a></li>
-									<li><a href="#">Team Calendar</a></li>
-									<li><a href="#">Private Calendar</a></li>
-									<li><a href="#">Settings</a></li>
-								</ul>
-							</li>
+							<li> 
+						       	 <h3 id="calendarh3id" ><span class="icon-calendar"></span>Calendar</h3> 
+						       	 <ul id="calendarulid"> 
+						         <li><a href="../calendar/cal_opt.jsp">個人行事曆</a></li> 
+					        </ul> 
+					       </li>
 							<li>
 								<h3><span class="icon-heart"></span>Favourites</h3>
 								<ul>
@@ -121,7 +140,7 @@
 								</ul>
 							</li>
 							<li>
-								<h3><a href = "<%=request.getContextPath() %>/ShareFile"  class="leftBarA">檔案分享</a></h3>
+								<h3><a href = "<%=request.getContextPath() %>/ShareFile">檔案分享</a></h3>
 							</li>
 							<li>
 								<h3><span class="icon-close"></span>close</h3>
@@ -129,13 +148,7 @@
 						</ul>
 					</div>
 				</div>
-<!-- layout----E1 end---------------------------------------------------->		
-
-
-
-
-
-
+<!-- layout----E1 end---------------------------------------------------->	
 <!---------------- main page code ---------------------------------->
 <div id="page-left">
 <div class = 'mainPageContext'>
