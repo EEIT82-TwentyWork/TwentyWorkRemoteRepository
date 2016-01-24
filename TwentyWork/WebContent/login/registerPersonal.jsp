@@ -16,7 +16,7 @@
 		<div class="logo">
 			<span class="left"><</span>TwentyWork<span class="right">/></span>
 			<div class="text">
-				<span class="word">Web</span><span class="web">Developer</span>
+				<span class="word">Web</span><span class="web">Communicate</span>
 			</div>
 		</div>
 	</div>
@@ -27,7 +27,8 @@
 			<h3 class="fs-subtitle">welcome !!</h3>
 			<input type="text" name="teamName" value="<%=request.getParameter("teamName") %>" readonly="readonly" />
 			<input type="text" name="email" value="<%=request.getParameter("email") %>" readonly="readonly" />
-			<input type="text" name="password" placeholder="Password"/>
+			<input type="password" name="password" placeholder="Password"/>
+			<input type="password" placeholder="Confirm Password"/>
 			<input type="text" name="fullName" placeholder="Full Name" />
 			<input type="text" name="cellPhone" placeholder="CellPhone" />
 			<input type="text" name="birth" placeholder="Birth" />

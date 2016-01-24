@@ -107,7 +107,6 @@ public class RegisterServlet extends HttpServlet {
 		userBean.setUserImage(null);
 		userBean.setCellPhone(cellPhone);
 		userBean.setPhone("1");
-
 		userBean.setTeams(new HashSet<TeamBean>());
 
 		teamBean.setTeamName(teamName);

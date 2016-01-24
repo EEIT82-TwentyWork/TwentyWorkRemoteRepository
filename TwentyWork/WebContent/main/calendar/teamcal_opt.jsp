@@ -8,23 +8,27 @@
 <jsp:include page="calinclude.jsp" />
 <script type="text/javascript" src="../../js/calendar/TeamCalendar.js"></script>
 <style>
+	html {
+		background: url('http://thecodeplayer.com/uploads/media/gs.png');
+	}
 	body {
 		margin: 40px 10px;
 		padding: 0;
 		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
 		font-size: 14px;
+			margin: 0 auto;
 	}
 	#teamcalendarschedule {
 		max-width: 900px;
 		margin: 0 auto;
 	}
 	#callogo {
-	margin: 0 auto;
+		margin: 0 auto;
 	}
 </style>
 </head>
 <body>
 	<img alt="TwentyWork" id="callogo" src="../../images/index/Logo.png">
-	<div id="teamcalendarschedule"></div> 
+	<div id="teamcalendarschedule" style="margin:100px auto"></div> 
 </body>
 </html>

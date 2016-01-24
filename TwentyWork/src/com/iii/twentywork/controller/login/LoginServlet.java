@@ -69,8 +69,8 @@ public class LoginServlet extends HttpServlet {
 		System.out.println("呼叫Service");
 		UsersBean userinfo = loginAbstractService.loginUserInfoCheck(teamName, email, password);
 		String userName=userinfo.getUserName();
-		String userPhone = userinfo.getPhone();
 
+		String userPhone = userinfo.getPhone();
 		System.out.println("回傳"+userinfo);
 		// 根據Model執行結果，呼叫View
 		if (userinfo == null) {
@@ -97,12 +97,12 @@ public class LoginServlet extends HttpServlet {
 			return;
 		} else {
 			String path = request.getContextPath();
+
+
 			session.setAttribute("UserInfo", userinfo);
-
-
 			session.setAttribute("userName", userName);
-			session.setAttribute("userPhone", userPhone);
 			
+			session.setAttribute("userPhone", userPhone);
 			response.sendRedirect(path + "/main/workHome/main.jsp");
 			return;
 		}

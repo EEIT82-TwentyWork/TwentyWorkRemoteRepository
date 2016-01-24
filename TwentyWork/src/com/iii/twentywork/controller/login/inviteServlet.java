@@ -39,6 +39,7 @@ public class inviteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		String path=request.getContextPath();
 		request.setCharacterEncoding("UTF-8");
 		// 接收資料
 		String count = request.getParameter("count");
@@ -70,7 +71,8 @@ public class inviteServlet extends HttpServlet {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("/login/welcome.jsp").forward(request, response);
+		response.sendRedirect(path);
+//		request.getRequestDispatcher(path);
 	}
 
 	@Override

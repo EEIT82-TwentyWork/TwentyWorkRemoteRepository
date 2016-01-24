@@ -25,10 +25,30 @@
 	<body onload="initializeCanvas()">
 		<div class="container-fluid">
 			<section>
-<!-- layout----E1 begin---------------------------------------------------->				
-				<div id="page-top">
-					<h3>Welcome <%=session.getAttribute("userName") %></h3>
+			<div id="page-top">
+<!-- 				<a href="/TwentyWork/main/workHome/main.jsp"><img id="logoMainID" src="../../images/index/Logo-main.png" border="0" title="TwentyWork HomePage"></a> -->
+				<div class="logocontainer">
+					<div class="logo">
+						<a href="/TwentyWork/main/workHome/main.jsp">
+							<span class="left">< </span>TwentyWork<span class="right"> /></span>
+						</a>
+						<span id="top-userinfo">
+								<span>Hi！</span>
+								<span id="top-name" ><%=session.getAttribute("userName") %></span>
+								 | 
+								<a href="#">Setting	</a>
+								 | 
+								<a id="logoutid" href="<%=request.getContextPath()%>">Logout</a>
+						</span>
+					</div>
+					
 				</div>
+				
+<%-- 				<h3>Welcome <%=session.getAttribute("userName") %></h3> --%>
+				
+				
+			</div>
+<!-- layout----E1 begin---------------------------------------------------->				
 				<div id="page-left">
 					<div id="accordian">
 						<ul>
@@ -58,14 +78,12 @@
 									<li><a href="#">Settings</a></li>
 								</ul>
 							</li>
-
 							<li> 
 						       	 <h3 id="calendarh3id" ><span class="icon-calendar"></span>Calendar</h3> 
 						       	 <ul id="calendarulid"> 
 						         <li><a href="../calendar/cal_opt.jsp">個人行事曆</a></li> 
 					        </ul> 
 					       </li>
-
 							<li>
 								<h3><span class="icon-heart"></span>Favourites</h3>
 								<ul>
@@ -136,13 +154,10 @@
 
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
-
 <script src="../../js/login/Main.js"></script>
 <script src="../../js/main/sketch.js"></script>
 <script src="../../js/main/navigation.js"></script>
 <script src="../../js/calendar/CheckTeamLeader.js"></script>
-
 	</body>
 
 </html>

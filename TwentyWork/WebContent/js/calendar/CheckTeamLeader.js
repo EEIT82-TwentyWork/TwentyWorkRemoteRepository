@@ -1,5 +1,4 @@
 
-
 $(document).ready(function() {
 //window.onload = function() {
 	// 檢查是否為管理者呼叫servlet
@@ -21,5 +20,6 @@ $(document).ready(function() {
 	// 方法結束
 	
 //};
+
  });
 

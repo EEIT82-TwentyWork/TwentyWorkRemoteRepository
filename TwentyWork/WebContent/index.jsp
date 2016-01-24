@@ -17,7 +17,7 @@
 					<div class="logo">
 						<span class="left"><</span>TwentyWork<span class="right">/></span>
 						<div class="text">
-						<span class="word">Web</span><span class="web">Developer</span>
+						<span class="word">Web</span><span class="web">Communicate</span>
 						</div>
 					</div>
 				</div>

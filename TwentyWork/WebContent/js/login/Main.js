@@ -104,5 +104,13 @@ $(document).ready(function(){
 		})
 	})
 //---------------------------------------------------------------------------------------------
-
+	$("#logoutid").click(function(){
+		$.ajax({
+			url: '../../com/iii/tewntywork/controller/login/LogoutServlet',
+			type: 'post',
+			success:function(data){
+				
+			}
+		})
+	})
 })
