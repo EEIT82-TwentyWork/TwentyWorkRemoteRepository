@@ -55,7 +55,7 @@ $(document).ready(function(){
 	  var messagesList = document.getElementById('chat-messages');
 	  var socketStatus = document.getElementById('status');
 	  var closeBtn = document.getElementById('close');
-	  var socket =new WebSocket("ws://localhost:8080/TwentyWork/com/iii/twentywork/model/service/websocket/ChatroomServerEndpoint/"+data+"");
+	  var socket =new WebSocket("ws://twentywork.cloudapp.net:8080/TwentyWork/com/iii/twentywork/model/service/websocket/ChatroomServerEndpoint/"+data+"");
 //------------error------------------------------------
 	  socket.onerror = function(error) {           
 	    console.log('WebSocket Error: ' + error);

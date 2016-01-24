@@ -3,7 +3,7 @@ var color ='black';
 var previousColor= 'black';
 var size= 5 ;
 
-var websokcet = new WebSocket('ws://localhost:8080/TwentyWork/com/iii/twentywork/model/service/sketch/SetchServerEndpoint')
+var websokcet = new WebSocket('ws://twentywork.cloudapp.net:8080/TwentyWork/com/iii/twentywork/model/service/sketch/SetchServerEndpoint')
 websokcet.onmessage = function processMessage(sketchMessage) {
 	var json = JSON.parse(sketchMessage.data);
 	sketch(json.x, json.y, json.size, json.color);
