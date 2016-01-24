@@ -28,7 +28,7 @@
 		<h2>Login To Your Account</h2>
 		<form action="<c:url value="/login/login.controller" />" method="post">
 			<input type="text" placeholder="Team Name" name="TeanName"/>
-			<input placeholder="Username" type="text" name="email"></input> 
+			<input placeholder="Email" type="text" name="email"></input> 
 			<input placeholder="Password" type="password" name="password"></input>
 			
 	  			 <div class="login-checkbox">
