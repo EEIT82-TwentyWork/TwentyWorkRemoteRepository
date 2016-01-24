@@ -251,15 +251,13 @@ public class ShareFileServlet extends HttpServlet {
 	    		for(int i=0;i<userIdArray.length();i++){
 	    			userIdList.add( (String) userIdArray.get(i));
 	    		}
-//	    		for(int i=0;i<userIdArray.length();i++){
-//	    			System.out.println("++++++++++"+userIdList.get(i));
-//	    		}
 	    		shareFileService.insertNotify(userIdList,usersBean,teamBean,fileID);
+	    		return;
 	    	}else{
 	    		System.out.println("here is ShareFileServlet  getMember--no userIdArray input");
 	    		return;
 	    	}
-	    	
+	    }else if(pathInfo.equals("/notifyPage") && servletPath.equals("/ShareFileServlet")){
 	    	
 	    }
 	    else{

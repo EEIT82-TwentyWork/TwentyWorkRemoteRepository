@@ -186,13 +186,7 @@
 <br>
 <!-- icon -->
 <div class='padding'>
-	<a id="insertFile" href="<%= request.getContextPath() %>/shareFile/uploadFile.jsp"><img alt="Upload" title ="Upload" src="<%= request.getContextPath() %>/images/shareFile/fileUploadcloud148.png" /></a>
-	<a id="NewFolder"  href="<%= request.getContextPath() %>/shareFile/newFolder.jsp"><img alt ="New Folder" title ="New Folder"  src="<%= request.getContextPath() %>/images/shareFile/newfolder15.png"  /></a>
 	<img id="iconDownload" class="iconNotDisplay" alt ="Download" title ="Download"  src="<%= request.getContextPath() %>/images/shareFile/fileDownloadCloud134.png" />
-	<img id="iconCopy" class="iconNotDisplay" alt ="Copy" title ="Copy"  src="<%= request.getContextPath() %>/images/shareFile/copyfile19857.png" />
-	<img id="iconDelete" class="iconNotDisplay" alt ="Delete" title ="Delete"  src="<%= request.getContextPath() %>/images/shareFile/delete84453783.png" />
-	<a id="renameFile"  class="iconNotDisplay" href="<%= request.getContextPath() %>/shareFile/renameFile.jsp"><img  alt ="Rename" title ="Rename"   src="<%= request.getContextPath() %>/images/shareFile/renameedit42.png" /></a>
-	<a id="iconMove"  class="iconNotDisplay" href="<%= request.getContextPath() %>/shareFile/folderTree.jsp"><img  alt ="Move" title ="Move"   src="<%= request.getContextPath() %>/images/shareFile/movesend2.png" /></a>
 <div style = "float:right">
 	<a id="insertFile" href="<%= request.getContextPath() %>/shareFile/shareRecord.jsp"><img id="shareRecord" alt ="Record" title ="Record"  src="<%= request.getContextPath() %>/images/shareFile/chat57.png" /></a>
 </div>
