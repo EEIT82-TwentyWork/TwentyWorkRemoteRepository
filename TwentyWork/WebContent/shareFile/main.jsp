@@ -15,9 +15,6 @@
 <script type="text/javascript" src="<%= request.getContextPath() %>/css/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/main/Main.css">	
-<!-- jQuery -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
-<%-- <script src="<%= request.getContextPath() %>/js/login/Main.js"></script> --%>
 
 	
 <style>
@@ -84,24 +81,12 @@
 							</li>
 							<li>
 								<h3><span class="icon-dashboard"></span>Dashboard</h3>
-								<ul>
-									<li><a href="#">Reports</a></li>
-									<li><a href="#">Reports</a></li>
-									<li><a href="#">Search</a></li>
-									<li><a href="#">Graphs</a></li>
-									<li><a href="#">Settings</a></li>
-								</ul>
+								<ul></ul>
 							</li>
 							<!-- we will keep this LI open by default -->
 							<li class="active">
 								<h3><span class="icon-tasks"></span>Tasks</h3>
-								<ul>
-									<li><a href="#">Today's tasks</a></li>
-									<li><a href="#">Urgent</a></li>
-									<li><a href="#">Overdues</a></li>
-									<li><a href="#">Recurring</a></li>
-									<li><a href="#">Settings</a></li>
-								</ul>
+								<ul></ul>
 							</li>
 							<li>
 								<h3><span class="icon-calendar"></span>Calendar</h3>
@@ -150,10 +135,9 @@
 <!---------------- main page code ---------------------------------->
 <div id="page-left">
 <div class = 'mainPageContext'>
-
-<hr>
+<br>
 <!-- userInfo -->
-<table  ><tr>
+<table  class="iconNotDisplay"><tr>
 		<td class='padding2'>Hello</td>
 		<td>userID:</td>
 		<td class='padding2' id="userID">${LoginOK.userID}</td>
@@ -282,10 +266,6 @@
 </div>
 </div>
 <!---------------- main page code end---------------------------------->
-
-
-
-<div id="page-bottom">bottom</div>
 			</section>
 		</div>
 
@@ -414,5 +394,9 @@
 		}
 	}; //end of function icondisplay(){
 </script>
+<!-- jQuery -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+<%-- <script src="<%= request.getContextPath() %>/js/login/Main.js"></script> --%>
+
 </body>
 </html>

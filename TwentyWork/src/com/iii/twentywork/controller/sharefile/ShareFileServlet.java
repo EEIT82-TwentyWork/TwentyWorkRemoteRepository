@@ -240,8 +240,27 @@ public class ShareFileServlet extends HttpServlet {
 	    	return;
 	    }else if(pathInfo.equals("/insertNotify") && servletPath.equals("/ShareFileServlet")){
 	    	System.out.println("here is ShareFileServlet  getMember");
-	    	String inputData = request.getParameter("data");
-	    	System.out.println(inputData);
+	    	String inputData = request.getParameter("data");//{"userID":["40289fee526ddeb501526de8f0ed0002","40289fee526ddeb501526ddfc6da0000"],"fileID":"folder907"}
+	    	JSONObject object = new JSONObject(inputData);
+	    	String fileID_string = object.getString("fileID");//folder907
+	    	int fileID =shareFileService.fileIdConver2Int(fileID_string);
+	    	
+	    	JSONArray userIdArray = object.getJSONArray("userID");//["40289fee526ddeb501526de8f0ed0002","40289fee526ddeb501526ddfc6da0000"]
+	    	List<String> userIdList = new ArrayList<String>();
+	    	if(userIdArray!=null && userIdArray.length()>0){
+	    		for(int i=0;i<userIdArray.length();i++){
+	    			userIdList.add( (String) userIdArray.get(i));
+	    		}
+//	    		for(int i=0;i<userIdArray.length();i++){
+//	    			System.out.println("++++++++++"+userIdList.get(i));
+//	    		}
+	    		shareFileService.insertNotify(userIdList,usersBean,teamBean,fileID);
+	    	}else{
+	    		System.out.println("here is ShareFileServlet  getMember--no userIdArray input");
+	    		return;
+	    	}
+	    	
+	    	
 	    }
 	    else{
 	    	System.out.println("What the Hall");

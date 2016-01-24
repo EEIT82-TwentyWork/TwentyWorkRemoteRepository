@@ -3,6 +3,7 @@ package com.iii.twentywork.model.service.sharefile;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,11 +19,14 @@ import org.springframework.stereotype.Component;
 
 import com.iii.twentywork.model.bean.CheckPathInfoBean;
 import com.iii.twentywork.model.bean.FileTreeBean;
+import com.iii.twentywork.model.bean.Notify;
 import com.iii.twentywork.model.bean.ShareFileBean;
 import com.iii.twentywork.model.bean.TeamBean;
 import com.iii.twentywork.model.bean.UsersBean;
+import com.iii.twentywork.model.dao.NotifyDAOHibernate;
 import com.iii.twentywork.model.dao.TeamDAOHibernate;
 import com.iii.twentywork.model.dao.DAOinterface.ShareFileDAO;
+import com.sun.org.apache.bcel.internal.generic.IXOR;
 
 @Component(value = "shareFileService")
 public class ShareFileService
@@ -39,8 +43,12 @@ public class ShareFileService
     public void setTeamFileDAO(TeamDAOHibernate teamFileDAO) {
 		this.teamFileDAO = teamFileDAO;
 	}
-    
-    
+    @Autowired
+    private NotifyDAOHibernate notifyDAO;
+	public void setNotifyDAO(NotifyDAOHibernate notifyDAO) {
+		this.notifyDAO = notifyDAO;
+	}
+	
 	//testing#2
     public CheckPathInfoBean checkPathInfo(String pathInfo, TeamBean team,UsersBean user)  {
         String teamId = team.getTeamId();
@@ -270,7 +278,7 @@ public class ShareFileService
 	
 	
 	//Web testing pass
-		public ShareFileBean insertGroupRootFolder(TeamBean team) {
+	public ShareFileBean insertGroupRootFolder(TeamBean team) {
 			ShareFileBean upperFolder = shareFileDAO.selectByFileId(900);
 			
 			ShareFileBean bean = new ShareFileBean();
@@ -296,7 +304,28 @@ public class ShareFileService
 		String jsonString = JSONValue.toJSONString(memberList);
 		return jsonString;
 	}
+	
+	
+	public void insertNotify(List<String> usersId,UsersBean sendPerson,TeamBean team,int fileId){
+		for(int i=0;i<usersId.size();i++){
+		Notify bean = new Notify();
+		bean.setTeam(team);
+		bean.setSendUser(sendPerson);
+		bean.setFile(selectByFileId(fileId));
+		bean.setShareTime(new Date());
+		bean.setReadState("no");
 		
+			System.out.println("++++i="+i);
+			bean.setUsers(notifyDAO.selectByUserId(usersId.get(i)));
+			String pk = notifyDAO.insert(bean);
+			System.out.println(pk);
+		}
+		
+		
+		
+	}
+	
+	
 	public static void main(String[] args)
     {
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");

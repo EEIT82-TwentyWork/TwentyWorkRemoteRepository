@@ -8,6 +8,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.iii.twentywork.model.bean.Notify;
+import com.iii.twentywork.model.bean.TeamBean;
+import com.iii.twentywork.model.bean.UsersBean;
 
 @Component(value = "notifyDAO")
 public class NotifyDAOHibernate {
@@ -38,6 +40,12 @@ public class NotifyDAOHibernate {
 		return bean;
 	}
 
+	public UsersBean selectByUserId(String pk)
+    {
+		UsersBean bean = (UsersBean) getSession().get(UsersBean.class, pk);
+        return bean;
+    }
+	
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");
 		SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
