@@ -9,7 +9,6 @@
 <script type="text/javascript" src="../../js/calendar/Calendar.js"></script>
 <style>
 html {
-	
 	background: url('http://thecodeplayer.com/uploads/media/gs.png');
 }
 body {
@@ -17,6 +16,7 @@ body {
 	padding: 0;
 	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
 	font-size: 14px;
+	margin: 0 auto;
 }
 #calendarschedule {
 	max-width: 900px;

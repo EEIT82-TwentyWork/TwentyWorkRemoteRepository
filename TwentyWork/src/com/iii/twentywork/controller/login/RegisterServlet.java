@@ -19,11 +19,13 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.iii.twentywork.model.bean.TeamBean;
 import com.iii.twentywork.model.bean.UsersBean;
+import com.iii.twentywork.model.service.sharefile.ShareFileService;
 import com.iii.twentywork.model.service.user.RegisterService;
 
 @WebServlet("/main/workHome/main")
 public class RegisterServlet extends HttpServlet {
 	private RegisterService registerService;
+	private ShareFileService shareFileService;
 //	private UsersBean userBean;
 	private TeamBean teamBean;
 	private UsersBean userBean=new UsersBean();
@@ -33,6 +35,7 @@ public class RegisterServlet extends HttpServlet {
 		ServletContext application = this.getServletContext();
 		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(application);
 		this.registerService = (RegisterService) context.getBean("registerService");
+		this.shareFileService = (ShareFileService) context.getBean("shareFileService");
 		this.userBean = (UsersBean) context.getBean("userBean");
 		this.teamBean = (TeamBean) context.getBean("teamBean");
 	}
@@ -104,6 +107,7 @@ public class RegisterServlet extends HttpServlet {
 		userBean.setUserImage(null);
 		userBean.setCellPhone(cellPhone);
 		userBean.setPhone("1");
+		
 		userBean.setTeams(new HashSet<TeamBean>());
 
 		teamBean.setTeamName(teamName);
@@ -113,7 +117,6 @@ public class RegisterServlet extends HttpServlet {
 
 		userBean.getTeams().add(teamBean);
 		teamBean.getUserses().add(userBean);
-
 		System.out.println("結束塞值init");
 		// 根據Model執行結果，呼叫View
 		if ("Submit".equals(submit)) {
@@ -121,6 +124,17 @@ public class RegisterServlet extends HttpServlet {
 			if (userResult == null) {
 				errors.put("action", "Insert fail");
 			}
+			
+			Set<TeamBean> temp = userResult.getTeams();
+			System.out.println(temp);
+			TeamBean teambean2shareFile =null;
+			for(TeamBean e:temp) {
+			    if(e.getTeamName().equals(teamName)) {
+			    	teambean2shareFile=e;
+			        break;
+			    }
+			}
+			shareFileService.insertGroupRootFolder(teambean2shareFile);
 			session.setAttribute("UserInfo", userBean);
 			String path = request.getContextPath();
 			response.sendRedirect(path + "/login/invite.jsp");

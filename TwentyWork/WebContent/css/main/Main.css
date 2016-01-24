@@ -11,6 +11,10 @@ body {
 	height: 900px;
 }
 
+/* a { */
+/* 	text-decoration:none */
+/* } */
+
 section {
 	float: left;
 	width: 100%;
@@ -19,10 +23,53 @@ section {
 }
 /* -------layout-top------------------------------------------------------------------------------------ */
 #page-top {
-	background: #444444;
+/* 	background: #444444; */
 	width: 100%;
 	height: 5%;
+	background: url('http://thecodeplayer.com/uploads/media/gs.png');
 }
+.logocontainer {
+	width: 100%;
+	height: 5%;
+	margin: 0 auto;
+}
+
+.logo {
+	font-family: 'Lato', Calibri, Arial, sans-serif;
+	color: #E6E9ED;
+	font-size: 32px;
+/* 	float:left; */
+}
+
+.logo a{
+	text-decoration: none;
+	color: white;
+}
+
+.right, .left {
+	font-family: arial;
+	font-size: 32px;
+	color: #3BAFDA;
+}
+
+#top-userinfo {
+	font-family: 微軟正黑體;
+	font-size: 22px;
+	color: white;
+/* 	float:right; */
+	position:relative;
+	top: 0%;
+	left: 55%;
+}
+
+#top-name {
+	font-family: 微軟正黑體;
+	font-weight: bold;
+	font-size: 22px;
+	color: #ACD6FF;
+	
+}
+
 /* -------layout-left(E1)------------------------------------------------------------------------------------ */
 #page-left {
 	float: left;

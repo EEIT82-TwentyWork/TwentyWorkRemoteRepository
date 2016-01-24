@@ -1,6 +1,6 @@
 // 進入網頁時先讀取
-//$(document).ready(function() {
-window.onload = function() {
+$(document).ready(function() {
+//window.onload = function() {
 	// 檢查是否為管理者呼叫servlet
 	$("#calendarh3id").click(function(){
 // var matchID=$(this).attr('id');
@@ -19,5 +19,5 @@ window.onload = function() {
 	})
 	// 方法結束
 	
-};
-// });
+//};
+ });

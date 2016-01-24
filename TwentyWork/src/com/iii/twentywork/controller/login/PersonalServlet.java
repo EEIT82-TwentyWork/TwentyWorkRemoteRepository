@@ -46,6 +46,7 @@ public class PersonalServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String path=request.getContextPath();
 		// 接收資料
 		String teanName = request.getParameter("teamName");
 		String email = request.getParameter("email");
@@ -76,7 +77,7 @@ public class PersonalServlet extends HttpServlet {
 		TeamBean teamInfo = personalService.selectTeamName(teanName);
 		teamInfo.getUserses().add(userBean);
 		UsersBean userResult = registerService.insertUserRegister(userBean);
-
+		response.sendRedirect(path);
 		System.out.println(teamInfo);
 
 	}

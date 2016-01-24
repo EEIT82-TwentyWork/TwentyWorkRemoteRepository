@@ -7,10 +7,50 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8;charset=UTF-8">
 
 <title>事件</title>
+<style>
+body {
+	font-family: 微軟正黑體;
+	font-weight: bold;
+}
+
+#add_form button {
+ 	font-size:12px;
+ 	font-family:微軟正黑體; 
+ 	-moz-border-radius:18px; 
+ 	-webkit-border-radius:18px; 
+ 	border-radius:18px; 
+ 	border:1px solid #43eb00;
+ 	padding:4px 20px; 
+ 	text-decoration:none; 
+ 	background:-moz-linear-gradient( center top, #8bff6e 5%, #24ff2b 100% ); 
+ 	background:-ms-linear-gradient( top, #8bff6e 5%, #24ff2b 100% ); 
+ 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#8bff6e', endColorstr='#24ff2b'); 
+ 	background:-webkit-gradient( linear, left top, left bottom, color-stop(5%, #8bff6e), color-stop(100%, #24ff2b) ); 
+ 	background-color:#8bff6e; 
+ 	color:#ffffff; 
+ 	display:inline-block; 
+ 	text-shadow:0px 0px 0px #ffffff; 
+  	-webkit-box-shadow:inset 1px 1px 0px 0px #ffffff; 
+ 	-moz-box-shadow:inset 1px 1px 0px 0px #ffffff; 
+  	box-shadow:inset 1px 1px 0px 0px #ffffff; 
+  	margin: 4px; 
+ } 
+ #add_form button:hover {
+  	background:-moz-linear-gradient( center top, #24ff2b 5%, #8bff6e 100% );
+  	background:-ms-linear-gradient( top, #24ff2b 5%, #8bff6e 100% ); 
+   	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#24ff2b', endColorstr='#8bff6e');  
+  	background:-webkit-gradient( linear, left top, left bottom, color-stop(5%, #24ff2b), color-stop(100%, #8bff6e) );
+ 	background-color:#24ff2b; 
+ } 
+ #add_form button:active { 
+ 	top:1px; 
+ } 
+
+</style>
 </head>
 <body>
 	<div class="fancy">
-		<h3>事件</h3>
+		<h3>編輯團隊行程</h3>
 		<form id="add_form" action="../../com/iii/tewntywork/controller/calendar/CalServlet.controller"  method="post">
 
 		<table>
@@ -55,9 +95,9 @@
 
 			<tr>
 				<td>
-					<input type="submit" name="prodaction" value="InsertTeam" style="display:<%=request.getParameter("id")==null ? "inline" : "none"%>" >
-					<input type="submit" name="prodaction" value="UpdateTeam" style="display:<%=request.getParameter("id")==null ? "none" : "inline"%>" >
-					<input type="submit" name="prodaction" value="DeleteTeam" style="display:<%=request.getParameter("id")==null ? "none" : "inline"%>" >
+<%-- 					<input type="submit" name="prodaction" value="InsertTeam" style="display:<%=request.getParameter("id")==null ? "inline" : "none"%>" > --%>
+<%-- 					<input type="submit" name="prodaction" value="UpdateTeam" style="display:<%=request.getParameter("id")==null ? "none" : "inline"%>" > --%>
+<%-- 					<input type="submit" name="prodaction" value="DeleteTeam" style="display:<%=request.getParameter("id")==null ? "none" : "inline"%>" > --%>
 				</td>
 <!-- 				檢查id號碼 -->
 				<td>
@@ -67,7 +107,11 @@
 				</td>
 			</tr>
 		</table>
-
+			<div id="buttondiv">
+					<button type="submit" class="checkreadonly" name="prodaction" value="InsertTeam" style="display:<%=request.getParameter("id")==null ? "inline" : "none"%>">新增行程</button>
+					<button type="submit" class="checkreadonly" name="prodaction" value="UpdateTeam" style="display:<%=request.getParameter("id")==null ? "none" : "inline"%>">更改行程</button>
+					<button type="submit" class="checkreadonly" name="prodaction" value="DeleteTeam" style="display:<%=request.getParameter("id")==null ? "none" : "inline"%>">刪除行程</button>
+			</div>
 		</form>
 	</div>
 <script>
