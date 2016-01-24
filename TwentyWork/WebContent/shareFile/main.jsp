@@ -15,9 +15,6 @@
 <script type="text/javascript" src="<%= request.getContextPath() %>/css/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/main/Main.css">	
-<!-- jQuery -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
-<%-- <script src="<%= request.getContextPath() %>/js/login/Main.js"></script> --%>
 
 	
 <style>
@@ -26,7 +23,6 @@
 	padding-right: 30px;
 	padding-top: 5px;
 }
-
 .padding2 {
 	padding-left: 15px;
 	padding-right: 15px;
@@ -43,7 +39,6 @@
 	box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.6), 0 0 200px 1px
  rgba(255, 255, 255, 0.5);
 }
-
 #fancybox-wrap *,
 #fancybox-wrap *:before,
 #fancybox-wrap *:after {
@@ -56,14 +51,21 @@
 }
 .iconShow{
 }
-
 .listBackground{
 	background-color: #DFFFDF;
 }
 .table{
 	text-align: center;
 }
- 
+#logOut{
+	float:right;
+	padding-right:20px;
+	
+}
+.leftBarA {
+    color: white;
+    padding-left:12px;
+}
 </style>
 
 </head>
@@ -72,34 +74,23 @@
 			<section>
 <!-- layout----E1 begin---------------------------------------------------->				
 				<div id="page-top">
+					<h5 id="logOut"><a href="<%=request.getContextPath() %>/logout" >登出</a></h5>
 					<h3>Welcome ${LoginOK.userName}</h3>
 				</div>
 				<div id="page-left">
 					<div id="accordian">
 						<ul>
 							<li>
-								<h3><a href = "<%=request.getContextPath() %>/main/workHome/main.jsp">首頁</a></h3>
+								<h3><a href = "<%=request.getContextPath() %>/main/workHome/main.jsp" class="leftBarA">首頁</a></h3>
 							</li>
 							<li>
 								<h3><span class="icon-dashboard"></span>Dashboard</h3>
-								<ul>
-									<li><a href="#">Reports</a></li>
-									<li><a href="#">Reports</a></li>
-									<li><a href="#">Search</a></li>
-									<li><a href="#">Graphs</a></li>
-									<li><a href="#">Settings</a></li>
-								</ul>
+								<ul></ul>
 							</li>
 							<!-- we will keep this LI open by default -->
 							<li class="active">
 								<h3><span class="icon-tasks"></span>Tasks</h3>
-								<ul>
-									<li><a href="#">Today's tasks</a></li>
-									<li><a href="#">Urgent</a></li>
-									<li><a href="#">Overdues</a></li>
-									<li><a href="#">Recurring</a></li>
-									<li><a href="#">Settings</a></li>
-								</ul>
+								<ul></ul>
 							</li>
 							<li>
 								<h3><span class="icon-calendar"></span>Calendar</h3>
@@ -130,7 +121,7 @@
 								</ul>
 							</li>
 							<li>
-								<h3><a href = "<%=request.getContextPath() %>/ShareFile">檔案分享</a></h3>
+								<h3><a href = "<%=request.getContextPath() %>/ShareFile"  class="leftBarA">檔案分享</a></h3>
 							</li>
 							<li>
 								<h3><span class="icon-close"></span>close</h3>
@@ -148,8 +139,21 @@
 <!---------------- main page code ---------------------------------->
 <div id="page-left">
 <div class = 'mainPageContext'>
+<br>
+<!-- userInfo -->
+<table  class="iconNotDisplay"><tr>
+		<td class='padding2'>Hello</td>
+		<td>userID:</td>
+		<td class='padding2' id="userID">${LoginOK.userID}</td>
+		<td>userName:</td>
+		<td class='padding2'>${LoginOK.userName}</td>
+		<td>teamID:</td>
+		<td class='padding2' id="teamID">${teamBean.teamId}</td>
+		<td>teamName:</td>
+		<td class='padding2' id="teamID">${teamBean.teamName}</td>
+</tr></table>
 
-<hr>
+
 <!-- path -->
 <div   class='padding' id = navPath>
 <c:set var="path" value="<%= request.getContextPath() %>" />
@@ -188,7 +192,7 @@
 <br>
 <!-- file list -->
 <div  id='fileListxxxxxx' class='padding'>
-<table class="table">
+<table id='shareFileMain' class="table">
 	<thead>
 		<tr>
 			<td style="display:none">fileId</td>
@@ -199,6 +203,7 @@
 			<td>上傳人員</td>
 			<td style="display:none">teamId</td>
 			<td style="display:none">teamName</td>
+			<td>分享檔案</td>
 		</tr>
 	</thead>
 	<tbody id = "fileList">
@@ -211,6 +216,12 @@
 					<td><a href ="${requestURI}/${fileList.fileName}"  class='fileName'>${fileList.fileName}</a></td>
 					<td style="display:none">${fileList.fileType}</td>
 					<td>-</td>
+					<td style="display:none">${fileList.userBean.userID}</td>
+					<td>${fileList.userBean.userName}</td>
+					<td style="display:none">${fileList.teamBean.teamId}</td>
+					<td style="display:none">${fileList.teamBean.teamName}</td>
+					<td><input type = "button" value="分享" id= "sharefile_folder${fileList.fileId}" class="iconNotDisplay"> </td>
+					</tr>
 				</c:when>
 			    <c:otherwise>
 			    	<tr id="file${fileList.fileId}">
@@ -221,13 +232,14 @@
 			    	<c:set var="string1" value='${fileList.updateTime}'/>
 					<c:set var="updateTime" value="${fn:substring(string1, 0, 16)}" />
 			    	<td>${updateTime}</td>
+			    	<td style="display:none">${fileList.userBean.userID}</td>
+					<td>${fileList.userBean.userName}</td>
+					<td style="display:none">${fileList.teamBean.teamId}</td>
+					<td style="display:none">${fileList.teamBean.teamName}</td>
+					<td><input type = "button" value="分享" id= "sharefile_file${fileList.fileId}" class="iconNotDisplay"> </td>
+					</tr>
 			    </c:otherwise>
 			</c:choose>
-				<td style="display:none">${fileList.userBean.userID}</td>
-				<td>${fileList.userBean.userName}</td>
-				<td style="display:none">${fileList.teamBean.teamId}</td>
-				<td style="display:none">${fileList.teamBean.teamName}</td>
-			</tr>
 		</c:forEach>
 		</c:if>
 	</tbody>
@@ -258,13 +270,8 @@
 </div>
 </div>
 <!---------------- main page code end---------------------------------->
-
-
-
-<div id="page-bottom">bottom</div>
 			</section>
 		</div>
-
 
 
 
@@ -274,9 +281,10 @@
 		$("#NewFolder").fancybox();
 		$("#renameFile").fancybox();
 		$("#iconMove").fancybox();
-		$('tr[id^="f"]').click(listBackGround);
+		
+		$('table#shareFileMain>tbody>tr[id^="f"]').click(listBackGround);
 			
-	
+		
 	
 		$('#iconDelete').click(deletefile);
 		function deletefile(){
@@ -330,9 +338,21 @@
 			  });//end of $.ajax({ 
 		}); //end of $('#iconRename').click(function(){ 
 		
+		$('input[id^="sharefile_f"]').fancybox({
+            'href' :"<%= request.getContextPath() %>/shareFile/getMember.jsp",
+		});//end of $('input[id^="sharefile_f"]').fancybox({
+		
+		$('table#shareFileMain>tbody>tr>td:nth-child(9)').mouseover(function(){
+			$(this).children().removeClass("iconNotDisplay")
+		});
+		$('table#shareFileMain>tbody>tr>td:nth-child(9)').mouseout(function(){
+			$(this).children().addClass("iconNotDisplay")
+		});
+		
 		});//end of $(function(){
 			
-			
+// --------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------
 			
 			
 	function listBackGround(){
@@ -378,5 +398,9 @@
 		}
 	}; //end of function icondisplay(){
 </script>
+<!-- jQuery -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+<%-- <script src="<%= request.getContextPath() %>/js/login/Main.js"></script> --%>
+
 </body>
 </html>

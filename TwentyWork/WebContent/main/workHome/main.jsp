@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="../../css/main/Main.css">
 <link rel="stylesheet" href="../../css/main/navigation.css">
 <title>main</title>
-
 <script type="text/javascript">
 // $(document).ready(function(){
 // 	var teamcalcheck =$("#teamleadercheck").val();
