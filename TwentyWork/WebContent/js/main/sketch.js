@@ -11,7 +11,7 @@ websokcet.onmessage = function processMessage(sketchMessage) {
 function initializeCanvas() {
 	var sketchCanvas = document.getElementById('sketchCanvas');
 	var context =sketchCanvas.getContext('2d');
-	sketchCanvas.style.border = "solid";
+//	sketchCanvas.style.border = "solid";
 	context.canvas.addEventListener('mousemove', function(event){
 		var positionX = event.clientX - context.canvas.offsetLeft;
 		var positionY = event.clientY - context.canvas.offsetTop;

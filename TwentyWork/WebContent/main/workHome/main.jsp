@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../css/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="../../css/main/Main.css">
+<link rel="stylesheet" href="../../css/main/navigation.css">
 <title>main</title>
 
 <script type="text/javascript">
@@ -98,7 +99,6 @@
 							<ul id ="chat-messages"></ul>
 							<textarea id="messagesTextArea" readonly="readonly" rows="10" cols="45"></textarea>
 							
-	<!-- 						 -->
 						</div>
 					</div>
 					<canvas  id="sketchCanvas" width ="500" height="480"></canvas><br>
@@ -107,12 +107,29 @@
 					<div id="chat-box">
 						<form id="message-form" action ="#" method="post">
 							<input type="textarea" id="chat-text" placeholder="strat chat" required/>
-							<button type="submit" >Send Message</button>
-							<input type="button" value="Erase" onclick ="toggleState(this)">
-							<input id ="colorChooser" type ="color" onchange="chooseColor(colorChooser.value)"/><br>
-<!-- 							<input type="button" value="test" id="toabc"/> -->
+							<button type="submit" style="display:none">Send Message</button>
+<!-- 							<input type="button" value="Erase" onclick ="toggleState(this)"> -->
+<!-- 							<input id ="colorChooser" type ="color" onchange="chooseColor(colorChooser.value)"/><br> -->
 						</form>
 					</div>
+<!-- layout----navigation---------------------------------------------------->		
+							<div id="nav-wrap">
+									<p id="welcome">U need to ?</p>
+									<button id="toggle-nav">NAV</button>
+									<p id="tagline">
+										Select<br>Experience
+									</p>
+									<ul id="circle-nav">
+										<li ><a href="#" value="Erase" onclick ="toggleState(this)">Erase</a></li>
+										<li><a href="#"></a></li>
+										<li><a href="#"></a></li>
+										<li><a href="#">Proposals</a></li>
+										<li><a href="#"><input id ="colorChooser" type ="color" onchange="chooseColor(colorChooser.value)"/></a></li>
+									</ul>
+								</div>
+<!-- layout----navigation---------------------------------------------------->		
+							
+					
 				</div>
 			</section>
 		</div>	
@@ -123,7 +140,7 @@
 
 <script src="../../js/login/Main.js"></script>
 <script src="../../js/main/sketch.js"></script>
-<!-- <script src="../../js/main/Websocket.js"></script> -->
+<script src="../../js/main/navigation.js"></script>
 <script src="../../js/calendar/CheckTeamLeader.js"></script>
 
 	</body>
