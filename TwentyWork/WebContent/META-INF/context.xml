@@ -2,7 +2,7 @@
 <Context>
 	<Resource name="jdbc/xxx" auth="Container" type="javax.sql.DataSource"
                maxTotal="100" maxIdle="30" maxWaitMillis="10000"
-               username="starbooksuser@rjmm13b7xj" password="TwentyWork20"
+               username="twentyworkuser" password="1qaz0p;/"
                driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-               url="jdbc:sqlserver://rjmm13b7xj.database.windows.net:1433;database=TwentyWork"/>
+               url="jdbc:sqlserver://twentywork.database.windows.net;database=TwentyWork"/>
 </Context>

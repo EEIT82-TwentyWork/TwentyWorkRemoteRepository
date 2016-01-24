@@ -306,6 +306,7 @@ public class ShareFileService
 	}
 	
 	
+	
 	public void insertNotify(List<String> usersId,UsersBean sendPerson,TeamBean team,int fileId){
 		for(int i=0;i<usersId.size();i++){
 		Notify bean = new Notify();
@@ -314,17 +315,23 @@ public class ShareFileService
 		bean.setFile(selectByFileId(fileId));
 		bean.setShareTime(new Date());
 		bean.setReadState("no");
-		
-			System.out.println("++++i="+i);
+//			System.out.println("++++i="+i);
 			bean.setUsers(notifyDAO.selectByUserId(usersId.get(i)));
 			String pk = notifyDAO.insert(bean);
-			System.out.println(pk);
+//			System.out.println(pk);
 		}
-		
-		
-		
 	}
 	
+	public List<Notify> getShareFileRecord(String pk){
+		List<Notify> list =notifyDAO.selectNotifyByUserId(pk);
+		Collections.sort (list , new Comparator< Notify >(){
+            public int compare( Notify o1, Notify o2 ) {
+                int compareByFileType =- o1.getShareTime().compareTo(o2.getShareTime());
+                    return compareByFileType;
+          }
+        });
+		return list;
+	}
 	
 	public static void main(String[] args)
     {

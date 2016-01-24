@@ -28,6 +28,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.iii.twentywork.model.bean.CheckPathInfoBean;
 import com.iii.twentywork.model.bean.FileTreeBean;
+import com.iii.twentywork.model.bean.Notify;
 import com.iii.twentywork.model.bean.ShareFileBean;
 import com.iii.twentywork.model.bean.TeamBean;
 import com.iii.twentywork.model.bean.UsersBean;
@@ -174,9 +175,9 @@ public class ShareFileServlet extends HttpServlet {
             int fileId = Integer.parseInt(fileID.substring(4));
         	ShareFileBean bean = shareFileService.selectByFileId(fileId);
         	String fileName = bean.getFileName();
-        	System.out.println(bean);
-        	System.out.println(fileName);
-        	        	
+//        	System.out.println(bean);
+//        	System.out.println(fileName);
+//        	        	
     	    PrintWriter out = response.getWriter();
     	    response.setContentType("APPLICATION/OCTET-STREAM");
     	    fileName = new String(fileName.getBytes(), "ISO8859-1");
@@ -192,9 +193,8 @@ public class ShareFileServlet extends HttpServlet {
 	    	request.setCharacterEncoding("UTF-8");
 	    	int fileId = Integer.parseInt(request.getParameter("fileId"));
 	    	String fileName = request.getParameter("fileName");
-	    	
-	    	System.out.println(fileId);
-	    	System.out.println(fileName);
+//	    	System.out.println(fileId);
+//	    	System.out.println(fileName);
 	    	shareFileService.renameFile(fileId,fileName);
 	    }else if (pathInfo.equals("/getFolderTree") && servletPath.equals("/ShareFileServlet") )
 	    {//getFolderTree
@@ -255,12 +255,17 @@ public class ShareFileServlet extends HttpServlet {
 //	    			System.out.println("++++++++++"+userIdList.get(i));
 //	    		}
 	    		shareFileService.insertNotify(userIdList,usersBean,teamBean,fileID);
+	    		return;
 	    	}else{
 	    		System.out.println("here is ShareFileServlet  getMember--no userIdArray input");
 	    		return;
 	    	}
-	    	
-	    	
+	    }else if(pathInfo.equals("/shareRecord") && servletPath.equals("/ShareFileServlet")){
+	    	System.out.println("here is ShareFileServlet  shareRecord");
+	    	List<Notify> list = shareFileService.getShareFileRecord(usersBean.getUserID());
+	    	request.setAttribute("shareFileRecordList", list);
+	    	request.getRequestDispatcher("/shareFile/shareFileRecord.jsp").forward(request, response);
+            return;
 	    }
 	    else{
 	    	System.out.println("What the Hall");
