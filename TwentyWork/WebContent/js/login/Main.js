@@ -62,7 +62,7 @@ $(document).ready(function(){
 	  };
 //------------open-------------------------------------
 	  socket.onopen = function(event) {
-	    socketStatus.innerHTML = 'Connected to: ws://echo.websocket.org';
+		socketStatus.innerHTML = "<img src='../../images/index/tool1352.png'>"
 	    socketStatus.className = 'open';
 		  };
 //------------message-------------------------------------
@@ -80,7 +80,7 @@ $(document).ready(function(){
 		}
 	  
 	  socket.onclose = function(event) {
-	    socketStatus.innerHTML = 'Disconnected from WebSocket.';
+		 socketStatus.innerHTML = "<img src='../../images/index/chain23.png'>"
 	    socketStatus.className = 'closed';
 	  };
 	  form.onsubmit = function(e) {
