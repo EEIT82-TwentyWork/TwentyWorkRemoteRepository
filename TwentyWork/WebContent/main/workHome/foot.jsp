@@ -2,7 +2,7 @@
 			</div>
 </div>	
 				
-				<div id="page-bottom">bottom</div>
+			
 			</section>
 		</div>	
 <!-- jQuery -->

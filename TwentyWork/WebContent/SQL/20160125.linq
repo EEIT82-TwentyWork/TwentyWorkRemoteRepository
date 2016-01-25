@@ -1,12 +1,12 @@
 <Query Kind="SQL">
   <Connection>
-    <ID>da7e50f7-1cf7-4e53-85c3-84626b3b01bc</ID>
+    <ID>811174b9-ee17-4fd6-a68a-2c3db9782a3e</ID>
     <Persist>true</Persist>
-    <Server>twentywork.database.windows.net</Server>
+    <Server>rjmm13b7xj.database.windows.net</Server>
     <SqlSecurity>true</SqlSecurity>
-    <Database>twentywork</Database>
-    <UserName>twentyworkuser</UserName>
-    <Password>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA4yrylCWV90Ssw9BHCr8T0AAAAAACAAAAAAAQZgAAAAEAACAAAAC4pdVy01CdQ9Jd34pk4OXfQAQboGIAgVwzpB0M+r6uEQAAAAAOgAAAAAIAACAAAAAzq2pSmM4P2pb/54lbUDNAOcAIHDlzIZUm1G+Is6x+rBAAAACSM/3wGxyk90JmxNLMvXeYQAAAACLhomKhkd69PoBtlrNUOoBrgcZztihvQ7NwFy+WFlybLSiUyNpFzfhKY3aivDHjBnbZ1cbUq4KVtpMCXJms/Go=</Password>
+    <Database>TwentyWork</Database>
+    <UserName>starbooksuser@rjmm13b7xj</UserName>
+    <Password>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAeFE78T7uAECEvU6TGEvmuAAAAAACAAAAAAAQZgAAAAEAACAAAACaja/1h0oXmFnwumjafZIaX6hyuAqHXnoQYRGxIFUuFgAAAAAOgAAAAAIAACAAAABK8Q5unRv1UuOVL4PceQd/Zg2GDXc+QWWP2NxInBi/gxAAAAAlAqOCUtN4FcDPxekE6CmDQAAAAGokhrtAEcXEnznazq8RXrgLcfX8u7d8NRNbvJ5enmCyHZgFL7QKSWvTeKmdG+JvQjQ2//fdyANKDDV/APEC6ck=</Password>
     <DbVersion>Azure</DbVersion>
   </Connection>
 </Query>
@@ -16,6 +16,7 @@ drop table Msg
 drop table GroupUser
 drop table Groups
 drop table Images
+drop table Notify
 drop table ShareFile
 
 drop table TeamSchedule
@@ -24,12 +25,13 @@ drop table Participant
 drop table MySchedule
 drop table Board
 drop table BoardClass
-drop table fakeTeamUser
 
 drop table TeamUser
 drop table Users
 drop table Team
 
+DROP PROCEDURE [dbo].[gen_folder_tree]
+DROP PROCEDURE [dbo].[find_delete_files]
 
 create table Users
 (   userID varchar(32) NOT NULL PRIMARY KEY  default replace(NEWID(),'-',''),
@@ -191,19 +193,10 @@ CREATE TABLE ShareFile(
     CONSTRAINT FK_ShareFile_userId          foreign key (userId)        references Users(userID) ,
     CONSTRAINT FK_ShareFile_teamId          foreign key (teamId)        references Team(teamID),
 )
-CREATE TABLE fakeTeamUser(
-	userId		varchar(32), 
-	teamId		varchar(32), 
-	activeDate	date			,
-	rights		varchar(5) not null,
-	CONSTRAINT FK_fakeTeamUser_userId  foreign key (userId) references Users(userID) ,
-	CONSTRAINT FK_fakeTeamUser_teamId  foreign key (teamId) references Team (teamId) ,
-	CONSTRAINT PK_fakeTeamUser PRIMARY KEY (userId,teamId)
-);
-
-
 go
-/*
+INSERT INTO ShareFile VALUES ( 'WebApp根目錄' , '資料夾' ,null ,null,null,null, null);--900
+go
+
 create procedure gen_folder_tree ( @v_teamId  varchar(32) )
   AS
   BEGIN
@@ -250,7 +243,33 @@ create procedure gen_folder_tree ( @v_teamId  varchar(32) )
     )
  END;
  GO
-*/
+
+create table Notify
+(
+	notifyID varchar(32) NOT NULL PRIMARY KEY  default replace(NEWID(),'-',''),
+	teamID varchar(32) references Team  (teamID),
+    userID varchar(32) references Users (userID),
+	sendUserID varchar(32) references Users (userID),
+    fileId int references ShareFile(fileId),
+	shareTime datetime not null,
+	comment varchar(max) ,
+	readState  varchar(5),
+    
+)
+GO
+ /*
+ drop table fakeTeamUser
+ 
+ CREATE TABLE fakeTeamUser(
+	userId		varchar(32), 
+	teamId		varchar(32), 
+	activeDate	date			,
+	rights		varchar(5) not null,
+	CONSTRAINT FK_fakeTeamUser_userId  foreign key (userId) references Users(userID) ,
+	CONSTRAINT FK_fakeTeamUser_teamId  foreign key (teamId) references Team (teamId) ,
+	CONSTRAINT PK_fakeTeamUser PRIMARY KEY (userId,teamId)
+);
+ 
  
   declare @teamId1 varchar(32) 
   set @teamId1=replace(NEWID(),'-','')
@@ -356,61 +375,7 @@ select * from Users
 select * from Board
 select * from Sub
 
-/*
-  
---create TeamSchedule  data--
 
-insert into TeamSchedule  values ( 'TeamEvent101', '2016-01-14 01:01:01.000', '2016-01-14 02:02:02.111', null , null , null , '100' , '200' );
-insert into TeamSchedule  values ( 'TeamEvent202', '2016-01-15 02:02:02.111', '2016-01-15 03:03:03.222', null , null , null , '101' , '200' );
-insert into TeamSchedule  values ( 'TeamEvent103', '2016-01-16 03:03:03.000', '2016-01-16 04:04:04.111', null , null , null , '100' , '202' );
-insert into TeamSchedule  values ( 'TeamEvent204', '2016-01-17 04:04:04.111', '2016-01-17 05:05:05.222', null , null , null , '101' , '202' );
-insert into TeamSchedule  values ( 'TeamEvent105', '2016-01-18 05:05:05.000', '2016-01-18 06:06:06.111', null , null , null , '100' , '200' );
-insert into TeamSchedule  values ( 'TeamEvent206', '2016-01-19 06:06:06.111', '2016-01-19 07:07:07.222', null , null , null , '101' , '200' );
-insert into TeamSchedule  values ( 'TeamEvent107', '2016-01-20 07:07:07.000', '2016-01-20 08:08:08.111', null , null , null , '100' , '201' );
-insert into TeamSchedule  values ( 'TeamEvent208', '2016-01-21 08:08:08.111', '2016-01-21 09:09:09.222', null , null , null , '101' , '202' );
-insert into TeamSchedule  values ( 'TeamEvent309', '2016-01-22 09:09:09.222', '2016-01-22 10:10:10.333', null , null , null , '102' , '200' );
-insert into TeamSchedule  values ( 'TeamEvent310', '2016-01-23 10:10:10.222', '2016-01-23 11:11:11.333', null , null , null , '102' , '202' );
-go
-
-
---create MySchedule data--
-insert into MySchedule values ( 'MyEvent101', '2016-01-04 01:01:01.000', '2016-01-04 02:02:02.111', null , null , null , '100');
-insert into MySchedule values ( 'MyEvent202', '2016-01-05 02:02:02.111', '2016-01-05 03:03:03.222', null , null , null , '101');
-insert into MySchedule values ( 'MyEvent103', '2016-01-06 03:03:03.000', '2016-01-06 04:04:04.111', null , null , null , '100');
-insert into MySchedule values ( 'MyEvent204', '2016-01-07 04:04:04.111', '2016-01-07 05:05:05.222', null , null , null , '101');
-insert into MySchedule values ( 'MyEvent105', '2016-01-08 05:05:05.000', '2016-01-08 06:06:06.111', null , null , null , '100');
-insert into MySchedule values ( 'MyEvent206', '2016-01-09 06:06:06.111', '2016-01-09 07:07:07.222', null , null , null , '101');
-insert into MySchedule values ( 'MyEvent107', '2016-01-10 07:07:07.000', '2016-01-10 08:08:08.111', null , null , null , '100');
-insert into MySchedule values ( 'MyEvent208', '2016-01-11 08:08:08.111', '2016-01-11 09:09:09.222', null , null , null , '101');
-insert into MySchedule values ( 'MyEvent309', '2016-01-12 09:09:09.222', '2016-01-12 10:10:10.333', null , null , null , '102');
-insert into MySchedule values ( 'MyEvent310', '2016-01-13 10:10:10.222', '2016-01-13 11:11:11.333', null , null , null , '102');
-go
-
-
---create Participant data--
-insert into Participant values ( '700', '100' );
-insert into Participant values ( '700', '101' );
-insert into Participant values ( '700', '102' );
-
-insert into Participant values ( '701', '101' );
-
-insert into Participant values ( '702', '100' );
-insert into Participant values ( '702', '102' );
-
-insert into Participant values ( '703', '101' );
-insert into Participant values ( '704', '100' );
-insert into Participant values ( '705', '101' );
-insert into Participant values ( '706', '100' );
-insert into Participant values ( '707', '101' );
-
-insert into Participant values ( '708', '102' );
-insert into Participant values ( '708', '100' );
-
-insert into Participant values ( '709', '102' );
-insert into Participant values ( '709', '101' );
-go
-
- 
   
  create procedure find_file_by_fileName ( @v_fileId  int,@v_queryString nvarchar(50))
   AS
