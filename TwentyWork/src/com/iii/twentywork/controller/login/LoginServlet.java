@@ -47,6 +47,8 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String rm = request.getParameter("rememberMe");
 		String requestURI = (String) session.getAttribute("requestURI");
+		System.out.println("teamName:"+teamName+",email:"+email+",password"+password);
+		
 		// 驗證資料
 		Map<String, String> errors = new HashMap<String, String>();
 		request.setAttribute("errors", errors);
@@ -74,16 +76,20 @@ public class LoginServlet extends HttpServlet {
 		System.out.println("回傳"+userinfo);
 		// 根據Model執行結果，呼叫View
 		if (userinfo == null) {
+			System.out.println("登入失敗");
 			errors.put("password", "登入失敗，請再試一次");
 			request.getRequestDispatcher("/login/login.jsp").forward(request, response);
 			return;
 		} else {
+			System.out.println("登入成功");
 			session.setAttribute("LoginOK", userinfo);
 			Set<TeamBean> temp = userinfo.getTeams();
 			TeamBean teambean =null;
 			for(TeamBean e:temp) {
 			    if(e.getTeamName().equals(teamName)) {
 			        teambean=e;
+			        System.out.println("++++++++++++teambean"+teambean);
+			        
 			        break;
 			    }
 			}

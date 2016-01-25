@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016/1/10 ?U?? 06:05:35 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.iii.twentywork.model.bean.Board" table="Board" schema="dbo" catalog="TwentyWork" optimistic-lock="version">
+        <id name="boardId" type="string">
+            <column name="boardID" length="32"/>
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="boardClass" class="com.iii.twentywork.model.bean.BoardClass" fetch="select">
+            <column name="boardClassID" length="32" />
+        </many-to-one>
+        <many-to-one name="team" class="com.iii.twentywork.model.bean.TeamBean" fetch="select">
+            <column name="teamID" length="32" />
+        </many-to-one>
+        <many-to-one name="users" class="com.iii.twentywork.model.bean.UsersBean" fetch="select">
+            <column name="userID" length="32" />
+        </many-to-one>
+        <property name="boardTitle" type="string">
+            <column name="boardTitle" length="50" not-null="true" />
+        </property>
+        <property name="boardText" type="string">
+            <column name="boardText" />
+        </property>
+        <property name="boardTime" type="timestamp">
+            <column name="boardTime" length="23" not-null="true" />
+        </property>
+        <set name="userses" table="MyFav" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="boardID" length="32" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.iii.twentywork.model.bean.UsersBean">
+                <column name="userID" length="32" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="subs" table="Sub" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="boardID" length="32" />
+            </key>
+            <one-to-many class="com.iii.twentywork.model.bean.Sub" />
+        </set>
+    </class>
+</hibernate-mapping>

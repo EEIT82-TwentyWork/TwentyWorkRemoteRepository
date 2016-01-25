@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/main/Main.css">	
 
+
 	
 <style>
 .padding {
@@ -138,6 +139,10 @@
 								<h3><span class="icon-chat"></span>Chat List</h3>
 								<ul id="chatName">
 								</ul>
+							</li>
+							<li id="myFavLeftList">
+								<h3><a href = "<%=request.getContextPath() %>/Board">討論版</a></h3>
+								<ul></ul>
 							</li>
 							<li>
 								<h3><a href = "<%=request.getContextPath() %>/ShareFile">檔案分享</a></h3>
@@ -414,6 +419,7 @@
 		}
 	}; //end of function icondisplay(){
 </script>
+
 <!-- jQuery -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
 <%-- <script src="<%= request.getContextPath() %>/js/login/Main.js"></script> --%>

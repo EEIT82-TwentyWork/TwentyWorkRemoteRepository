@@ -24,11 +24,16 @@ public class LoginAbstractService extends AbstractLoginDAOHibernate {
 				String DBTeamName = teamInfo.getTeamName();
 				if (Arrays.equals(pass, temp) && teamName.equals(DBTeamName)) {
 					System.out.println("比對密碼中");
+					System.out.println("回傳的UserINFO"+usersInfo);
 					return usersInfo;
+				}else{
+					return null;
 				}
-				System.out.println("回傳的UserINFO"+usersInfo);
+			}else{
+				return null;
 			}
+		}else{
+			return null;
 		}
-		return null;
 	}
 }

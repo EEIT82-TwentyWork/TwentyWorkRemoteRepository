@@ -205,12 +205,12 @@ public class ShareFileDAOHibernate implements ShareFileDAO
         
       //testing#4 List<FileTreeBean> getGroupFolderTree(int teamId)
 //        System.out.println("testing#4");
-        ShareFileDAO dao = (ShareFileDAO) context.getBean("shareFileDAO");
-        String teamId = "40289fee526ddeb501526ddfc71f0001";
-        List<FileTreeBean> fileList =  dao.getGroupFolderTree(teamId);
-        for(Iterator<FileTreeBean> item = fileList.iterator();item.hasNext(); ) {
-          System.out.println(item.next());
-        }
+//        ShareFileDAO dao = (ShareFileDAO) context.getBean("shareFileDAO");
+//        String teamId = "F617582D839E4CC2B0B50DB977DEFF59";
+//        List<FileTreeBean> fileList =  dao.getGroupFolderTree(teamId);
+//        for(Iterator<FileTreeBean> item = fileList.iterator();item.hasNext(); ) {
+//          System.out.println(item.next());
+//        }
         
         
         //testing#5 List<FileTreeBean> findFileByFileName(String queryString,int upperFolderId)

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016/1/22 ?W?? 01:44:34 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.iii.twentywork.model.bean.MyFav" table="MyFav" schema="dbo" catalog="twentywork" optimistic-lock="version">
+        <composite-id name="id" class="com.iii.twentywork.model.bean.MyFavId">
+            <key-property name="userId" type="string">
+                <column name="userID" length="32" />
+            </key-property>
+            <key-property name="boardId" type="string">
+                <column name="boardID" length="32" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="board" class="com.iii.twentywork.model.bean.Board" update="false" insert="false" fetch="select">
+            <column name="boardID" length="32" not-null="true" />
+        </many-to-one>
+        <many-to-one name="team" class="com.iii.twentywork.model.bean.TeamBean" fetch="select">
+            <column name="teamID" length="32" />
+        </many-to-one>
+        <many-to-one name="users" class="com.iii.twentywork.model.bean.UsersBean" update="false" insert="false" fetch="select">
+            <column name="userID" length="32" not-null="true" />
+        </many-to-one>
+        <property name="activeTime" type="timestamp">
+            <column name="activeTime" length="23" not-null="true" />
+        </property>
+        <property name="favTitle" type="string">
+            <column name="favTitle" length="50" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

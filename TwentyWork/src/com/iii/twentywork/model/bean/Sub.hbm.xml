@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016/1/10 ?U?? 06:05:35 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.iii.twentywork.model.bean.Sub" table="Sub" schema="dbo" catalog="TwentyWork" optimistic-lock="version">
+        <id name="subId" type="string">
+            <column name="subID" length="32" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="board" class="com.iii.twentywork.model.bean.Board" fetch="select">
+            <column name="boardID" length="32" />
+        </many-to-one>
+        <many-to-one name="users" class="com.iii.twentywork.model.bean.UsersBean" fetch="select">
+            <column name="userID" length="32" />
+        </many-to-one>
+        <property name="subTime" type="timestamp">
+            <column name="subTime" length="23" not-null="true" />
+        </property>
+        <property name="subText" type="string">
+            <column name="subText" />
+        </property>
+    </class>
+</hibernate-mapping>
