@@ -124,16 +124,16 @@ public class RegisterServlet extends HttpServlet {
 				errors.put("action", "Insert fail");
 			}
 			
-			Set<TeamBean> temp = userResult.getTeams();
-			System.out.println(temp);
-			TeamBean teambean2shareFile =null;
-			for(TeamBean e:temp) {
-			    if(e.getTeamName().equals(teamName)) {
-			    	teambean2shareFile=e;
-			        break;
-			    }
-			}
-			shareFileService.insertGroupRootFolder(teambean2shareFile);
+//			Set<TeamBean> temp = userResult.getTeams();
+//			System.out.println(temp);
+//			TeamBean teambean2shareFile =null;
+//			for(TeamBean e:temp) {
+//			    if(e.getTeamName().equals(teamName)) {
+//			    	teambean2shareFile=e;
+//			        break;
+//			    }
+//			}
+//			shareFileService.insertGroupRootFolder(teambean2shareFile);
 			session.setAttribute("UserInfo", userBean);
 			String path = request.getContextPath();
 			response.sendRedirect(path + "/login/invite.jsp");

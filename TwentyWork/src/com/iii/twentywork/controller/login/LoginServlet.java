@@ -70,10 +70,7 @@ public class LoginServlet extends HttpServlet {
 		// 呼叫Model
 		System.out.println("呼叫Service");
 		UsersBean userinfo = loginAbstractService.loginUserInfoCheck(teamName, email, password);
-		String userName=userinfo.getUserName();
-
-		String userPhone = userinfo.getPhone();
-		System.out.println("回傳"+userinfo);
+		
 		// 根據Model執行結果，呼叫View
 		if (userinfo == null) {
 			System.out.println("登入失敗");
@@ -81,6 +78,9 @@ public class LoginServlet extends HttpServlet {
 			request.getRequestDispatcher("/login/login.jsp").forward(request, response);
 			return;
 		} else {
+			String userName=userinfo.getUserName();
+			String userPhone = userinfo.getPhone();
+			System.out.println("回傳"+userinfo);
 			System.out.println("登入成功");
 			session.setAttribute("LoginOK", userinfo);
 			Set<TeamBean> temp = userinfo.getTeams();
@@ -89,7 +89,6 @@ public class LoginServlet extends HttpServlet {
 			    if(e.getTeamName().equals(teamName)) {
 			        teambean=e;
 			        System.out.println("++++++++++++teambean"+teambean);
-			        
 			        break;
 			    }
 			}
