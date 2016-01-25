@@ -94,6 +94,9 @@ public class LoginServlet extends HttpServlet {
 			    }
 			}
 			session.setAttribute("teamBean", teambean);
+			session.setAttribute("UserInfo", userinfo);
+			session.setAttribute("userName", userName);
+			session.setAttribute("userPhone", userPhone);
 		}
 		// 依照 Business Logic 運算結果來挑選適當的畫面
 		if (requestURI != null && requestURI.length() != 0) {
@@ -103,12 +106,6 @@ public class LoginServlet extends HttpServlet {
 			return;
 		} else {
 			String path = request.getContextPath();
-
-
-			session.setAttribute("UserInfo", userinfo);
-			session.setAttribute("userName", userName);
-			
-			session.setAttribute("userPhone", userPhone);
 			response.sendRedirect(path + "/main/workHome/main.jsp");
 			return;
 		}

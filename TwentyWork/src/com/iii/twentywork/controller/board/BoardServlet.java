@@ -59,7 +59,7 @@ public class BoardServlet extends HttpServlet {
 		    	request.getRequestDispatcher("/board/main.jsp").forward(request, response);
 		    }else if(pathInfo.equals("/insert") &&servletPath.equals("/BoardServlet")) 
 		    {//insert board 新增討論版項目
-		        System.out.println("here is /BoardServlet/insert");
+//		        System.out.println("here is /BoardServlet/insert");
 		        String boardTitle = request.getParameter("boardTitle");
 		        String boardText = request.getParameter("boardText");
 		        
@@ -105,7 +105,7 @@ public class BoardServlet extends HttpServlet {
 	            response.setContentType("text/html; charset=UTF-8");
 	            PrintWriter out = response.getWriter();
 	            out.println(jsonString);
-	            System.out.println("getMyFav:"+jsonString);   
+//	            System.out.println("getMyFav:"+jsonString);   
 		    }else if(pathInfo.equals("/addMyFav") &&servletPath.equals("/BoardServlet"))
 		    {//新增關注的討論版
 		    	String boardId = request.getParameter("boardId");
@@ -113,7 +113,7 @@ public class BoardServlet extends HttpServlet {
 		    	response.setContentType("text/html; charset=UTF-8");
 	            PrintWriter out = response.getWriter();
 	            out.println(jsonString);
-	            System.out.println("addMyFav:"+jsonString);  
+//	            System.out.println("addMyFav:"+jsonString);  
 		    }else if(pathInfo.equals("/deleteMyFav") &&servletPath.equals("/BoardServlet"))
 		    {//刪除關注的討論版
 		    	String boardId = request.getParameter("boardId");
@@ -121,7 +121,7 @@ public class BoardServlet extends HttpServlet {
 		    	response.setContentType("text/html; charset=UTF-8");
 	            PrintWriter out = response.getWriter();
 	            out.println(jsonString);
-	            System.out.println("deleteMyFav:"+jsonString); 
+//	            System.out.println("deleteMyFav:"+jsonString); 
 		    }
 		    else{
 		    	System.out.println("wrong path");

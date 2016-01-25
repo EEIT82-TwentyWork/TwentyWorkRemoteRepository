@@ -51,14 +51,15 @@
 				
 				
 			</div>
-<!-- layout----E1 begin---------------------------------------------------->			
-				<div id="E1E2body">
+<!-- layout----E1 begin---------------------------------------------------->				
 				<div id="page-left">
 					<div id="accordian">
 						<ul>
+
 							<li>
 								<h3><a href = "<%=request.getContextPath() %>/main/workHome/main.jsp">首頁</a></h3>
 							</li>
+
 							<li>
 								<h3><span class="icon-dashboard"></span>Dashboard</h3>
 								<ul>
@@ -72,28 +73,14 @@
 							<!-- we will keep this LI open by default -->
 							<li class="active">
 								<h3><span class="icon-tasks"></span>Tasks</h3>
-								<ul>
-									<li><a href="#">Today's tasks</a></li>
-									<li><a href="#">Urgent</a></li>
-									<li><a href="#">Overdues</a></li>
-									<li><a href="#">Recurring</a></li>
-									<li><a href="#">Settings</a></li>
-								</ul>
+								<ul></ul>
 							</li>
-							<li>
-								<h3><span class="icon-calendar"></span>Calendar</h3>
-								<ul>
-									<li><a href="#">Current Month</a></li>
-									<li><a href="#">Current Week</a></li>
-									<li><a href="#">Previous Month</a></li>
-									<li><a href="#">Previous Week</a></li>
-									<li><a href="#">Next Month</a></li>
-									<li><a href="#">Next Week</a></li>
-									<li><a href="#">Team Calendar</a></li>
-									<li><a href="#">Private Calendar</a></li>
-									<li><a href="#">Settings</a></li>
-								</ul>
-							</li>
+							<li> 
+						       	 <h3 id="calendarh3id" ><span class="icon-calendar"></span>Calendar</h3> 
+						       	 <ul id="calendarulid"> 
+						         <li><a href="../calendar/cal_opt.jsp">個人行事曆</a></li> 
+					        </ul> 
+					       </li>
 							<li>
 								<h3><span class="icon-heart"></span>Favourites</h3>
 								<ul>
