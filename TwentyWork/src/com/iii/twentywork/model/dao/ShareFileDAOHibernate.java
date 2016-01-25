@@ -115,6 +115,15 @@ public class ShareFileDAOHibernate implements ShareFileDAO
         return newFolderBean;
     }
     
+    private static final String SELECT_BY_TEAMID = "select * from ShareFile where teamId=? and upperFolderId=900";
+    @Override
+    public ShareFileBean getGroupRootBean(String teamId) {
+        SQLQuery query = getSession().createSQLQuery(SELECT_BY_TEAMID);
+        query.setParameter(0, teamId);
+        query.addEntity(ShareFileBean.class);
+        return (ShareFileBean) query.list().get(0);
+    }
+    
     public static void main(String[] args)
     {
         // TODO Auto-generated method stub
@@ -220,14 +229,7 @@ public class ShareFileDAOHibernate implements ShareFileDAO
 //      System.out.println(dao.deleteFile(916, false));
         sessionFactory.getCurrentSession().getTransaction().commit();
     }
-    private static final String SELECT_BY_TEAMID = "select * from ShareFile where teamId=? and upperFolderId=900";
-    @Override
-    public ShareFileBean getGroupRootBean(int teamId) {
-        SQLQuery query = getSession().createSQLQuery(SELECT_BY_TEAMID);
-        query.setParameter(0, teamId);
-        query.addEntity(ShareFileBean.class);
-        return (ShareFileBean) query.list();
-    }
+    
     
     
     //create procedure find_file_by_fileName ( @v_fileId  int,@v_queryString nvarchar(50))

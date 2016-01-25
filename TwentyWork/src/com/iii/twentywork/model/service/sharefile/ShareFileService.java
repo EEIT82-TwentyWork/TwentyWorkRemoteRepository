@@ -306,6 +306,7 @@ public class ShareFileService
 	}
 	
 	
+	
 	public void insertNotify(List<String> usersId,UsersBean sendPerson,TeamBean team,int fileId){
 		for(int i=0;i<usersId.size();i++){
 		Notify bean = new Notify();
@@ -314,15 +315,67 @@ public class ShareFileService
 		bean.setFile(selectByFileId(fileId));
 		bean.setShareTime(new Date());
 		bean.setReadState("no");
-		
-			System.out.println("++++i="+i);
+//			System.out.println("++++i="+i);
 			bean.setUsers(notifyDAO.selectByUserId(usersId.get(i)));
 			String pk = notifyDAO.insert(bean);
-			System.out.println(pk);
+//			System.out.println(pk);
 		}
-		
-		
-		
+	}
+	
+	public List<Notify> getShareFileRecord(String pk){
+		List<Notify> list =notifyDAO.selectNotifyByUserId(pk);
+		Collections.sort (list , new Comparator< Notify >(){
+            public int compare( Notify o1, Notify o2 ) {
+                int compareByFileType =- o1.getShareTime().compareTo(o2.getShareTime());
+                    return compareByFileType;
+          }
+        });
+		return list;
+	}
+	
+	public ShareFileBean getGroupRootFolder(String teamId) {
+        return shareFileDAO.getGroupRootBean(teamId);
+    }
+	
+	/**
+	 * inputList內容格式:folder954、file919
+	 */
+	public Map<String,String> getHref(List<String> inputList){
+		int groupRootFolder =0;
+		Map<String, String> map = new HashMap<String, String>();
+		for (int i = 0; i < inputList.size(); i++) {
+			String fileId_String = inputList.get(i);
+			int fileId = fileIdConver2Int(fileId_String);
+			ShareFileBean bean = shareFileDAO.selectByFileId(fileId);
+			if(i==0){
+				groupRootFolder = getGroupRootFolder(bean.getTeamBean().getTeamId()).getFileId();
+			}
+			
+			String ahref="" ;
+//			System.out.println("i="+i+"-----"+fileId+"----------------");
+			if(!bean.getFileType().equals("資料夾")){
+//				System.out.println("不是資料夾");
+				bean=bean.getUpperFolder();
+			}
+			
+			while(bean.getFileId()!=groupRootFolder){
+				if(ahref.length()==0){
+					ahref=(bean.getFileName());
+				}else{
+					ahref=(bean.getFileName())+"/"+ahref;
+				}
+				
+				bean=bean.getUpperFolder();
+			}
+			ahref="/"+ahref;
+//			System.out.println(ahref);
+			map.put(fileId_String, ahref);
+		}
+//		System.out.println(groupRootFolder);
+		return map;
+	}
+	public Notify updateReadState(String notifyId){
+		return notifyDAO.updateReadState(notifyId);
 	}
 	
 	
@@ -377,9 +430,7 @@ public class ShareFileService
     }
     
     
-    public ShareFileBean getGroupRootFolder(int teamId) {
-        return shareFileDAO.getGroupRootBean(teamId);
-    }
+    
     
     
 

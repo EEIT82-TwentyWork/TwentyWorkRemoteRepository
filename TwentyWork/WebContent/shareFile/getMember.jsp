@@ -85,7 +85,6 @@ $(function(){
 		 });//取得選取的id	
 		 console.log(session);
 		 console.log(JSON.stringify(session));
-		
 		$.ajax({
 			'type':'get', 
 			'url':'<%= request.getContextPath() %>/ShareFileServlet/insertNotify',
@@ -95,7 +94,7 @@ $(function(){
 				console.log("here is response");
 				$.fancybox.close();
 				$('table#shareFileMain>tbody>tr[id^="f"][class="listBackground"]').removeClass('listBackground');
-				icondisplay();
+
 				}//end of 'success':function(data){
 			});//end of $.ajax({	
 	})//end of  $('#getMemberSubmitButton').click(function(){  	

@@ -28,6 +28,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.iii.twentywork.model.bean.CheckPathInfoBean;
 import com.iii.twentywork.model.bean.FileTreeBean;
+import com.iii.twentywork.model.bean.Notify;
 import com.iii.twentywork.model.bean.ShareFileBean;
 import com.iii.twentywork.model.bean.TeamBean;
 import com.iii.twentywork.model.bean.UsersBean;
@@ -174,9 +175,9 @@ public class ShareFileServlet extends HttpServlet {
             int fileId = Integer.parseInt(fileID.substring(4));
         	ShareFileBean bean = shareFileService.selectByFileId(fileId);
         	String fileName = bean.getFileName();
-        	System.out.println(bean);
-        	System.out.println(fileName);
-        	        	
+//        	System.out.println(bean);
+//        	System.out.println(fileName);
+//        	        	
     	    PrintWriter out = response.getWriter();
     	    response.setContentType("APPLICATION/OCTET-STREAM");
     	    fileName = new String(fileName.getBytes(), "ISO8859-1");
@@ -192,9 +193,8 @@ public class ShareFileServlet extends HttpServlet {
 	    	request.setCharacterEncoding("UTF-8");
 	    	int fileId = Integer.parseInt(request.getParameter("fileId"));
 	    	String fileName = request.getParameter("fileName");
-	    	
-	    	System.out.println(fileId);
-	    	System.out.println(fileName);
+//	    	System.out.println(fileId);
+//	    	System.out.println(fileName);
 	    	shareFileService.renameFile(fileId,fileName);
 	    }else if (pathInfo.equals("/getFolderTree") && servletPath.equals("/ShareFileServlet") )
 	    {//getFolderTree
@@ -231,14 +231,16 @@ public class ShareFileServlet extends HttpServlet {
 			out.println(jsonString);
 			return;
 			
-	    }else if(pathInfo.equals("/getMember") && servletPath.equals("/ShareFileServlet")){
+	    }else if(pathInfo.equals("/getMember") && servletPath.equals("/ShareFileServlet"))
+	    {//取得團隊成員功能
 	    	System.out.println("here is ShareFileServlet  getMember");
 	    	String jsonString  = shareFileService.getTeamMember(teamBean.getTeamId());
 	    	response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println(jsonString);
 	    	return;
-	    }else if(pathInfo.equals("/insertNotify") && servletPath.equals("/ShareFileServlet")){
+	    }else if(pathInfo.equals("/insertNotify") && servletPath.equals("/ShareFileServlet"))
+	    {//發送分享檔案功能(insert)
 	    	System.out.println("here is ShareFileServlet  getMember");
 	    	String inputData = request.getParameter("data");//{"userID":["40289fee526ddeb501526de8f0ed0002","40289fee526ddeb501526ddfc6da0000"],"fileID":"folder907"}
 	    	JSONObject object = new JSONObject(inputData);
@@ -257,8 +259,38 @@ public class ShareFileServlet extends HttpServlet {
 	    		System.out.println("here is ShareFileServlet  getMember--no userIdArray input");
 	    		return;
 	    	}
-	    }else if(pathInfo.equals("/notifyPage") && servletPath.equals("/ShareFileServlet")){
+	    }else if(pathInfo.equals("/shareRecord") && servletPath.equals("/ShareFileServlet"))
+	    {//取得分享訊息列表
+	    	System.out.println("here is ShareFileServlet  shareRecord");
+	    	List<Notify> list = shareFileService.getShareFileRecord(usersBean.getUserID());
+	    	request.setAttribute("shareFileRecordList", list);
+	    	request.getRequestDispatcher("/shareFile/shareFileRecord.jsp").forward(request, response);
+            return;
+	    }else if(pathInfo.equals("/getHref") && servletPath.equals("/ShareFileServlet"))
+	    {//在分享訊息中取得folder網址
+	    	String fileIdList = request.getParameter("data");
+	    	System.out.println(fileIdList);//{"fileID":["folder954","file919","file917","file912","folder953","file912","file912"]}
+	    	JSONObject object = new JSONObject(fileIdList);
 	    	
+			JSONArray fileIDArray = object.getJSONArray("fileID");
+			List<String> fileIDList = new ArrayList<String>();
+			for (int i = 0; i < fileIDArray.length(); i++) {
+				fileIDList.add((String) fileIDArray.get(i));
+			}
+			Map<String,String> map =shareFileService.getHref(fileIDList);
+			String jsonString = JSONValue.toJSONString(map);
+			JSONObject json = new JSONObject(map);
+		    
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println(json.toString());
+//	    	System.out.println(jsonString);
+	    }else if(pathInfo.equals("/changeReadState") && servletPath.equals("/ShareFileServlet"))
+	    {//更改訊息狀態
+	    	String notifyID = request.getParameter("data");
+	    	System.out.println(notifyID);
+	    	shareFileService.updateReadState(notifyID);
+	    	return;
 	    }
 	    else{
 	    	System.out.println("What the Hall");
