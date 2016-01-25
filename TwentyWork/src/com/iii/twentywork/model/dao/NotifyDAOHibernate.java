@@ -87,7 +87,17 @@ public class NotifyDAOHibernate {
         return newFolderBean;
     }
 	
-
+	private static final String SELECT_NOTIFY_UNREAD_Number = "select COUNT(*) from notify where userID =? and teamID=? and readState='no'";
+	public void selectUnreadNumber(String userID,String teamID) {
+		SQLQuery query = getSession().createSQLQuery(SELECT_NOTIFY_UNREAD_Number);
+		query.setParameter(0, userID);
+		query.setParameter(1, teamID);
+		query.addEntity(Notify.class);
+		System.out.println(query.getFirstResult());
+//		return list;
+	}
+	
+	
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.config.xml");
 		SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
