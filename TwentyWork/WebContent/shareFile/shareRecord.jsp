@@ -16,7 +16,6 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/main/Main.css">	
 
-
 	
 <style>
 .padding {
@@ -191,16 +190,11 @@
 <br>
 <!-- icon -->
 <div class='padding'>
-	<a id="insertFile" href="<%= request.getContextPath() %>/shareFile/uploadFile.jsp"><img alt="Upload" title ="Upload" src="<%= request.getContextPath() %>/images/shareFile/fileUploadcloud148.png" /></a>
-	<a id="NewFolder"  href="<%= request.getContextPath() %>/shareFile/newFolder.jsp"><img alt ="New Folder" title ="New Folder"  src="<%= request.getContextPath() %>/images/shareFile/newfolder15.png"  /></a>
 	<img id="iconDownload" class="iconNotDisplay" alt ="Download" title ="Download"  src="<%= request.getContextPath() %>/images/shareFile/fileDownloadCloud134.png" />
-	<img id="iconCopy" class="iconNotDisplay" alt ="Copy" title ="Copy"  src="<%= request.getContextPath() %>/images/shareFile/copyfile19857.png" />
-	<img id="iconDelete" class="iconNotDisplay" alt ="Delete" title ="Delete"  src="<%= request.getContextPath() %>/images/shareFile/delete84453783.png" />
-	<a id="renameFile"  class="iconNotDisplay" href="<%= request.getContextPath() %>/shareFile/renameFile.jsp"><img  alt ="Rename" title ="Rename"   src="<%= request.getContextPath() %>/images/shareFile/renameedit42.png" /></a>
-	<a id="iconMove"  class="iconNotDisplay" href="<%= request.getContextPath() %>/shareFile/folderTree.jsp"><img  alt ="Move" title ="Move"   src="<%= request.getContextPath() %>/images/shareFile/movesend2.png" /></a>
-	<div style='float:right'>
-	<a id="shareRecord"  href="<%= request.getContextPath() %>/ShareFileServlet/shareRecord"><img alt ="ShareFileRecord" title ="ShareFileRecord"  src="<%= request.getContextPath() %>/images/shareFile/mail3.png"  /></a>
-	</div>
+<div style = "float:right">
+	<a id="insertFile" href="<%= request.getContextPath() %>/shareFile/shareRecord.jsp"><img id="shareRecord" alt ="Record" title ="Record"  src="<%= request.getContextPath() %>/images/shareFile/chat57.png" /></a>
+</div>
+
 </div>
 <table>
 <c:forEach var="folderTreeList" items="${folderTree}">
@@ -419,7 +413,6 @@
 		}
 	}; //end of function icondisplay(){
 </script>
-
 <!-- jQuery -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
 <%-- <script src="<%= request.getContextPath() %>/js/login/Main.js"></script> --%>

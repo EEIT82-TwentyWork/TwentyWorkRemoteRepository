@@ -66,10 +66,11 @@ public class ShareFileDAOHibernate implements ShareFileDAO
     public List<FileTreeBean> getGroupFolderTree(String teamId)
     {//testing#4
 //    	System.out.println("ShareFileDAOHibernate -- getGroupFolderTree ");
+    	System.out.println("ShareFileDAOHibernate -- getGroupFolderTree: "+teamId);
         SQLQuery query = getSession().createSQLQuery(FOLDER_TREE);
         query.setParameter(0, teamId);
         query.addEntity(FileTreeBean.class);
-//        System.out.println(query.list());
+        System.out.println(query.list());
         return query.list();
     }
 
@@ -112,6 +113,15 @@ public class ShareFileDAOHibernate implements ShareFileDAO
     	ShareFileBean upperFolderBean = selectByFileId(newUpperFolderId);
     	newFolderBean.setUpperFolder(upperFolderBean);
         return newFolderBean;
+    }
+    
+    private static final String SELECT_BY_TEAMID = "select * from ShareFile where teamId=? and upperFolderId=900";
+    @Override
+    public ShareFileBean getGroupRootBean(String teamId) {
+        SQLQuery query = getSession().createSQLQuery(SELECT_BY_TEAMID);
+        query.setParameter(0, teamId);
+        query.addEntity(ShareFileBean.class);
+        return (ShareFileBean) query.list().get(0);
     }
     
     public static void main(String[] args)
@@ -196,7 +206,7 @@ public class ShareFileDAOHibernate implements ShareFileDAO
       //testing#4 List<FileTreeBean> getGroupFolderTree(int teamId)
 //        System.out.println("testing#4");
 //        ShareFileDAO dao = (ShareFileDAO) context.getBean("shareFileDAO");
-//        String teamId = "30654172-858D-4C0E-A512-7A58E90C2B43";
+//        String teamId = "F617582D839E4CC2B0B50DB977DEFF59";
 //        List<FileTreeBean> fileList =  dao.getGroupFolderTree(teamId);
 //        for(Iterator<FileTreeBean> item = fileList.iterator();item.hasNext(); ) {
 //          System.out.println(item.next());
@@ -212,21 +222,14 @@ public class ShareFileDAOHibernate implements ShareFileDAO
 //        }
         
       //testing#6 int deleteFile(int fileId, boolean isFolder)
-        System.out.println("testing#6");
-      ShareFileDAO dao = (ShareFileDAO) context.getBean("shareFileDAO");
-      
-      System.out.println(dao.deleteFile(903, true));
-      System.out.println(dao.deleteFile(916, false));
+//        System.out.println("testing#6");
+//      ShareFileDAO dao = (ShareFileDAO) context.getBean("shareFileDAO");
+//      
+//      System.out.println(dao.deleteFile(903, true));
+//      System.out.println(dao.deleteFile(916, false));
         sessionFactory.getCurrentSession().getTransaction().commit();
     }
-    private static final String SELECT_BY_TEAMID = "select * from ShareFile where teamId=? and upperFolderId=900";
-    @Override
-    public ShareFileBean getGroupRootBean(int teamId) {
-        SQLQuery query = getSession().createSQLQuery(SELECT_BY_TEAMID);
-        query.setParameter(0, teamId);
-        query.addEntity(ShareFileBean.class);
-        return (ShareFileBean) query.list();
-    }
+    
     
     
     //create procedure find_file_by_fileName ( @v_fileId  int,@v_queryString nvarchar(50))

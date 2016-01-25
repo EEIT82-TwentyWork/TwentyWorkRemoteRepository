@@ -5,21 +5,25 @@
 <html lang="zn-Hantn-TW">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../../css/bootstrap/bootstrap.css">
-<link rel="stylesheet" href="../../css/main/Main.css">
-<link rel="stylesheet" href="../../css/main/navigation.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/bootstrap/bootstrap.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/main/Main.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/favList.css">
+
+<style>
+.mainPageContext{
+	float:left;
+ 	background-color:white; 
+ 	width: 1000px;
+	height:620px;
+	margin-top:20px;
+	box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.6), 0 0 200px 1px
+ rgba(255, 255, 255, 0.5);
+ 	overflow-y:auto;
+}
+
+
+</style>
 <title>main</title>
-<script type="text/javascript">
-// $(document).ready(function(){
-// 	var teamcalcheck =$("#teamleadercheck").val();
-// 	alert(teamcalcheck);
-// 	if(teamcalcheck == "1") {
-// 		$("#teamCalLink").attr("style","display:block");
-// 	} else {
-// 		$("#teamCalLink").attr("style","display:none");
-// 	}
-// })
-</script>
 </head>
 	<body onload="initializeCanvas()">
 		<div class="container-fluid">
@@ -91,8 +95,10 @@
 								<ul id="chatName">
 								</ul>
 							</li>
-							<li>
+							<li id="myFavLeftList">
 								<h3><a href = "<%=request.getContextPath() %>/Board">討論版</a></h3>
+								<ul>
+								</ul>
 							</li>
 							<li>
 								<h3><a href = "<%=request.getContextPath() %>/ShareFile">檔案分享</a></h3>
@@ -103,57 +109,6 @@
 						</ul>
 					</div>
 				</div>
-<!-- layout----E1 end---------------------------------------------------->								
-				<div id="page-center">
-<!-- 					<div id="chat-top"></div> -->	
-				<div>
-					<div id="page-textarea">
-						<div id="chat-context">
-							<div id="status"></div>
-							<ul id ="chat-messages"></ul>
-							<textarea id="messagesTextArea" readonly="readonly" rows="10" cols="45"></textarea>
-							
-						</div>
-					</div>
-					<canvas  id="sketchCanvas" width ="500" height="480"></canvas><br>
-				</div>
-		
-					<div id="chat-box">
-						<form id="message-form" action ="#" method="post">
-							<input type="textarea" id="chat-text" placeholder="strat chat" required/>
-							<button type="submit" style="display:none">Send Message</button>
-<!-- 							<input type="button" value="Erase" onclick ="toggleState(this)"> -->
-<!-- 							<input id ="colorChooser" type ="color" onchange="chooseColor(colorChooser.value)"/><br> -->
-						</form>
-					</div>
-<!-- layout----navigation---------------------------------------------------->		
-							<div id="nav-wrap">
-									<p id="welcome">U need to ?</p>
-									<button id="toggle-nav">NAV</button>
-									<p id="tagline">
-										Select<br>Experience
-									</p>
-									<ul id="circle-nav">
-										<li ><a href="#" value="Erase" onclick ="toggleState(this)">Erase</a></li>
-										<li><a href="#"></a></li>
-										<li><a href="#"></a></li>
-										<li><a href="#">Proposals</a></li>
-										<li><a href="#"><input id ="colorChooser" type ="color" onchange="chooseColor(colorChooser.value)"/></a></li>
-									</ul>
-								</div>
-<!-- layout----navigation---------------------------------------------------->		
-							
-					
-				</div>
-			</section>
-		</div>	
-
-<!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="../../js/login/Main.js"></script>
-<script src="../../js/main/sketch.js"></script>
-<script src="../../js/main/navigation.js"></script>
-<script src="../../js/calendar/CheckTeamLeader.js"></script>
-	</body>
-
-</html>
+<!-- layout----E1 end---------------------------------------------------->
+<div id="page-left">
+<div class = 'mainPageContext'>	

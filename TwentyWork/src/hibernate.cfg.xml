@@ -12,13 +12,12 @@
 		<property name="connection.datasource">java:comp/env/jdbc/xxx</property>
 		<property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
 		<property name="current_session_context_class">thread</property>
-		<property name="show_sql">true</property>
-		<property name="format_sql">true</property>
+<!-- 		<property name="show_sql">true</property> -->
+<!-- 		<property name="format_sql">true</property> -->
 
 <!-- 		<mapping class="com.iii.twentywork.model.bean.UsersBean"/> -->
 <!-- 		<mapping class="com.iii.twentywork.model.bean.TeamBean" /> -->
 <!-- 		<mapping class="com.iii.twentywork.model.bean.TeamUserBean" /> -->
-
 
 		<mapping resource="com/iii/twentywork/model/bean/UsersBean.hbm.xml"/>
 		<mapping resource="com/iii/twentywork/model/bean/Team.hbm.xml"/>
@@ -26,5 +25,10 @@
 		<mapping resource="com/iii/twentywork/model/bean/TeamSchedule.hbm.xml"/>
 		<mapping resource="com/iii/twentywork/model/bean/ShareFile.hbm.xml"/>
 		<mapping resource="com/iii/twentywork/model/bean/FillTree.hbm.xml"/>
+		<mapping resource="com/iii/twentywork/model/bean/Notify.hbm.xml"/>
+		<mapping resource="com/iii/twentywork/model/bean/Board.hbm.xml"/>
+		<mapping resource="com/iii/twentywork/model/bean/BoardClass.hbm.xml"/>
+		<mapping resource="com/iii/twentywork/model/bean/Sub.hbm.xml"/>
+		<mapping resource="com/iii/twentywork/model/bean/MyFav.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

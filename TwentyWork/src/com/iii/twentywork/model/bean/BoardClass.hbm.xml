@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016/1/10 ?U?? 06:05:35 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="com.iii.twentywork.model.bean.BoardClass" table="BoardClass" schema="dbo" catalog="TwentyWork" optimistic-lock="version">
+        <id name="boardClassId" type="string">
+            <column name="boardClassID" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="boardClassText" type="string">
+            <column name="boardClassText" length="50" />
+        </property>
+        <set name="boards" table="Board" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="boardClassID" length="32" />
+            </key>
+            <one-to-many class="com.iii.twentywork.model.bean.Board" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -58,14 +58,27 @@
 					  $('#fileList').prepend("<tr id='folder"+fileList.fileId+"'  onclick='listBackGround()' class></tr>"); 
 					  $('#folder'+fileList.fileId).click(listBackGround);
 					  $('#fileList>tr#folder'+fileList.fileId).append("<td  style='display:none'>"+fileList.fileId+"</td>");
-					  $('#fileList>tr#folder'+fileList.fileId).append("<td><a href ='"+$('#navPath>a:last').attr('href')+"/"+fileList.fileName+"' class='trtda'>"+fileList.fileName+"</a></td>");
+					  $('#fileList>tr#folder'+fileList.fileId).append("<td><a href ='"+$('#navPath>a:last').attr('href')+"/"+fileList.fileName+"' >"+fileList.fileName+"</a></td>");
 					  $('#fileList>tr#folder'+fileList.fileId).append("<td  style='display:none'>"+fileList.fileType+"</td>");
 					  $('#fileList>tr#folder'+fileList.fileId).append("<td>-</td>");
 					  $('#fileList>tr#folder'+fileList.fileId).append("<td  style='display:none'>"+fileList.userId+"</td>");
 					  $('#fileList>tr#folder'+fileList.fileId).append("<td>"+fileList.userName+"</td>");
 					  $('#fileList>tr#folder'+fileList.fileId).append("<td  style='display:none'>"+fileList.teamId+"</td>");
 					  $('#fileList>tr#folder'+fileList.fileId).append("<td  style='display:none'>"+fileList.teamName+"</td>");
-			  }
+					  $('#fileList>tr#folder'+fileList.fileId).append("<td><input type = 'button' value='分享' id= 'sharefile_folder"+fileList.fileId+"' > </td>");
+
+					  $('input[id^="sharefile_folder'+fileList.fileId+'"]').addClass("iconNotDisplay") 
+					  $('input[id^="sharefile_folder'+fileList.fileId+'"]').fancybox({
+				            'href' :"<%= request.getContextPath() %>/shareFile/getMember.jsp",
+						});//end of $('input[id^="sharefile_f"]').fancybox({
+					  $('#fileList>tr#folder'+fileList.fileId+'>td:nth-child(9)').mouseover(function(){
+							$(this).children().removeClass("iconNotDisplay")
+						});
+					  $('#fileList>tr#folder'+fileList.fileId+'>td:nth-child(9)').mouseout(function(){
+							$(this).children().addClass("iconNotDisplay")
+						});
+			  }											
+				
 		  });//end of $.ajax({ 
 	});
 </script>

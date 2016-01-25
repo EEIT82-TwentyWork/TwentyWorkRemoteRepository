@@ -40,7 +40,7 @@ public class JMail {
 
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(string[i]));
 			String emailBody = "<h1>您好:</h1>" + "<br><h2>"+teamName+"邀請您至TwentyWork團隊進行工作。</h2>" + "<br><h2>請點選以下連結開始工作:</h2>"
-					+ "<br><h2><a href='http://localhost:8080/TwentyWork/login/registerPersonal.jsp?teamName="+teamName+"&email="+string[i]+"'>進入Twenty Work</a></h2>";
+					+ "<br><h2><a href='http://twentywork.cloudapp.net:8080/TwentyWork/login/registerPersonal.jsp?teamName="+teamName+"&email="+string[i]+"'>進入Twenty Work</a></h2>";
 			
 			message.setSubject("TwentyWork成員邀請信", "UTF-8");
 			message.setContent(emailBody, "text/html;charset=UTF-8");
