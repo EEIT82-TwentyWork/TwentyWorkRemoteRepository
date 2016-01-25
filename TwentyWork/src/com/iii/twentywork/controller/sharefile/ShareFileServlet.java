@@ -66,7 +66,7 @@ public class ShareFileServlet extends HttpServlet {
 	    if(servletPath.equals("/ShareFile"))
         {//取得頁面列表功能
               //驗證資料
-	    	shareFileService.selectUnreadNumber(usersBean.getUserID(),teamBean.getTeamId());
+	    	
                 Map<String, String> errors = new HashMap<String, String>();
                 request.setAttribute("errors", errors);
                 CheckPathInfoBean check = shareFileService.checkPathInfo(pathInfo,teamBean,usersBean);
@@ -83,6 +83,9 @@ public class ShareFileServlet extends HttpServlet {
                 session.setAttribute("upperFolderId", upperFolderId); //int
                 session.setAttribute("fileList", fileList);  //List<ShareFileBean>
                 session.setAttribute("folders", check.getFolders());//List<FileTreeBean>
+                
+                int notifyNumber =shareFileService.selectUnreadNumber(usersBean.getUserID(),teamBean.getTeamId());
+                request.setAttribute("notifyNumber", notifyNumber);
 //                session.setAttribute("folderTree", check.getFolderTree());
 //                System.out.println("ShareFileServlet--check.isPass()-"+check.isPass());
 //                System.out.println("ShareFileServlet--check.getFolderTree()-"+check.getFolderTree());

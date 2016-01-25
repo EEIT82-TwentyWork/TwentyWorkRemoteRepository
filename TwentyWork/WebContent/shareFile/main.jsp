@@ -67,6 +67,25 @@
     color: white;
     padding-left:12px;
 }
+.numberCircle {
+	float:right;
+    border-radius: 50%;
+/*     behavior: url(PIE.htc); /* remove if you don't care about IE8 */ */
+
+     width: 20px; 
+     height: 20px;
+/*     padding: 8px; */
+
+    background: red;
+    border: 2px solid red;
+    color: white;
+    text-align: center;
+
+    font: 14px Arial, sans-serif;
+    
+/*      border-left:0 solid transparent; */
+/*     background:transparent; */
+}
 </style>
 
 </head>
@@ -201,6 +220,7 @@
 	<div style='float:right'>
 	<a id="shareRecord"  href="<%= request.getContextPath() %>/ShareFileServlet/shareRecord"><img alt ="ShareFileRecord" title ="ShareFileRecord"  src="<%= request.getContextPath() %>/images/shareFile/mail3.png"  /></a>
 	</div>
+	<div class="numberCircle">${notifyNumber }</div>
 </div>
 <table>
 <c:forEach var="folderTreeList" items="${folderTree}">

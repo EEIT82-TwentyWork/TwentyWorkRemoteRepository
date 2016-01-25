@@ -378,8 +378,8 @@ public class ShareFileService
 		return notifyDAO.updateReadState(notifyId);
 	}
 	
-	public void selectUnreadNumber(String userID,String teamID){
-		notifyDAO.selectUnreadNumber( userID, teamID);
+	public int selectUnreadNumber(String userID,String teamID){
+		return notifyDAO.selectUnreadNumber( userID, teamID);
 	}
 	
 	public static void main(String[] args)

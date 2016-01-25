@@ -88,13 +88,12 @@ public class NotifyDAOHibernate {
     }
 	
 	private static final String SELECT_NOTIFY_UNREAD_Number = "select COUNT(*) from notify where userID =? and teamID=? and readState='no'";
-	public void selectUnreadNumber(String userID,String teamID) {
+	public int selectUnreadNumber(String userID,String teamID) {
 		SQLQuery query = getSession().createSQLQuery(SELECT_NOTIFY_UNREAD_Number);
 		query.setParameter(0, userID);
 		query.setParameter(1, teamID);
-		query.addEntity(Notify.class);
-		System.out.println(query.getFirstResult());
-//		return list;
+		System.out.println(query.list().get(0));
+		return (int)query.list().get(0);
 	}
 	
 	
