@@ -24,6 +24,20 @@
 }
 .eachPost{
 	border:1px black;
+	padding:5px;
+}
+.subTable{
+	 width:400px;
+}
+.subTableTr{
+	 border-bottom: 1px solid gray;
+}
+#mainHr{
+	margin-top:0px;
+	margin-bottom:0px;
+}
+#boardList{
+	padding-bottom:5px;
 }
 </style>
 </head>
@@ -33,10 +47,11 @@
 
 <div id="boardList" class="padding">
 <h4>${boardBean.boardTitle}</h4>
-<hr>
+<hr id="mainHr">
 <c:set var="index" value='1' />
-
+<table class='subTable'>
 <c:forEach var="subList" items="${subList }">
+<tr class='subTableTr'><td>
 <div class="eachPost">
 	<div class="postUser">
 		<div class = "UserInformation">
@@ -49,13 +64,15 @@
   			<span>${fn:substring(subList.subTime ,0,16) }</span>
   		</div>
   	</div>
-  	<hr>
+  	<hr  id="mainHr">
   	<div class = "subTextContext">
   		${subList.subText }
   	</div>
-  	-------------------------------------------------------------------------------------------
+<!--   	------------------------------------------------------------------------------------------- -->
   </div>
- </c:forEach>		
+  </td></tr>
+ </c:forEach>	
+ </table>	
 </div>
 <div class='commentArea'>
 <form action="<%= request.getContextPath() %>/BoardServlet/subInsert">
@@ -67,5 +84,10 @@
 
 <!---------------- main page code end---------------------------------->
 <jsp:include page="../main/workHome/foot.jsp" />
+<script >
+$(function(){
+$('.subTableTr:last').removeClass('subTableTr')
+})// end of $(function(){
+</script>
 </body>
 </html>

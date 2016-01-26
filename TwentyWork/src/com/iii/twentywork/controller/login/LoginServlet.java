@@ -101,7 +101,9 @@ public class LoginServlet extends HttpServlet {
 		if (requestURI != null && requestURI.length() != 0) {
 			// 回到進來前的頁面
 			session.removeAttribute("requestURI");
-			response.sendRedirect(requestURI);
+//			response.sendRedirect(requestURI);
+			String path = request.getContextPath();
+			response.sendRedirect(path + "/main/workHome/main.jsp");
 			return;
 		} else {
 			String path = request.getContextPath();

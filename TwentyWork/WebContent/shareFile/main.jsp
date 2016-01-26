@@ -220,7 +220,11 @@
 	<div style='float:right'>
 	<a id="shareRecord"  href="<%= request.getContextPath() %>/ShareFileServlet/shareRecord"><img alt ="ShareFileRecord" title ="ShareFileRecord"  src="<%= request.getContextPath() %>/images/shareFile/mail3.png"  /></a>
 	</div>
-	<div class="numberCircle">${notifyNumber }</div>
+	
+	<c:if test="${notifyNumber >0}">
+		<div class="numberCircle">${notifyNumber }</div>
+	</c:if>
+	
 </div>
 <table>
 <c:forEach var="folderTreeList" items="${folderTree}">
